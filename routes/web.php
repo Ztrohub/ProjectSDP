@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SiteController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('pages.login');
+});
+
+Route::get('/dashboard', function(){
     return view('pages.dashboard');
 });
+
+Route::post('login', function(Request $request){
+    $uname = $request ->UNAME;
+    $upass =$request ->UPASS;
+
+    if($uname == "admin" && $upass == "admin"){
+        return redirect('/dashboard');
+    }
+})->name('login');
