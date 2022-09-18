@@ -19,15 +19,15 @@ Route::get('/', function () {
     return view('pages.login');
 });
 
-Route::get('/dashboard', function(){
-    return view('pages.dashboard');
-});
 
-Route::post('login', function(Request $request){
+
+Route::post('index', function(Request $request){
     $uname = $request ->UNAME;
     $upass =$request ->UPASS;
-
+    $param = $uname;
     if($uname == "admin" && $upass == "admin"){
-        return redirect('/dashboard');
+        // return redirect('/index')->with(['param' => $param]);
+        return view('pages.index',compact('param'));
+        //return view('pages.index',['param' => $param]); sama aja kek compact
     }
 })->name('login');
