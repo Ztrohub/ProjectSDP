@@ -514,6 +514,14 @@ a > code {
   color: inherit;
 }
 
+.cokcok{
+    font-size: 15px;
+}
+
+.warnaecok{
+    background-color: #18181c;
+}
+
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 87.5%;
