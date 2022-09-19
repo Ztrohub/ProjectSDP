@@ -15,17 +15,17 @@
                 <a href="index.html">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
-                        <img src="{{ asset('adminmart/src/assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
+                        <img src="{{ asset('adminmart/src/assets/images/LOGOKITA.png') }}" width="180" height="100" alt="homepage" class="dark-logo" />
                         <!-- Light Logo icon -->
-                        <img src="{{ asset('adminmart/src/assets/images/logo-icon.png') }}" alt="homepage" class="light-logo" />
+                        <img src="{{ asset('adminmart/src/assets/images/LOGOKITA.png') }}" width="180" height="100" alt="homepage" class="light-logo" />
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
                         <!-- dark Logo text -->
-                        <img src="{{  asset('adminmart/src/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
+                        {{-- <img src="{{  asset('adminmart/src/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
                         <!-- Light Logo text -->
-                        <img src="{{  asset('adminmart/src/assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
+                        <img src="{{  asset('adminmart/src/assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" /> --}}
                     </span>
                 </a>
             </div>
@@ -49,7 +49,7 @@
             <!-- ============================================================== -->
             <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
                 <!-- Notification -->
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
                         id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -122,12 +122,12 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 <!-- End Notification -->
                 <!-- ============================================================== -->
                 <!-- create new -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i data-feather="settings" class="svg-icon"></i>
@@ -138,8 +138,8 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
-                <li class="nav-item d-none d-md-block">
+                </li> --}}
+                {{-- <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="javascript:void(0)">
                         <div class="customize-input">
                             <select
@@ -151,7 +151,7 @@
                             </select>
                         </div>
                     </a>
-                </li>
+                </li> --}}
             </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
@@ -160,7 +160,7 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item d-none d-md-block">
+                {{-- <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="javascript:void(0)">
                         <form>
                             <div class="customize-input">
@@ -170,7 +170,7 @@
                             </div>
                         </form>
                     </a>
-                </li>
+                </li> --}}
                 <!-- ============================================================== -->
                 <!-- User profile and search -->
                 <!-- ============================================================== -->

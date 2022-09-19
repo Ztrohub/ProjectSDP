@@ -16,8 +16,8 @@
     <link href="{{ asset('adminmart/src/assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
     <link href="{{ asset('adminmart/src/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="{{ asset('adminmart/src/dist/css/style.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('adminmart/src/assets/dist/css/style.css')}}">
+    <link href="{{ asset('adminmart/src/dist/css/style.css') }}" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +26,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+
 
 <body>
     <!-- ============================================================== -->
@@ -45,11 +46,11 @@
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
 
         <!-- Start Topbar -->
-        @include("partials.topbar")
+        @include("layout.topbar")
         <!-- End Topbar -->
 
         <!-- Start Sidebar -->
-        @include("partials.sidebar")
+        @include("layout.sidebar")
         <!-- End Sidebar -->
 
         <!-- ============================================================== -->
@@ -59,7 +60,7 @@
             @yield('content')
 
             <!-- Start Footer -->
-            @include("partials.footer")
+            @include("layout.footer")
             <!-- End Footer -->
         </div>
         <!-- ============================================================== -->
