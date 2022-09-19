@@ -518,9 +518,21 @@ a > code {
     font-size: 15px;
 }
 
-.warnaecok{
-    background-color: #18181c;
+.content{
+    background-color: #212121;
 }
+
+.warnaecok{
+    background-color: #1f1f1f;
+}
+.warnaecok2{
+    background-color: #212121;
+}
+
+.warnarole{
+    color: whitesmoke;
+}
+
 
 kbd {
   padding: 0.2rem 0.4rem;
