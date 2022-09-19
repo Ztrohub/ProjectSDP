@@ -7767,6 +7767,7 @@ Preloader
 .topbar {
   position: relative;
   z-index: 50;
+  background-color: black;
   transition: 0.2s ease-in;
   background: transparent; }
   .topbar .navbar-collapse {
