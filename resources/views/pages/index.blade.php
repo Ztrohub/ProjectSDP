@@ -28,7 +28,9 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+
+
+    <!-- Sidebar -->
         <ul class="navbar-nav warnaecok sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -151,9 +153,7 @@
             </div>
 
         </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
+        <!-- End of Sidebar -->    <!-- Content Wrapper         -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->

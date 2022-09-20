@@ -1,228 +1,124 @@
-<!-- ============================================================== -->
-<!-- Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
-<aside class="left-sidebar" data-sidebarbg="skin6">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar" data-sidebarbg="skin6">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <li class="sidebar-item selected"> <a class="sidebar-link sidebar-link" href="index.html"
-                        aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
-                            class="hide-menu">Dashboard</span></a></li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
+<!-- Sidebar -->
+<ul class="navbar-nav warnaecok sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html"
-                        aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                            class="hide-menu">Ticket List
-                        </span></a>
-                </li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-chat.html"
-                        aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
-                            class="hide-menu">Chat</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
-                        aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-                            class="hide-menu">Calendar</span></a></li>
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <div class="sidebar-brand-icon">
+            <img src="{{ asset('front/img/logo_aja.png') }}" width="55" height="50" alt="">
+        </div>
+        <div class="sidebar-brand-text mx-2 cokcok">Asia Teknik</div>
+    </a>
 
-                <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Components</span></li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                        aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                            class="hide-menu">Forms </span></a>
-                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><span
-                                    class="hide-menu"> Form Inputs
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><span
-                                    class="hide-menu"> Form Grids
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><span
-                                    class="hide-menu"> Checkboxes &
-                                    Radios
-                                </span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                        aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
-                            class="hide-menu">Tables </span></a>
-                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="table-basic.html" class="sidebar-link"><span
-                                    class="hide-menu"> Basic Table
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="table-dark-basic.html" class="sidebar-link"><span
-                                    class="hide-menu"> Dark Basic Table
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="table-sizing.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Sizing Table
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="table-layout-coloured.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Coloured
-                                    Table Layout
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="table-datatable-basic.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Basic
-                                    Datatables
-                                    Layout
-                                </span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                        aria-expanded="false"><i data-feather="bar-chart" class="feather-icon"></i><span
-                            class="hide-menu">Charts </span></a>
-                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="chart-morris.html" class="sidebar-link"><span
-                                    class="hide-menu"> Morris Chart
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="chart-chart-js.html" class="sidebar-link"><span
-                                    class="hide-menu"> ChartJs
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="chart-knob.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Knob Chart
-                                </span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                        aria-expanded="false"><i data-feather="box" class="feather-icon"></i><span
-                            class="hide-menu">UI Elements </span></a>
-                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="ui-buttons.html" class="sidebar-link"><span
-                                    class="hide-menu"> Buttons
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="ui-modals.html" class="sidebar-link"><span
-                                    class="hide-menu"> Modals </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="ui-tab.html" class="sidebar-link"><span
-                                    class="hide-menu"> Tabs </span></a></li>
-                        <li class="sidebar-item"><a href="ui-tooltip-popover.html" class="sidebar-link"><span
-                                    class="hide-menu"> Tooltip &
-                                    Popover</span></a></li>
-                        <li class="sidebar-item"><a href="ui-notification.html" class="sidebar-link"><span
-                                    class="hide-menu">Notification</span></a></li>
-                        <li class="sidebar-item"><a href="ui-progressbar.html" class="sidebar-link"><span
-                                    class="hide-menu">Progressbar</span></a></li>
-                        <li class="sidebar-item"><a href="ui-typography.html" class="sidebar-link"><span
-                                    class="hide-menu">Typography</span></a></li>
-                        <li class="sidebar-item"><a href="ui-bootstrap.html" class="sidebar-link"><span
-                                    class="hide-menu">Bootstrap
-                                    UI</span></a></li>
-                        <li class="sidebar-item"><a href="ui-breadcrumb.html" class="sidebar-link"><span
-                                    class="hide-menu">Breadcrumb</span></a></li>
-                        <li class="sidebar-item"><a href="ui-list-media.html" class="sidebar-link"><span
-                                    class="hide-menu">List
-                                    Media</span></a></li>
-                        <li class="sidebar-item"><a href="ui-grid.html" class="sidebar-link"><span
-                                    class="hide-menu"> Grid </span></a></li>
-                        <li class="sidebar-item"><a href="ui-carousel.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Carousel</span></a></li>
-                        <li class="sidebar-item"><a href="ui-scrollspy.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Scrollspy</span></a></li>
-                        <li class="sidebar-item"><a href="ui-toasts.html" class="sidebar-link"><span
-                                    class="hide-menu"> Toasts</span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="ui-spinner.html" class="sidebar-link"><span
-                                    class="hide-menu"> Spinner </span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="ui-cards.html"
-                        aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
-                            class="hide-menu">Cards
-                        </span></a>
-                </li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
-                        aria-expanded="false"><i data-feather="lock" class="feather-icon"></i><span
-                            class="hide-menu">Login
-                        </span></a>
-                </li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
-                        href="authentication-register1.html" aria-expanded="false"><i data-feather="lock"
-                            class="feather-icon"></i><span class="hide-menu">Register
-                        </span></a>
-                </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
 
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                        aria-expanded="false"><i data-feather="feather" class="feather-icon"></i><span
-                            class="hide-menu">Icons
-                        </span></a>
-                    <ul aria-expanded="false" class="collapse first-level base-level-line">
-                        <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><span
-                                    class="hide-menu"> Fontawesome Icons </span></a></li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-                        <li class="sidebar-item"><a href="icon-simple-lineicon.html" class="sidebar-link"><span
-                                    class="hide-menu"> Simple Line Icons </span></a></li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                        aria-expanded="false"><i data-feather="crosshair" class="feather-icon"></i><span
-                            class="hide-menu">Multi
-                            level
-                            dd</span></a>
-                    <ul aria-expanded="false" class="collapse first-level base-level-line">
-                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                    class="hide-menu"> item 1.1</span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                    class="hide-menu"> item 1.2</span></a>
-                        </li>
-                        <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="javascript:void(0)"
-                                aria-expanded="false"><span class="hide-menu">Menu 1.3</span></a>
-                            <ul aria-expanded="false" class="collapse second-level base-level-line">
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item
-                                            1.3.1</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item
-                                            1.3.2</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item
-                                            1.3.3</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                            class="hide-menu"> item
-                                            1.3.4</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><span
-                                    class="hide-menu"> item
-                                    1.4</span></a></li>
-                    </ul>
-                </li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="../../docs/docs.html"
-                        aria-expanded="false"><i data-feather="edit-3" class="feather-icon"></i><span
-                            class="hide-menu">Documentation</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
-                        aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                            class="hide-menu">Logout</span></a></li>
-            </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
     </div>
-    <!-- End Sidebar scroll-->
-</aside>
-<!-- ============================================================== -->
-<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Components</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Components:</h6>
+                <a class="collapse-item" href="">Buttons</a>
+                <a class="collapse-item" href="">Cards</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Utilities</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Utilities:</h6>
+                <a class="collapse-item" href="">Colors</a>
+                <a class="collapse-item" href="">Borders</a>
+                <a class="collapse-item" href="">Animations</a>
+                <a class="collapse-item" href="">Other</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Addons
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Pages</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Login Screens:</h6>
+                <a class="collapse-item" href="">Login</a>
+                <a class="collapse-item" href="">Register</a>
+                <a class="collapse-item" href="">Forgot Password</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">Other Pages:</h6>
+                <a class="collapse-item" href="">404 Page</a>
+                <a class="collapse-item" href="">Blank Page</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Charts</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tables</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+    <!-- Sidebar Message -->
+    <div class="sidebar-card d-none d-lg-flex">
+        <img class="sidebar-card-illustration mb-2" src="{{ asset('front/img/undraw_rocket.svg') }}" alt="...">
+        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->

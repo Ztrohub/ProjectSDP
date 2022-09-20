@@ -10480,11 +10480,13 @@ a:focus {
   z-index: 1;
 }
 
-.sidebar .sidebar-brand .sidebar-brand-icon i {
-  font-size: 2rem;
+.sidebar .sidebar-brand .sidebar-brand-icon {
+    margin-left: 5%;
+    font-size: 2rem;
 }
 
 .sidebar .sidebar-brand .sidebar-brand-text {
+    padding-top: 7%;
   display: none;
 }
 
@@ -10980,7 +10982,7 @@ form.user .btn-user {
 .show > .btn-facebook.dropdown-toggle {
   color: #fff;
   background-color: #2d4373;
-  border-color: #dfdfdf;
+      border-color: #dfdfdf;
 }
 
 .btn-facebook:not(:disabled):not(.disabled):active:focus, .btn-facebook:not(:disabled):not(.disabled).active:focus,

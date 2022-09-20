@@ -1,99 +1,106 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('adminmart/src/assets/images/favicon.png') }}">
-    <title>Asia Teknik</title>
-    <!-- Custom CSS -->
-    <link href="{{ asset('adminmart/src/assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('adminmart/src/assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('adminmart/src/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
-    <!-- Custom CSS -->
-    <link href="{{ asset('adminmart/src/dist/css/style.css') }}" rel="stylesheet">
 
+    <title>SB Admin 2 - Dashboard</title>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('front/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('front/css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
 </head>
 
+<body id="page-top">
 
-<body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        @include("partials.sidebar")
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper         -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content" class="content">
+
+                <!-- Topbar -->
+                @include("partials.topbar")
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                @yield("content")
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            @include("partials.footer")
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="">Logout</a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper" data-theme="dark" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('front/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('front/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-        <!-- Start Topbar -->
-        @include("layout.topbar")
-        <!-- End Topbar -->
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('front/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-        <!-- Start Sidebar -->
-        @include("layout.sidebar")
-        <!-- End Sidebar -->
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('front/js/sb-admin-2.min.js') }}"></script>
 
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            @yield('content')
+    <!-- Page level plugins -->
+    <script src="{{ asset('front/vendor/chart.js/Chart.min.js') }}"></script>
 
-            <!-- Start Footer -->
-            @include("layout.footer")
-            <!-- End Footer -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('front/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('front/js/demo/chart-pie-demo.js') }}"></script>
 
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('adminmart/src/assets/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <!-- apps -->
-    <!-- apps -->
-    <script src="{{ asset('adminmart/src/dist/js/app-style-switcher.js') }}"></script>
-    <script src="{{ asset('adminmart/src/dist/js/feather.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/dist/js/sidebarmenu.js') }}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('adminmart/src/dist/js/custom.min.js') }}"></script>
-    <!--This page JavaScript -->
-    <script src="{{ asset('adminmart/src/assets/extra-libs/c3/d3.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/extra-libs/c3/c3.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/libs/chartist/dist/chartist.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
-    <script src="{{ asset('adminmart/src/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <script src="{{ asset('adminmart/src/dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
 </body>
 
 </html>

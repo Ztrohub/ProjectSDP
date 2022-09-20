@@ -1,10 +1,9 @@
-<!-- ============================================================== -->
-<!-- footer -->
-<!-- ============================================================== -->
-<footer class="footer text-center text-muted">
-    All Rights Reserved by Adminmart. Designed and Developed by <a
-        href="https://wrappixel.com">WrapPixel</a>.
+<!-- Footer -->
+<footer class="sticky-footer warnaecok2">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2021</span>
+        </div>
+    </div>
 </footer>
-<!-- ============================================================== -->
-<!-- End footer -->
-<!-- ============================================================== -->
+<!-- End of Footer -->
