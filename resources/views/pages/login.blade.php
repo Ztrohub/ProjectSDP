@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="{{ asset('adminmart/src/dist/css/customcssdanjs/loginpage/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/login/login.css') }}">
 
     <title>LOGIN PAGE</title>
 
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('adminmart/src/dist/css/customcssdanjs/loginpage/login.js') }}"></script>
+    <script src="{{ asset('src/login/login.js') }}"></script>
 </body>
 </html>
 

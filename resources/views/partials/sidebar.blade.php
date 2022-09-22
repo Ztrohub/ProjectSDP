@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('front/img/logo_aja.png') }}" width="55" height="50" alt="">
+            <img src="{{ asset('src/sb-admin/img/logo_aja.png') }}" width="55" height="50" alt="">
         </div>
-        <div class="sidebar-brand-text mx-2 cokcok">Asia Teknik</div>
+        <div class="sidebar-brand-text mx-2 cokcok" style="color: #888e93;">Asia Teknik</div>
     </a>
 
     <!-- Divider -->
@@ -111,13 +111,6 @@
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-
-    <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="{{ asset('front/img/undraw_rocket.svg') }}" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
     </div>
 
 </ul>

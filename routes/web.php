@@ -21,13 +21,13 @@ Route::get('/', function () {
 
 
 
-Route::post('index', function(Request $request){
+Route::post('dashboard', function(Request $request){
     $uname = $request ->UNAME;
     $upass =$request ->UPASS;
     $param = $uname;
     if($uname == "admin" && $upass == "admin"){
         // return redirect('/index')->with(['param' => $param]);
-        return view('pages.dashboard',compact('param'));
+        return view('pages.dashboard', compact('param'));
         //return view('pages.index',['param' => $param]); sama aja kek compact
     }
 })->name('login');

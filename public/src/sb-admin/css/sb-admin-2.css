@@ -519,14 +519,14 @@ a > code {
 }
 
 .content{
-    background-color: #212121;
+    background-color: #202428;
 }
 
 .warnaecok{
-    background-color: #1f1f1f;
+    background-color: #2c3034;
 }
 .warnaecok2{
-    background-color: #212121;
+    background-color: #2c3034;
 }
 
 .warnarole{
@@ -9817,7 +9817,7 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  background-color: #f8f9fc;
+  background-color: #f7f7f7;
   width: 100%;
   overflow-x: hidden;
 }
