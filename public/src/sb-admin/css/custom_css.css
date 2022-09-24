@@ -1,0 +1,24 @@
+/* COLOR */
+.color-darkgrey {
+    color: #888e93;
+}
+
+/* SIDEBAR */
+.sidebar-brand-text {
+    font-size: 1.1rem;
+    margin: 3% 0 0 3%;
+}
+.sidebar-brand-text span {
+    color: #b6707c;
+}
+.nav-item.active .nav-link span {
+    color: #bec3cd;
+}
+.nav-item.active a{
+    background-color: #34373c;
+}
+
+/* TOPBAR */
+.badge.badge-danger.badge-counter{
+    background-color: #b56d78;
+}

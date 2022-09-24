@@ -19,9 +19,7 @@ Route::get('/', function () {
     return view('pages.login');
 });
 
-
-
-Route::post('dashboard', function(Request $request){
+Route::post('/dashboard', function(Request $request){
     $uname = $request ->UNAME;
     $upass =$request ->UPASS;
     $param = $uname;
@@ -31,3 +29,24 @@ Route::post('dashboard', function(Request $request){
         //return view('pages.index',['param' => $param]); sama aja kek compact
     }
 })->name('login');
+
+Route::get('/cart', function(){
+    $uname = "admin";
+    $param = $uname;
+
+    return view('pages.cart', compact('param'));
+})->name('cart');
+
+Route::get('/checkout', function(){
+    $uname = "admin";
+    $param = $uname;
+
+    return view('pages.checkout', compact('param'));
+})->name('checkout');
+
+Route::get('/store', function(){
+    $uname = "admin";
+    $param = $uname;
+
+    return view('pages.store', compact('param'));
+})->name('store');

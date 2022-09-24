@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Asia Teknik - Dashboard</title>
+    <title>Asia Teknik</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('src/sb-admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -19,7 +19,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('src/sb-admin/css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('src/sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('src/sb-admin/css/custom_css.css') }}" rel="stylesheet">
+    @stack("page_custom_css")
 </head>
 
 <body id="page-top">
@@ -99,6 +100,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('src/sb-admin/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('src/sb-admin/js/demo/chart-pie-demo.js') }}"></script>
+    @stack("page_custom_js")
 
 </body>
 
