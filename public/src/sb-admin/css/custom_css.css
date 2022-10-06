@@ -1,6 +1,30 @@
 /* COLOR */
-.color-darkgrey {
-    color: #888e93;
+.color-white-high-emphasis {
+    color: #e2e0e1;
+}
+
+.color-white-medium-emphasis {
+    color: #747273;
+}
+
+.color-white-low-emphasis {
+    color: #474546;
+}
+
+.bg-white-high-emphasis {
+    background-color: #e2e0e1;
+}
+
+.bg-white-medium-emphasis {
+    background-color: #747273;
+}
+
+.bg-white-low-emphasis {
+    background-color: #474546;
+}
+
+.bg-that-more-light-than-black {
+    background-color: #1f1f28;
 }
 
 /* SIDEBAR */
@@ -8,17 +32,48 @@
     font-size: 1.1rem;
     margin: 3% 0 0 3%;
 }
+.nav-item a{
+    border-radius: 3%;
+    transition: all .2s linear;
+}
+.nav-item:not(.dropdown):hover a{
+    background-color: #2f2f30;
+}
 .sidebar-brand-text span {
-    color: #b6707c;
+    color: #6b6fc3;
 }
-.nav-item.active .nav-link span {
-    color: #bec3cd;
+.nav-item .nav-link span, .nav-item .nav-link i.fas{
+    color: #747273;
+    transition: all .2s linear;
 }
-.nav-item.active a{
-    background-color: #34373c;
+.nav-item.active .nav-link span, .nav-item.active .nav-link i.nav-icon {
+    color: #ffffff;
+}
+.nav-item.active a {
+    background-color: #6b6fc3;
+}
+.nav-item.active:hover a{
+    background-color: #484DB3;
+}
+.nav-item:hover:not(.active) a.nav-link span, .nav-item:hover:not(.active) a.nav-link i.nav-icon{
+    color: #787dd7;
+}
+.nav-item.active:hover a.nav-link span, .nav-item.active:hover a.nav-link i.nav-icon{
+    color: #e2e0e1;
 }
 
 /* TOPBAR */
 .badge.badge-danger.badge-counter{
-    background-color: #b56d78;
+    background-color: #6b6fc3;
+    color: #e2e0e1;
+}
+.nav-item.dropdown:hover a.nav-link i.nav-icon {
+    color: #747273;
+    transition: all .2s linear;
+}
+.nav-item.dropdown:hover a.nav-link span.badge.badge-danger.badge-counter {
+    color: #e2e0e1;
+}
+.nav-link.dropdown-toggle:hover {
+    background-color: #1f1f28;
 }

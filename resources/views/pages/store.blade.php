@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ asset('src/store/css/store.css') }}">
 @endpush
 
+@section('name_page')
+    Store
+@endsection
+
 @section('content')
     <div class="super-container">
         <div class="main-search-input-wrap">

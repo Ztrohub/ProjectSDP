@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\SiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,19 +15,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.login');
+    return redirect()->route('login');
 });
 
-Route::post('/dashboard', function(Request $request){
-    $uname = $request ->UNAME;
-    $upass =$request ->UPASS;
-    $param = $uname;
-    if($uname == "admin" && $upass == "admin"){
-        // return redirect('/index')->with(['param' => $param]);
-        return view('pages.dashboard', compact('param'));
-        //return view('pages.index',['param' => $param]); sama aja kek compact
-    }
+Route::get('/login', function(){
+    return view('pages.login');
 })->name('login');
+
+Route::post('/login', function(Request $request){
+    $username = $request ->username;
+    $password = $request ->password;
+
+    $loginUser = array();
+    $loginUser['username'] = $username;
+    $loginUser['password'] = $password;
+    $request->session()->put('loginUser', $loginUser);
+
+    return redirect()->route('dashboard');
+})->name('login');
+
+Route::get('/dashboard', function(Request $request){
+    $loginUser = array();
+    if($request->session()->has('loginUser')){
+        $loginUser = $request->session()->get('loginUser');
+    }
+    $param = array();
+    $param["loginUser"] = $loginUser;
+
+    return view('pages.dashboard', $param);
+})->name('dashboard');
 
 Route::get('/cart', function(){
     $uname = "admin";
@@ -44,9 +59,13 @@ Route::get('/checkout', function(){
     return view('pages.checkout', compact('param'));
 })->name('checkout');
 
-Route::get('/store', function(){
-    $uname = "admin";
-    $param = $uname;
+Route::get('/store', function(Request $request){
+    $loginUser = array();
+    if($request->session()->has('loginUser')){
+        $loginUser = $request->session()->get('loginUser');
+    }
+    $param = array();
+    $param["loginUser"] = $loginUser;
 
-    return view('pages.store', compact('param'));
+    return view('pages.store', $param);
 })->name('store');

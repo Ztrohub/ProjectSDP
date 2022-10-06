@@ -1,20 +1,24 @@
 @extends("main")
 
+@section('name_page')
+    Dashboard
+@endsection
+
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-light-800 warnarole" >Role Admin</h1>
-        </div>
+        {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-light-800 color-white-high-emphasis" >Role Admin</h1>
+        </div> --}}
 
         <!-- Content Row -->
         <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card border-left-primary shadow h-100 py-2 bg-that-more-light-than-black border-0">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -32,7 +36,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
+                <div class="card border-left-success shadow h-100 py-2 bg-that-more-light-than-black border-0">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -50,7 +54,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
+                <div class="card border-left-info shadow h-100 py-2 bg-that-more-light-than-black border-0">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -79,7 +83,7 @@
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card border-left-warning shadow h-100 py-2 bg-that-more-light-than-black border-0">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -101,10 +105,9 @@
 
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
                     <!-- Card Header - Dropdown -->
-                    <div
-                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-that-more-light-than-black border-0">
                         <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -132,10 +135,9 @@
 
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
                     <!-- Card Header - Dropdown -->
-                    <div
-                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-that-more-light-than-black border-0">
                         <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -180,8 +182,8 @@
             <div class="col-lg-6 mb-4">
 
                 <!-- Project Card Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
+                    <div class="card-header py-3 bg-that-more-light-than-black border-0">
                         <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
                     </div>
                     <div class="card-body">
@@ -291,8 +293,8 @@
             <div class="col-lg-6 mb-4">
 
                 <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
+                    <div class="card-header py-3 bg-that-more-light-than-black border-0">
                         <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
                     </div>
                     <div class="card-body">
@@ -310,8 +312,8 @@
                 </div>
 
                 <!-- Approach -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
+                    <div class="card-header py-3 bg-that-more-light-than-black border-0">
                         <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
                     </div>
                     <div class="card-body">

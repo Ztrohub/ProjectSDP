@@ -10,14 +10,15 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1B2430;
+    background-color: #111011;
+    color: #e2e0e1;
 }
 
 .container{
     position: relative;
     max-width: 430px;
     width: 100%;
-    background: #fff;
+    background: #1f1f28;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -36,7 +37,7 @@ body{
 .container .form{
     width: 50%;
     padding: 30px;
-    background-color: #fff;
+    background-color: #1f1f28;
     transition: margin-left 0.18s ease;
 }
 
@@ -71,7 +72,7 @@ body{
     bottom: 0;
     height: 3px;
     width: 30px;
-    background-color: #4070f4;
+    background-color: #6b6fc3;
     border-radius: 25px;
 }
 
@@ -90,13 +91,13 @@ body{
     border: none;
     outline: none;
     font-size: 16px;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #6b6fc3;
     border-top: 2px solid transparent;
     transition: all 0.2s ease;
 }
 
 .input-field input:is(:focus, :valid){
-    border-bottom-color: #4070f4;
+    border-bottom-color: #484DB3;
 }
 
 .input-field i{
@@ -109,7 +110,7 @@ body{
 }
 
 .input-field input:is(:focus, :valid) ~ i{
-    color: #4070f4;
+    color: #484DB3;
 }
 
 .input-field i.icon{
@@ -135,16 +136,16 @@ body{
 
 .checkbox-content input{
     margin: 0 8px -2px 4px;
-    accent-color: #4070f4;
+    accent-color: #6b6fc3;
 }
 
 .form .text{
-    color: #333;
+    color: #e2e0e1;
     font-size: 14px;
 }
 
 .form a.text{
-    color: #4070f4;
+    color: #e2e0e1;
     text-decoration: none;
 }
 .form a:hover{
@@ -157,21 +158,26 @@ body{
 
 .form .button input{
     border: none;
-    color: #fff;
+    color: #e2e0e1;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 1px;
     border-radius: 6px;
-    background-color: #4070f4;
+    background-color: #6b6fc3;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .button input:hover{
-    background-color: #265df2;
+    background-color: #484DB3;
 }
 
 .form .login-signup{
     margin-top: 30px;
     text-align: center;
+}
+
+input {
+    background-color: #1f1f28;
+    color: #e2e0e1;;
 }

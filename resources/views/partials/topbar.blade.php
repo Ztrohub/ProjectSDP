@@ -1,5 +1,5 @@
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-light warnaecok2 topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-light bg-that-more-light-than-black topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </form> --}}
-    <h4 class="color-darkgrey" style="margin-top: 16px;">Dashboard</h4>
+    <h4 class="color-white-high-emphasis" style="margin-top: 16px;">@yield('name_page')</h4>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -102,19 +102,19 @@
         <!-- Nav Item - Cart -->
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link" href="{{ route('cart') }}">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <i class="fa fa-shopping-cart color-white-high-emphasis nav-icon" aria-hidden="true"></i>
                 <!-- Counter - Messages -->
                 <span class="badge badge-danger badge-counter">0</span>
             </a>
         </li>
 
-        <div class="topbar-divider d-none d-sm-block"></div>
+        <div class="topbar-divider d-none d-sm-block" style="border-color: #747273"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-light-800 large">Hello, <b>{{$param}}</b></span>
+                <span class="mr-2 d-none d-lg-inline large">Hello, <b class="color-white-high-emphasis">{{ $loginUser["username"] }}</b></span>
                 <img class="img-profile rounded-circle"
                     src="{{ asset('src/sb-admin/img/undraw_profile.svg') }}">
             </a>

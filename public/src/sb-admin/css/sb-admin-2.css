@@ -519,20 +519,12 @@ a > code {
 }
 
 .content{
-    background-color: #202428;
-}
-
-.warnaecok{
-    background-color: #2c3034;
-}
-.warnaecok2{
-    background-color: #2c3034;
+    background-color: #111011;
 }
 
 .warnarole{
     color: whitesmoke;
 }
-
 
 kbd {
   padding: 0.2rem 0.4rem;

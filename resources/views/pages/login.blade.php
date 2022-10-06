@@ -25,7 +25,7 @@
                 <form action="{{route('login')}}" method="POST">
                     @csrf
                     <div class="input-field">
-                        <input type="text" name="UNAME" placeholder="Enter your username" required>
+                        <input type="text" name="username" placeholder="Enter your username" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
