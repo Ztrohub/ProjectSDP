@@ -45,11 +45,15 @@ Route::get('/dashboard', function(Request $request){
     return view('pages.dashboard', $param);
 })->name('dashboard');
 
-Route::get('/cart', function(){
-    $uname = "admin";
-    $param = $uname;
+Route::get('/cart', function(Request $request){
+    $loginUser = array();
+    if($request->session()->has('loginUser')){
+        $loginUser = $request->session()->get('loginUser');
+    }
+    $param = array();
+    $param["loginUser"] = $loginUser;
 
-    return view('pages.cart', compact('param'));
+    return view('pages.cart', $param);
 })->name('cart');
 
 Route::get('/checkout', function(){

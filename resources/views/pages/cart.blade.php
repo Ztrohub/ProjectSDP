@@ -4,10 +4,14 @@
     <link rel="stylesheet" href="{{ asset('src/cart/cart.css') }}">
 @endpush
 
+@section('name_page')
+    Cart
+@endsection
+
 @section('content')
     <div class="wrap cf">
         <div class="heading cf">
-            <h1 class="color-darkgrey">My Cart</h1>
+            <h1>My Cart</h1>
             <a href="{{ route('store') }}" class="continue">Continue Shopping</a>
         </div>
         <div class="cart">
@@ -17,7 +21,7 @@
                         <div class="cartSection">
                             <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
                             <p class="itemNumber">#QUE-007544-002</p>
-                            <h3>Item Name 1</h3>
+                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
 
                             <p> <input type="number"  class="qty" value="3"/> x $5.00</p>
 
@@ -38,7 +42,7 @@
                         <div class="cartSection">
                             <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
                             <p class="itemNumber">#QUE-007544-002</p>
-                            <h3>Item Name 1</h3>
+                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
                             <p> <input type="number"  class="qty" value="3"/> x $5.00</p>
                             <p class="stockStatus"> In Stock</p>
                         </div>
@@ -58,7 +62,7 @@
                         <div class="cartSection">
                             <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
                             <p class="itemNumber">#QUE-007544-002</p>
-                            <h3>Item Name 1</h3>
+                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
                             <p> <input type="number" class="qty" value="3"/> x $5.00</p>
                             <p class="stockStatus out"> Out of Stock</p>
                         </div>
@@ -78,7 +82,7 @@
                         <div class="cartSection info">
                             <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
                             <p class="itemNumber">#QUE-007544-002</p>
-                            <h3>Item Name 1</h3>
+                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
                             <p> <input type="number"  class="qty" value="3"/> x $5.00</p>
                             <p class="stockStatus"> In Stock</p>
                         </div>
