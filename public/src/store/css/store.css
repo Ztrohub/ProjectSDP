@@ -9,17 +9,27 @@
     margin: 0.5rem;
 }
 
+.container-store .wrapper-card a {
+    text-decoration: none;
+}
+
 .container-store .card {
     width: 14rem;
     background-color: #1f1f28;
     border: none;
     border-radius: 5%;
+    transform: scale(1);
+    transition: transform 0.4s;
 }
 
 .container-store .card img {
     width: 14rem;
     height: 12rem;
     margin: 0 auto;
+}
+
+.container-store .card:hover {
+    transform: scale(1.1);
 }
 
 .container-store .card .card-body {

@@ -30,6 +30,12 @@
             <span>Store</span>
         </a>
     </li>
+    <li class="nav-item {{ (\Request::route()->getName() == 'master_item') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('master_item') }}">
+            <i class="fa fa-th nav-icon"></i>
+            <span>Master Item</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     {{-- <hr class="sidebar-divider d-none d-md-block"> --}}

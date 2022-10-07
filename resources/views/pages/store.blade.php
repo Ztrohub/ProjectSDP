@@ -21,123 +21,23 @@
         </div>
 
         <div class="container-store mx-4">
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            @for ($i = 0; $i < 10; $i++)
+                <div class="wrapper-card mb-4">
+                    <a href="#">
+                        <div class="card">
+                            <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="brand-text color-white-medium-emphasis">BRAND</p>
+                                <h5 class="card-title">Product name</h5>
+                                <div class="wrapper-bottom mt-2">
+                                    <p class="card-price">$149</p>
+                                    <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="wrapper-card mb-4">
-                <div class="card">
-                    <img src="{{ asset('src/store/img/ac.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="brand-text">BRAND</p>
-                        <h5 class="card-title">Product name</h5>
-                        <div class="wrapper-bottom mt-2">
-                            <p class="card-price">$149</p>
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endfor
         </div>
     </div>
 @endsection

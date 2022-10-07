@@ -73,3 +73,29 @@ Route::get('/store', function(Request $request){
 
     return view('pages.store', $param);
 })->name('store');
+
+Route::prefix('master')->group(function () {
+    Route::prefix('item')->group(function () {
+        Route::get('/', function (Request $request){
+            $loginUser = array();
+            if($request->session()->has('loginUser')){
+                $loginUser = $request->session()->get('loginUser');
+            }
+            $param = array();
+            $param["loginUser"] = $loginUser;
+
+            return view('pages.master.master_item', $param);
+        })->name('master_item');
+
+        Route::get('/add', function (Request $request){
+            $loginUser = array();
+            if($request->session()->has('loginUser')){
+                $loginUser = $request->session()->get('loginUser');
+            }
+            $param = array();
+            $param["loginUser"] = $loginUser;
+
+            return view('pages.add_item', $param);
+        })->name('master_item_add');
+    });
+});
