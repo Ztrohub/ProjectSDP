@@ -30,11 +30,9 @@
                 <label for="inputItemPrice" style="color: #e2e0e1;">Price</label>
                 <input type="number" class="form-control bg-content border-0" id="inputItemPrice" placeholder="Input price of the item">
             </div>
-            <div class="d-flex justify-content-end">
-                <a href="{{ route('master_item') }}" class="w-100 mr-3 d-flex justify-content-end text-decoration-none"><button type="button" class="btn btn-secondary mt-3 w-25">Back to Master Item</button></a>
-                <button type="submit" class="btn btn-template mt-3 w-25">Submit</button>
+            <div class="d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-template mt-3 col-12 col-md-3">Submit</button>
             </div>
-
         </form>
     </div>
 @endsection

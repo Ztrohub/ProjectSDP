@@ -16,87 +16,28 @@
         </div>
         <div class="cart">
             <ul class="cartWrap">
-                <li class="items odd">
-                    <div class="infoWrap">
-                        <div class="cartSection">
-                            <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
-                            <p class="itemNumber">#QUE-007544-002</p>
-                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
 
-                            <p> <input type="number"  class="qty" value="3"/> x $5.00</p>
+                @for ($i = 0; $i < 4; $i++)
+                    <li class="items">
+                        <div class="infoWrap">
+                            <div class="cartSection">
+                                <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
+                                <p class="itemNumber">#QUE-007544-002</p>
+                                <h3 class="color-white-high-emphasis">Item Name 1</h3>
 
-                            <p class="stockStatus"> In Stock</p>
+                                <p> <input type="number"  class="qty" value="3"/> x Rp. 2.000.000</p>
+                            </div>
+
+                            <div class="prodTotal cartSection">
+                                <p>Rp. 6.000.000</p>
+                            </div>
+
+                            <div class="cartSection removeWrap">
+                                <a href="#" class="remove">x</a>
+                            </div>
                         </div>
-
-                        <div class="prodTotal cartSection">
-                            <p>$15.00</p>
-                        </div>
-
-                        <div class="cartSection removeWrap">
-                            <a href="#" class="remove">x</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="items even">
-                    <div class="infoWrap">
-                        <div class="cartSection">
-                            <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
-                            <p class="itemNumber">#QUE-007544-002</p>
-                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
-                            <p> <input type="number"  class="qty" value="3"/> x $5.00</p>
-                            <p class="stockStatus"> In Stock</p>
-                        </div>
-
-                        <div class="prodTotal cartSection">
-                            <p>$15.00</p>
-                        </div>
-
-                        <div class="cartSection removeWrap">
-                            <a href="#" class="remove">x</a>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="items odd">
-                    <div class="infoWrap">
-                        <div class="cartSection">
-                            <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
-                            <p class="itemNumber">#QUE-007544-002</p>
-                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
-                            <p> <input type="number" class="qty" value="3"/> x $5.00</p>
-                            <p class="stockStatus out"> Out of Stock</p>
-                        </div>
-
-                        <div class="prodTotal cartSection">
-                            <p>$15.00</p>
-                        </div>
-
-                        <div class="cartSection removeWrap">
-                            <a href="#" class="remove">x</a>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="items even">
-                    <div class="infoWrap">
-                        <div class="cartSection info">
-                            <img src="{{ asset('src/card-product/img/ac.png') }}" alt="" class="itemImg" />
-                            <p class="itemNumber">#QUE-007544-002</p>
-                            <h3 class="color-white-high-emphasis">Item Name 1</h3>
-                            <p> <input type="number"  class="qty" value="3"/> x $5.00</p>
-                            <p class="stockStatus"> In Stock</p>
-                        </div>
-
-                        <div class="prodTotal cartSection">
-                            <p>$15.00</p>
-                        </div>
-
-                        <div class="cartSection removeWrap">
-                            <a href="#" class="remove">x</a>
-                        </div>
-                    </div>
-                </li>
-
+                    </li>
+                @endfor
                 <!--<li class="items even">Item 2</li>-->
             </ul>
         </div>

@@ -48,42 +48,19 @@
                             </tr>
                         </tfoot> --}}
                         <tbody>
-                            <tr>
-                                <td>#123</td>
-                                <td>Gawk Gawk 3000</td>
-                                <td>Panasonic</td>
-                                <th class="text-right">69</th>
-                                <td class="text-right">Rp. 30.000.000</td>
-                                <td class="d-flex justify-content-around">
-                                    <a href="#"><button type="button" class="btn btn-primary">Edit</button></a>
-                                    <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#123</td>
-                                <td>Gawk Gawk 3000</td>
-                                <td>Panasonic</td>
-                                <th class="text-right">69</th>
-                                <td class="text-right">Rp. 30.000.000</td>
-                                <td class="d-flex justify-content-around">
-                                    <a href="#"><button type="button" class="btn btn-primary">Edit</button></a>
-                                    <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#123</td>
-                                <td>Gawk Gawk 3000</td>
-                                <td>Panasonic</td>
-                                <th class="text-right">69</th>
-                                <td class="text-right">Rp. 30.000.000</td>
-                                <td class="d-flex justify-content-around">
-                                    <a href="#"><button type="button" class="btn btn-primary">Edit</button></a>
-                                    <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
-
-                                </td>
-                            </tr>
+                            @for ($i = 0; $i < 4; $i++)
+                                <tr>
+                                    <td>#123</td>
+                                    <td>Toshiba 3000</td>
+                                    <td>Panasonic</td>
+                                    <th class="text-right">69</th>
+                                    <td class="text-right">Rp. 30.000.000</td>
+                                    <td class="d-flex justify-content-around">
+                                        <a href="#"><button type="button" class="btn btn-primary mr-md-2">Edit</button></a>
+                                        <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
+                                    </td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                 </div>

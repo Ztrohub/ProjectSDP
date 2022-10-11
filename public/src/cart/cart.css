@@ -129,7 +129,7 @@ img {
 }
 
 .cart .items.even {
-    background: #1f1f28;
+
 }
 
 .cart .items .infoWrap {
@@ -185,11 +185,12 @@ img {
 }
 
 .cart .items .cartSection.qtyWrap, .cart .items .cartSection.prodTotal {
-    text-align: center;
+    text-align: right;
+    padding-right: 7%;
 }
 
 .cart .items .cartSection.qtyWrap p, .cart .items .cartSection.prodTotal p {
-    margin-top: 9%;
+    margin-top: 7%;
     font-weight: bold;
     font-size: 1.25em;
     color: #e2e0e1;
@@ -426,4 +427,8 @@ a.remove:hover {
     .wrap {
         padding: 0 1em;
     }
+}
+
+ul.cartWrap li:nth-child(even){
+    background: #1f1f28;
 }
