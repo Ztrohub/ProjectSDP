@@ -121,3 +121,8 @@ Route::get('/owner/masterservice', function(){
 Route::get('/owner/laporan', function () {
     return view('pages.PemilikUsaha.Laporan'); //ini list laporan
 })->name('owner_laporan');
+
+
+Route::get('/manager/gajian', function () {
+    return view('pages.Manajer.Gajian'); //ini list gajian
+})->name('manajer_gajian');
