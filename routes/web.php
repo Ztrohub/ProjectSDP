@@ -30,7 +30,6 @@ Route::post('/login', function(Request $request){
     $loginUser['username'] = $username;
     $loginUser['password'] = $password;
     $request->session()->put('loginUser', $loginUser);
-
     return redirect()->route('dashboard');
 })->name('login');
 
@@ -99,3 +98,26 @@ Route::prefix('master')->group(function () {
         })->name('master_item_add');
     });
 });
+
+
+
+
+
+
+
+
+
+//ROUTE JUAN
+
+Route::get('/owner', function () {
+    return view('pages.PemilikUsaha.contentPemilikUsaha'); //ini list user
+})->name('owner');
+Route::get('/owner/masterbarang', function(){
+    return view('pages.PemilikUsaha.MasterBarang');
+})->name('owner_masterbarang');;
+Route::get('/owner/masterservice', function(){
+    return view('pages.PemilikUsaha.MasterService');
+})->name('owner_masterservice');
+Route::get('/owner/laporan', function () {
+    return view('pages.PemilikUsaha.Laporan'); //ini list laporan
+})->name('owner_laporan');
