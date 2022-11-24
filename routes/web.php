@@ -109,6 +109,10 @@ Route::prefix('master')->group(function () {
 
 //ROUTE JUAN
 
+Route::get('/history',function(){
+    return view('pages.history');
+})->name('service_history');
+
 Route::get('/owner', function () {
     return view('pages.PemilikUsaha.contentPemilikUsaha'); //ini list user
 })->name('owner');

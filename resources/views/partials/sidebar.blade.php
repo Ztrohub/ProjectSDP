@@ -36,6 +36,12 @@
             <span>Master Item</span>
         </a>
     </li>
+    <li class="nav-item {{ (\Request::route()->getName() == 'service_history') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('service_history') }}">
+            <i class="fa fa-history"></i>
+            <span>History</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
