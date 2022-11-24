@@ -127,6 +127,14 @@ Route::get('/owner/laporan', function () {
 })->name('owner_laporan');
 
 
+Route::get('/manager/barang', function () {
+    return view('pages.Manajer.MasterBarang');
+})->name('manager_masterbarang');
+
+Route::get('/manager/service', function () {
+    return view('pages.Manajer.MasterService');
+})->name('manager_masterservice');
+
 Route::get('/manager/gajian', function () {
     return view('pages.Manajer.Gajian'); //ini list gajian
-})->name('manajer_gajian');
+})->name('manager_gajian');

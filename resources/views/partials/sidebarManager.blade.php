@@ -18,28 +18,22 @@
     </div>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ (\Request::route()->getName() == 'owner') ? 'active' : '' }}">
-        <a class="nav-link"href="{{ route('owner') }}">
-            <i class="fa fa-users nav-icon"></i>
-            <span>List User</span>
-        </a>
-    </li>
-    <li class="nav-item {{ (\Request::route()->getName() == 'owner_masterbarang') ? 'active' : '' }}">
-        <a class="nav-link"href="{{ route('owner_masterbarang') }}">
+    <li class="nav-item {{ (\Request::route()->getName() == 'manager_masterbarang') ? 'active' : '' }}">
+        <a class="nav-link"href="{{ route('manager_masterbarang') }}">
             <i class="fa fa-shopping-basket nav-icon"></i>
             <span>Master Barang</span>
         </a>
     </li>
-    <li class="nav-item {{ (\Request::route()->getName() == 'owner_masterservice') ? 'active' : '' }}">
-        <a class="nav-link"href="{{ route('owner_masterservice') }}">
+    <li class="nav-item {{ (\Request::route()->getName() == 'manager_masterservice') ? 'active' : '' }}">
+        <a class="nav-link"href="{{ route('manager_masterservice') }}">
             <i class="fa fa-server nav-icon"></i>
             <span>Master Service</span>
         </a>
     </li>
-    <li class="nav-item {{ (\Request::route()->getName() == 'owner_laporan') ? 'active' : '' }}">
-        <a class="nav-link"href="{{ route('owner_laporan') }}">
-            <i class="fa fa-bar-chart nav-icon"></i>
-            <span>Laporan</span>
+    <li class="nav-item {{ (\Request::route()->getName() == 'manager_gajian') ? 'active' : '' }}">
+        <a class="nav-link"href="{{ route('manager_gajian') }}">
+            <i class="fa-solid fa-coins nav-icon"></i>
+            <span>Gajian</span>
         </a>
     </li>
 

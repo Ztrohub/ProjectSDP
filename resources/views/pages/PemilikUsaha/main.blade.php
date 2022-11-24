@@ -14,18 +14,17 @@
     <!-- Custom fonts for this template-->
     <link rel="icon" href="{{ asset('src/sb-admin/img/logo_aja.png') }}">
     <link href="{{ asset('src/sb-admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href=" {{ asset('src/PemilikUsaha/css/style.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
     <link href="{{ asset('src/sb-admin/css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('src/sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('src/sb-admin/css/custom_css.css') }}" rel="stylesheet">
-    @stack("page_custom_css")
+    @stack('page_custom_css')
 
 </head>
 
@@ -35,7 +34,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include("partials.sidebarPemilikUsaha")
+        @include('partials.sidebarPemilikUsaha')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper         -->
@@ -45,18 +44,18 @@
             <div id="content" class="content pb-5">
 
                 <!-- Topbar -->
-                @include("partials.topbar")
+                @include('partials.topbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @yield("content")
+                @yield('content')
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include("partials.footer")
+            @include('partials.footer')
             <!-- End of Footer -->
 
         </div>
@@ -93,22 +92,23 @@
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('src/sb-admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('src/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="{{ asset('src/sb-admin/vendor/jquery/jquery.min.js') }}"></script>
+      <script src="{{ asset('src/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('src/sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="{{ asset('src/sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('src/sb-admin/js/sb-admin-2.min.js') }}"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="{{ asset('src/sb-admin/js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Data TABLE USER -->
-    <script src="{{ asset('src/PemilikUsaha/js/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('src/PemilikUsaha/js/jquery.dataTables.min.js') }}"></script>
+          <!-- Data TABLE USER -->
+    <script src="{{ asset('src/sb-admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 {{--
     @stack("page_custom_js") --}}
-    <script src="{{ asset('src/PemilikUsaha/js/script.js') }}"></script>
+    <script src="{{ asset('src/sb-admin/js/demo/datatables-demo.js') }}"></script>
+      @stack("page_custom_js")
 </body>
 
 </html>

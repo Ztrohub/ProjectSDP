@@ -36,7 +36,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include("partials.sidebarPemilikUsaha")
+        @include("partials.sidebarManager")
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper         -->

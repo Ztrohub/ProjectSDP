@@ -1,4 +1,4 @@
-@extends('pages.PemilikUsaha.main')
+@extends('pages.Manajer.main')
 
 @push('page_custom_css')
 <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -24,7 +24,7 @@
                             <th scope="col" class="col-3 text-center">Nama Barang</th>
                             <th scope="col" class="col-2 text-center">Harga</th>
                             <th scope="col" class="col-1 text-center">Quantity</th>
-                            {{-- <th scope="text-center" style="padding-left: 4vw;" class="col-1">Action</th> --}}
+                            <th scope="text-center" style="padding-left: 4vw;" class="col-1">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,30 +33,31 @@
                             <td class="text-center">kontol lukas</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">1</td>
-                            {{-- <td class="text-left">
+                            <td class="text-left">
                                 <button class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
                                 <button class="btn btn-danger badge-pill" style="width: 95px;">DELETE</button>
-                            </td> --}}
+
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">2</th>
                             <td class="text-center">kontol jo</td>
                             <td class="text-center">Rp 50.000</td>
                             <td class="text-center">2</td>
-                            {{-- <td class="text-left">
+                            <td class="text-left">
                                 <button class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
                                 <button class="btn btn-danger badge-pill" style="width: 95px;">DELETE</button>
-                            </td> --}}
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">3</th>
                             <td class="text-center">kontol nando</td>
                             <td class="text-center">Rp 100.000</td>
                             <td class="text-center">3</td>
-                            {{-- <td class="text-left">
+                            <td class="text-left">
                                 <button class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
                                 <button class="btn btn-danger badge-pill" style="width: 95px;">DELETE</button>
-                            </td> --}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
