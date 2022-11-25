@@ -51,6 +51,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Barang</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nama Barang</label>
+                            <input type="text" class="form-control" id="" placeholder="Masukin Nama Barang...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Deskripsi</label>
+                            <input type="text" class="form-control" id="" placeholder="Masukin Deskripsi Barang...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Harga</label>
+                            <input type="text" class="form-control" id="" placeholder="Masukin Harga Barang...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Quantity</label>
+                            <input type="text" class="form-control" id="" placeholder="Masukin Stok Barang...">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container-fluid">
         <div class="card shadow mb-4 wrapper-datatables border-0">
@@ -82,7 +119,7 @@
                                 <td class="text-center">Rp 10.000</td>
                                 <td class="text-center">1</td>
                                 <td class="text-left">
-                                    <button class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
+                                    <button class="btn btn-primary badge-pill"  data-toggle="modal" data-target="#edit" style="width: 80px;">EDIT</button>
                                     <button class="btn btn-danger badge-pill" style="width: 95px;">DELETE</button>
                                 </td>
                             </tr>
@@ -92,7 +129,7 @@
                                 <td class="text-center">Rp 50.000</td>
                                 <td class="text-center">2</td>
                                 <td class="text-left">
-                                    <button class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
+                                    <button class="btn btn-primary badge-pill" data-toggle="modal" data-target="#edit" style="width: 80px;">EDIT</button>
                                     <button class="btn btn-danger badge-pill" style="width: 95px;">DELETE</button>
                                 </td>
                             </tr>
@@ -102,7 +139,7 @@
                                 <td class="text-center">Rp 100.000</td>
                                 <td class="text-center">3</td>
                                 <td class="text-left">
-                                    <button class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
+                                    <button class="btn btn-primary badge-pill" data-toggle="modal" data-target="#edit" style="width: 80px;">EDIT</button>
                                     <button class="btn btn-danger badge-pill" style="width: 95px;">DELETE</button>
                                 </td>
                             </tr>

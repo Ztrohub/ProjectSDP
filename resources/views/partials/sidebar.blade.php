@@ -36,9 +36,15 @@
             <span>Master Item</span>
         </a>
     </li>
+    <li class="nav-item {{ (\Request::route()->getName() == 'teknisi_service') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('teknisi_service') }}">
+            <i class="fa fa-cog nav-icon" aria-hidden="true"></i>
+            <span>Master Service</span>
+        </a>
+    </li>
     <li class="nav-item {{ (\Request::route()->getName() == 'service_history') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('service_history') }}">
-            <i class="fa fa-history"></i>
+            <i class="fa fa-history nav-icon"></i>
             <span>History</span>
         </a>
     </li>

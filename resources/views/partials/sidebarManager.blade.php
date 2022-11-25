@@ -16,7 +16,12 @@
     <div class="sidebar-heading my-2">
         Main
     </div>
-
+    <li class="nav-item {{ (\Request::route()->getName() == 'manager_masterusers') ? 'active' : '' }}">
+        <a class="nav-link"href="{{ route('manager_masterusers') }}">
+            <i class="fa fa-users nav-icon"></i>
+            <span>List User</span>
+        </a>
+    </li>
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ (\Request::route()->getName() == 'manager_masterbarang') ? 'active' : '' }}">
         <a class="nav-link"href="{{ route('manager_masterbarang') }}">

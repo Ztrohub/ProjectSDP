@@ -108,6 +108,9 @@ Route::prefix('master')->group(function () {
 
 
 //ROUTE JUAN
+Route::get('/service',function(){
+    return view('pages.service');
+})->name('teknisi_service');
 
 Route::get('/history',function(){
     return view('pages.history');
@@ -127,6 +130,10 @@ Route::get('/owner/laporan', function () {
 })->name('owner_laporan');
 
 
+Route::get('/manager/users',function(){
+    return view('pages.Manajer.Users');
+})->name('manager_masterusers');
+
 Route::get('/manager/barang', function () {
     return view('pages.Manajer.MasterBarang');
 })->name('manager_masterbarang');
@@ -138,3 +145,4 @@ Route::get('/manager/service', function () {
 Route::get('/manager/gajian', function () {
     return view('pages.Manajer.Gajian'); //ini list gajian
 })->name('manager_gajian');
+

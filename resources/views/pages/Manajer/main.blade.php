@@ -26,6 +26,7 @@
     <link href="{{ asset('src/sb-admin/css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('src/sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('src/sb-admin/css/custom_css.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     @stack("page_custom_css")
 
 </head>
@@ -92,7 +93,6 @@
     </div>
 
 
-
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('src/sb-admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('src/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -109,6 +109,13 @@
 {{--
     @stack("page_custom_js") --}}
     <script src="{{ asset('src/sb-admin/js/demo/datatables-demo.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#datepicker').datepicker();
+        });
+    </script>
 </body>
 
 </html>
