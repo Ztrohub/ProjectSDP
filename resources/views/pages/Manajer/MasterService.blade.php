@@ -49,9 +49,9 @@
                             <label for="exampleInputEmail1">Teknisi 1</label>
                             <select class="custom-select">
                                 <option selected> - </option>
-                                <option value="1">nando memek</option>
-                                <option value="2">lukas kontol</option>
-                                <option value="3">jojo basah</option>
+                                <option value="1">nando</option>
+                                <option value="2">lukas</option>
+                                <option value="3">jojo</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -117,9 +117,9 @@
                         <label for="exampleInputEmail1">Teknisi 1</label>
                         <select class="custom-select">
                             <option selected> - </option>
-                            <option value="1">nando memek</option>
-                            <option value="2">lukas kontol</option>
-                            <option value="3">jojo basah</option>
+                            <option value="1">nando</option>
+                            <option value="2">lukas</option>
+                            <option value="3">jojo</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -180,11 +180,11 @@
                     <tbody>
                         <tr>
                             <th scope="row" class="text-center">1</th>
-                            <td class="text-center">kontol lukas</td>
+                            <td class="text-center">toshiba</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">14 Nov 2022 14:00:00</td>
                             <td class="text-center text-bold text-danger">Undone</td>
-                            <td class="text-center text-bold">Jancok</td>
+                            <td class="text-center text-bold">BUBUD</td>
                             <td class="text-center text-bold text-info">Oke</td>
                             <td class="text-left">
                                 <button class="btn btn-primary badge-pill" data-toggle="modal" data-target="#edit" style="width: 80px;">EDIT</button>
@@ -193,11 +193,11 @@
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">1</th>
-                            <td class="text-center">kontol lukas</td>
+                            <td class="text-center">toshiba</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">14 Nov 2022 14:00:00</td>
                             <td class="text-center text-bold text-danger">Undone</td>
-                            <td class="text-center text-bold">Jancok</td>
+                            <td class="text-center text-bold">BUBUD</td>
                             <td class="text-center text-bold text-info">Oke</td>
                             <td class="text-left">
                                 <button class="btn btn-primary badge-pill" data-toggle="modal" data-target="#edit" style="width: 80px;">EDIT</button>
@@ -206,11 +206,11 @@
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">1</th>
-                            <td class="text-center">kontol lukas</td>
+                            <td class="text-center">toshiba</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">14 Nov 2022 14:00:00</td>
                             <td class="text-center text-bold text-danger">Undone</td>
-                            <td class="text-center text-bold">Jancok</td>
+                            <td class="text-center text-bold">BUBUD</td>
                             <td class="text-center text-bold text-info">Oke</td>
                             <td class="text-left">
                                 <button class="btn btn-primary badge-pill" data-toggle="modal" data-target="#edit" style="width: 80px;">EDIT</button>

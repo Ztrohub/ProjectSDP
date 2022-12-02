@@ -33,11 +33,11 @@
                     <tbody>
                         <tr>
                             <th scope="row" class="text-center">1</th>
-                            <td class="text-center">kontol lukas</td>
+                            <td class="text-center">toshiba</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">14 Nov 2022 14:00:00</td>
                             <td class="text-center text-bold text-danger">Undone</td>
-                            <td class="text-center text-bold">Jancok</td>
+                            <td class="text-center text-bold">BUBUD</td>
                             <td class="text-center text-bold text-info">Oke</td>
                             <td class="text-left">
                                 <button class="btn btn-success" style="width: 100%;">SELESAI</button>
@@ -45,11 +45,11 @@
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">1</th>
-                            <td class="text-center">kontol lukas</td>
+                            <td class="text-center">toshiba</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">14 Nov 2022 14:00:00</td>
                             <td class="text-center text-bold text-danger">Undone</td>
-                            <td class="text-center text-bold">Jancok</td>
+                            <td class="text-center text-bold">BUBUD</td>
                             <td class="text-center text-bold text-info">Oke</td>
                             <td class="text-left">
                                 <button class="btn btn-success" style="width: 100%;">SELESAI</button>
@@ -57,11 +57,11 @@
                         </tr>
                         <tr>
                             <th scope="row" class="text-center">1</th>
-                            <td class="text-center">kontol lukas</td>
+                            <td class="text-center">toshiba</td>
                             <td class="text-center">Rp 10.000</td>
                             <td class="text-center">14 Nov 2022 14:00:00</td>
                             <td class="text-center text-bold text-danger">Undone</td>
-                            <td class="text-center text-bold">Jancok</td>
+                            <td class="text-center text-bold">BUBUD</td>
                             <td class="text-center text-bold text-info">Oke</td>
                             <td class="text-left">
                                 <button class="btn btn-success" style="width: 100%;">SELESAI</button>

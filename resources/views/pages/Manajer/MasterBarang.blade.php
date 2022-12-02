@@ -115,7 +115,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row" class="text-center">1</th>
-                                <td class="text-center">kontol lukas</td>
+                                <td class="text-center">toshiba</td>
                                 <td class="text-center">Rp 10.000</td>
                                 <td class="text-center">1</td>
                                 <td class="text-left">
@@ -125,7 +125,7 @@
                             </tr>
                             <tr>
                                 <th scope="row" class="text-center">2</th>
-                                <td class="text-center">kontol jo</td>
+                                <td class="text-center">toshiba</td>
                                 <td class="text-center">Rp 50.000</td>
                                 <td class="text-center">2</td>
                                 <td class="text-left">
@@ -135,7 +135,7 @@
                             </tr>
                             <tr>
                                 <th scope="row" class="text-center">3</th>
-                                <td class="text-center">kontol nando</td>
+                                <td class="text-center">toshiba</td>
                                 <td class="text-center">Rp 100.000</td>
                                 <td class="text-center">3</td>
                                 <td class="text-left">

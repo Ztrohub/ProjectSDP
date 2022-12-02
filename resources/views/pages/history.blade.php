@@ -52,7 +52,7 @@
                             @for ($i = 0; $i < 4; $i++)
                                 <tr>
                                     <td class="text-center">12</td>
-                                    <td class="text-center">COKCOKCOK</td>
+                                    <td class="text-center">toshiba</td>
                                     <td class="text-center">Panasonic</td>
                                     <th class="text-center">14 Nov 2022 14:00:00</th>
                                     <td class="text-center text-bold text-danger">Undone</td>
