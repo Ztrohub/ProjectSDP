@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
     Route::prefix('item')->group(function(){
+
         // == QUERY TO GET ALL ITEMS ==
         Route::get('/getall', function(){
             return response()->json([
@@ -44,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function(){
             ], 200);
         });
 
-        // == QUERY TO INSERT NEW ITEMS ==
+        // == QUERY TO INSERT NEW ITEM ==
         Route::get('/insert', function(Request $request){
             $fields = $request->validate([
                 'item_name' => "required",
@@ -80,7 +81,7 @@ Route::middleware('auth:sanctum')->group(function(){
             ], 200);
         });
 
-        // == QUERY TO UPDATE ITEMS ==
+        // == QUERY TO UPDATE ITEM ==
         Route::get('/update', function(Request $request){
             $fields = $request->validate([
                 'item_name' => "required",
@@ -116,7 +117,7 @@ Route::middleware('auth:sanctum')->group(function(){
             ], 200);
         });
 
-        // == QUERY TO DELETE ITEMS ==
+        // == QUERY TO DELETE ITEM ==
         Route::get('/delete', function(Request $request){
             $item = Item::where("item_id", $request->item_id)->first();
             $item->deleted_at = Carbon\Carbon::now();
@@ -128,7 +129,7 @@ Route::middleware('auth:sanctum')->group(function(){
             ], 200);
         });
 
-        // == QUERY TO RESTORE ITEMS ==
+        // == QUERY TO RESTORE ITEM ==
         Route::get('/restore', function(Request $request){
             $item = Item::where("item_id", $request->item_id)->first();
             $item->deleted_at = null;
