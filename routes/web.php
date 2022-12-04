@@ -36,7 +36,7 @@ Route::get('/flush', function(){
 
 Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(function () {
     Route::get('/', function () {
-        return view('pages.dashboard');
+        return view('pages.teknisi.dashboard');
     })->name('dashboard');
 });
 
@@ -59,6 +59,7 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(fun
 // });
 
 
+// == TEKNISI ==
 Route::get('/cart', function(Request $request){
     $loginUser = array();
     if($request->session()->has('loginUser')){
@@ -67,14 +68,14 @@ Route::get('/cart', function(Request $request){
     $param = array();
     $param["loginUser"] = $loginUser;
 
-    return view('pages.cart', $param);
+    return view('pages.teknisi.cart', $param);
 })->name('cart');
 
 Route::get('/checkout', function(){
     $uname = "admin";
     $param = $uname;
 
-    return view('pages.checkout', compact('param'));
+    return view('pages.teknisi.checkout', compact('param'));
 })->name('checkout');
 
 Route::get('/store', function(Request $request){
@@ -85,7 +86,7 @@ Route::get('/store', function(Request $request){
     $param = array();
     $param["loginUser"] = $loginUser;
 
-    return view('pages.store', $param);
+    return view('pages.teknisi.store', $param);
 })->name('store');
 
 Route::prefix('master')->group(function () {
@@ -98,7 +99,7 @@ Route::prefix('master')->group(function () {
             $param = array();
             $param["loginUser"] = $loginUser;
 
-            return view('pages.master.master_item', $param);
+            return view('pages.teknisi.master_item', $param);
         })->name('master_item');
 
         Route::get('/add', function (Request $request){
@@ -109,48 +110,49 @@ Route::prefix('master')->group(function () {
             $param = array();
             $param["loginUser"] = $loginUser;
 
-            return view('pages.add_item', $param);
+            return view('pages.teknisi.add_item', $param);
         })->name('master_item_add');
     });
 });
 
-
-//ROUTE JUAN
 Route::get('/service',function(){
-    return view('pages.service');
+    return view('pages.teknisi.service');
 })->name('teknisi_service');
 
 Route::get('/history',function(){
-    return view('pages.history');
+    return view('pages.teknisi.history');
 })->name('service_history');
 
+
+// == PEMILIK USAHA ==
 // Route::get('/owner', function () {
-//     return view('pages.PemilikUsaha.contentPemilikUsaha'); //ini list user
+//     return view('pages.pemilikUsaha.contentPemilikUsaha'); //ini list user
 // })->name('owner');
 Route::get('/owner/masterbarang', function(){
-    return view('pages.PemilikUsaha.MasterBarang');
+    return view('pages.pemilikUsaha.MasterBarang');
 })->name('owner_masterbarang');;
 Route::get('/owner/masterservice', function(){
-    return view('pages.PemilikUsaha.MasterService');
+    return view('pages.pemilikUsaha.MasterService');
 })->name('owner_masterservice');
 Route::get('/owner/laporan', function () {
-    return view('pages.PemilikUsaha.Laporan'); //ini list laporan
+    return view('pages.pemilikUsaha.Laporan'); //ini list laporan
 })->name('owner_laporan');
 
 
+// == MANAJER ==
 Route::get('/manager/users',function(){
-    return view('pages.Manajer.Users');
+    return view('pages.manajer.Users');
 })->name('manager_masterusers');
 
 Route::get('/manager/barang', function () {
-    return view('pages.Manajer.MasterBarang');
+    return view('pages.manajer.MasterBarang');
 })->name('manager_masterbarang');
 
 Route::get('/manager/service', function () {
-    return view('pages.Manajer.MasterService');
+    return view('pages.manajer.MasterService');
 })->name('manager_masterservice');
 
 Route::get('/manager/gajian', function () {
-    return view('pages.Manajer.Gajian'); //ini list gajian
+    return view('pages.manajer.Gajian'); //ini list gajian
 })->name('manager_gajian');
 

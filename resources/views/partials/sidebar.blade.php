@@ -30,7 +30,7 @@
             <span>Store</span>
         </a>
     </li>
-    <li class="nav-item {{ (\Request::route()->getName() == 'master_item') ? 'active' : '' }}">
+    <li class="nav-item {{ (\Request::route()->getName() == 'master_item' || \Request::route()->getName() == 'master_item_add') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('master_item') }}">
             <i class="fa fa-th nav-icon"></i>
             <span>Master Item</span>

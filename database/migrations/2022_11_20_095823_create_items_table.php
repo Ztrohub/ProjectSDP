@@ -17,9 +17,10 @@ return new class extends Migration
             Schema::create('items', function (Blueprint $table) {
                 $table->id("item_id");
                 $table->string("item_name", 255);
-                $table->text("item_description");
+                $table->string("item_brand");
                 $table->integer("item_price");
                 $table->integer("item_stock");
+                $table->string("item_image_name");
                 $table->timestamps(); // created_at dan updated_at
                 $table->softDeletes();
             });
