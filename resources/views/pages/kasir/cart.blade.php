@@ -1,7 +1,7 @@
 @extends('main')
 
 @push('page_custom_css')
-    <link rel="stylesheet" href="{{ asset('src/teknisi/cart/cart.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/kasir/cart/cart.css') }}">
 @endpush
 
 @section('name_page')
@@ -12,7 +12,7 @@
     <div class="wrap cf">
         <div class="heading cf">
             <h1>My Cart</h1>
-            <a href="{{ route('store') }}" class="continue">Continue Shopping</a>
+            <a href="{{ route('kasir_store') }}" class="continue">Continue Shopping</a>
         </div>
         <div class="cart">
             <ul class="cartWrap">
@@ -48,12 +48,12 @@
                 <li class="totalRow mr-3"><span class="label">Shipping</span><span class="value">$5.00</span></li>
                 <li class="totalRow mr-3"><span class="label">Tax</span><span class="value">$4.00</span></li>
                 <li class="totalRow mr-3 final"><span class="label">Total</span><span class="value">$44.00</span></li>
-                <li class="totalRow mt-2"><a href="{{ route('checkout') }}" class="btn continue">Checkout</a></li>
+                <li class="totalRow mt-2"><a href="{{ route('kasir_checkout') }}" class="btn continue">Checkout</a></li>
             </ul>
         </div>
     </div>
 @endsection
 
 @push('page_custom_js')
-    <script src="{{ asset('src/cart/cart.js') }}"></script>
+    <script src="{{ asset('src/kasir/cart/cart.js') }}"></script>
 @endpush
