@@ -6,7 +6,7 @@ use App\Helpers\ApiHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WebLoginRegisterController extends Controller
+class WebLoginController extends Controller
 {
     public function indexLogin(Request $request)
     {
@@ -32,7 +32,7 @@ class WebLoginRegisterController extends Controller
         $response = ApiHelper::getResponse($req);
 
         if ($response->success == true) {
-            return redirect('/owner');
+            return redirect('/');
         } else {
             return redirect()->route('login')->with('error', $response->message);
         }
