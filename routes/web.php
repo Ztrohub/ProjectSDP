@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\web\WebLoginRegisterController;
+use App\Http\Controllers\web\WebLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,12 +22,12 @@ Route::middleware('login')->group(function(){
         return redirect()->route('login');
     });
 
-    Route::get('/login', [WebLoginRegisterController::class, 'indexLogin'])->name('login');
+    Route::get('/login', [WebLoginController::class, 'indexLogin'])->name('login');
 
-    Route::post('/login', [WebLoginRegisterController::class, 'doLogin'])->name('login');
+    Route::post('/login', [WebLoginController::class, 'doLogin'])->name('login');
 });
 
-Route::get('/logout', [WebLoginRegisterController::class, 'doLogout'])->name('logout');
+Route::get('/logout', [WebLoginController::class, 'doLogout'])->name('logout');
 
 Route::get('/flush', function(){
     Session::flush();

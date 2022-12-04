@@ -23,10 +23,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::middleware('auth:sanctum')->group(function(){
-    // == LOGOUT ==
-    Route::get('/dologout', [APILoginRegisterController::class, 'doLogout']);
-
+Route::middleware(['auth:sanctum', 'ability:owner'])->group(function(){
     Route::prefix('item')->group(function(){
 
         // == QUERY TO GET ALL ITEMS ==
@@ -45,6 +42,9 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/restore', [APIItem::class, 'restore']);
     });
 });
+// == LOGOUT ==
+Route::get('/dologout', [APILoginRegisterController::class, 'doLogout'])
+    ->middleware('auth:sanctum');
 
 
 // == LOGIN ==
