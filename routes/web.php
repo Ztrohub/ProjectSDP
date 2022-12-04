@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\web\WebLoginRegisterController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -33,11 +34,11 @@ Route::get('/flush', function(){
     return redirect()->route('login');
 });
 
-// Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('pages.dashboard')->name('dashboard');
-//     })->name('dashboard');
-// });
+Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(function () {
+    Route::get('/', function () {
+        return view('pages.dashboard');
+    })->name('dashboard');
+});
 
 // Route::middleware(['auth:sanctum', 'ability:manajer'])->prefix('manajer')->group(function () {
 //     Route::get('/dashboard', function () {
@@ -123,9 +124,9 @@ Route::get('/history',function(){
     return view('pages.history');
 })->name('service_history');
 
-Route::get('/owner', function () {
-    return view('pages.PemilikUsaha.contentPemilikUsaha'); //ini list user
-})->name('owner');
+// Route::get('/owner', function () {
+//     return view('pages.PemilikUsaha.contentPemilikUsaha'); //ini list user
+// })->name('owner');
 Route::get('/owner/masterbarang', function(){
     return view('pages.PemilikUsaha.MasterBarang');
 })->name('owner_masterbarang');;

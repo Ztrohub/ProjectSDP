@@ -32,7 +32,7 @@ class WebLoginRegisterController extends Controller
         $response = ApiHelper::getResponse($req);
 
         if ($response->success == true) {
-            return redirect('/');
+            return redirect('/owner');
         } else {
             return redirect()->route('login')->with('error', $response->message);
         }

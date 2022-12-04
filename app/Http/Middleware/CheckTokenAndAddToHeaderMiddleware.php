@@ -17,17 +17,10 @@ class CheckTokenAndAddToHeaderMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Session::has('login')) {
-            $user = Session::get('login');
-            if (request()->hasCookie('loginToken')) {
-                $tempToken = request()->cookie('loginToken');
-                $request->headers->set('Authorization', sprintf('%s %s', 'Bearer', $tempToken));
-            } else {
-                $user->tokens()->delete();
-                Session::forget("login");
-            }
+        if (request()->hasCookie('loginToken')) {
+            $tempToken = request()->cookie('loginToken');
+            $request->headers->set('Authorization', sprintf('%s %s', 'Bearer', $tempToken));
         }
-
         return $next($request);
     }
 }

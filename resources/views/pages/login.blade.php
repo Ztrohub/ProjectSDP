@@ -39,8 +39,6 @@
                             <input type="checkbox" id="logCheck" name="remember">
                             <label for="logCheck" class="text">Remember me</label>
                         </div>
-
-                        <a href="#" class="text">Forgot password?</a>
                     </div>
 
                     <div class="input-field button">

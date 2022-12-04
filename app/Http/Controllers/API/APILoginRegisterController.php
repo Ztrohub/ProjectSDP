@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -13,9 +14,9 @@ class APILoginRegisterController extends Controller
 {
     public function doLogout(Request $request)
     {
-        $user = Session::get('login');
+        $user = $request->user();
         $user->tokens()->delete();
-        Session::forget("login");
+
         cookie()->queue(cookie()->forget('loginToken'));
 
         return response()->json([
@@ -58,7 +59,6 @@ class APILoginRegisterController extends Controller
                 }
 
                 $token = $user->createToken('auth_token', [$ability])->plainTextToken;
-                Session::put('login', $user);
                 // Session::put('loginToken', $token);
 
                 if ($remember) {
