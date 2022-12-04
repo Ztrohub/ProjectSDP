@@ -34,11 +34,14 @@ Route::get('/flush', function(){
     return redirect()->route('login');
 });
 
+// === OWNER ===
 Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(function () {
     Route::get('/', function () {
         return view('pages.dashboard');
     })->name('dashboard');
 });
+
+
 
 // Route::middleware(['auth:sanctum', 'ability:manajer'])->prefix('manajer')->group(function () {
 //     Route::get('/dashboard', function () {

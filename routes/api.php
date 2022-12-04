@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Admin\APIAdminUsersController;
 use App\Http\Controllers\API\APIItem;
 use App\Http\Controllers\API\APILoginRegisterController;
 use App\Models\Item;
@@ -42,6 +43,19 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->group(function(){
         Route::get('/restore', [APIItem::class, 'restore']);
     });
 });
+
+Route::middleware(['auth:sanctum', 'ability:owner'])->group(function(){
+    Route::prefix('users')->group(function(){
+        Route::get('/getall', [APIAdminUsersController::class, 'getAll']);
+        Route::get('/get/{user_id}', [APIAdminUsersController::class, 'getUser']);
+        Route::post('/insert', [APIAdminUsersController::class, 'insert']);
+        Route::post('/changePassword/{user_id}', [APIAdminUsersController::class, 'changePassword']);
+        Route::post('/update/{user_id}', [APIAdminUsersController::class, 'update']);
+        Route::get('/delete/{user_id}', [APIAdminUsersController::class, 'delete']);
+    });
+});
+
+
 // == LOGOUT ==
 Route::get('/dologout', [APILoginRegisterController::class, 'doLogout'])
     ->middleware('auth:sanctum');

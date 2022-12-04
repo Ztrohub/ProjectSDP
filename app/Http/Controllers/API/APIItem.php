@@ -14,7 +14,7 @@ class APIItem extends Controller
         return response()->json([
             'success' => true,
             'message' => "Item berhasil didapatkan semua!",
-            'data' => Item::get()
+            'data' => Item::all()
         ], 200);
     }
 
