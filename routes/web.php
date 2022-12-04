@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\web\WebLoginRegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,35 +16,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::middleware('login')->group(function(){
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
+
+    Route::get('/login', [WebLoginRegisterController::class, 'indexLogin'])->name('login');
+
+    Route::post('/login', [WebLoginRegisterController::class, 'doLogin'])->name('login');
+});
+
+Route::get('/logout', [WebLoginRegisterController::class, 'doLogout'])->name('logout');
+
+Route::get('/flush', function(){
+    Session::flush();
     return redirect()->route('login');
 });
 
-Route::get('/login', function(){
-    return view('pages.login');
-})->name('login');
+// Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('pages.dashboard')->name('dashboard');
+//     })->name('dashboard');
+// });
 
-Route::post('/login', function(Request $request){
-    $username = $request ->username;
-    $password = $request ->password;
+// Route::middleware(['auth:sanctum', 'ability:manajer'])->prefix('manajer')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('pages.dashboard')->name('dashboard');
+//     })->name('dashboard');
+// });
 
-    $loginUser = array();
-    $loginUser['username'] = $username;
-    $loginUser['password'] = $password;
-    $request->session()->put('loginUser', $loginUser);
-    return redirect()->route('dashboard');
-})->name('login');
+// Route::middleware(['auth:sanctum', 'ability:teknisi'])->prefix('teknisi')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('pages.dashboard')->name('dashboard');
+//     })->name('dashboard');
+// });
 
-Route::get('/dashboard', function(Request $request){
-    $loginUser = array();
-    if($request->session()->has('loginUser')){
-        $loginUser = $request->session()->get('loginUser');
-    }
-    $param = array();
-    $param["loginUser"] = $loginUser;
+// Route::middleware(['auth:sanctum', 'ability:kasir'])->prefix('kasir')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('pages.dashboard')->name('dashboard');
+//     })->name('dashboard');
+// });
 
-    return view('pages.dashboard', $param);
-})->name('dashboard');
 
 Route::get('/cart', function(Request $request){
     $loginUser = array();
@@ -98,13 +112,6 @@ Route::prefix('master')->group(function () {
         })->name('master_item_add');
     });
 });
-
-
-
-
-
-
-
 
 
 //ROUTE JUAN
