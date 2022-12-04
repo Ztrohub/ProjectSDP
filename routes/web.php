@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\web\Admin\WebUserController;
 use App\Http\Controllers\web\WebLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,20 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(fun
     Route::get('/', function () {
         return view('pages.teknisi.dashboard');
     })->name('dashboard');
+
+    Route::prefix('users')->group(function(){
+        Route::get('index', [WebUserController::class, "index"]);
+
+        Route::get('edit/{user_id}', [WebUserController::class, "edit"]);
+
+        Route::post('edit/{user_id}', [WebUserController::class, "doedit"]);
+
+        Route::get('delete/{user_id}', [WebUserController::class, "dodelete"]);
+
+        Route::get('insert', [WebUserController::class, "insert"]);
+
+        Route::post('insert', [WebUserController::class, "doinsert"]);
+    });
 });
 
 // Route::middleware(['auth:sanctum', 'ability:manajer'])->prefix('manajer')->group(function () {
@@ -74,6 +89,8 @@ Route::get('/cart', function(Request $request){
 Route::get('/checkout', function(){
     $uname = "admin";
     $param = $uname;
+
+    // Auth::user();
 
     return view('pages.teknisi.checkout', compact('param'));
 })->name('checkout');
@@ -124,18 +141,23 @@ Route::get('/history',function(){
 })->name('service_history');
 
 
-// == PEMILIK USAHA ==
-// Route::get('/owner', function () {
-//     return view('pages.pemilikUsaha.contentPemilikUsaha'); //ini list user
-// })->name('owner');
-Route::get('/owner/masterbarang', function(){
-    return view('pages.pemilikUsaha.MasterBarang');
-})->name('owner_masterbarang');;
-Route::get('/owner/masterservice', function(){
-    return view('pages.pemilikUsaha.MasterService');
-})->name('owner_masterservice');
+// == OWNER ==
+
+
+Route::get('/owner/user', function () {
+    return view('pages.owner.contentPemilikUsaha'); //ini list user
+})->name('owner_user');
+
+Route::get('/owner/barang', function(){
+    return view('pages.owner.MasterBarang');
+})->name('owner_barang');;
+
+Route::get('/owner/service', function(){
+    return view('pages.owner.MasterService');
+})->name('owner_service');
+
 Route::get('/owner/laporan', function () {
-    return view('pages.pemilikUsaha.Laporan'); //ini list laporan
+    return view('pages.owner.Laporan'); //ini list laporan
 })->name('owner_laporan');
 
 

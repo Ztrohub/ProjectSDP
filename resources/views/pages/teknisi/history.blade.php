@@ -3,6 +3,7 @@
 @push('page_custom_css')
     <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/teknisi/service/table_service.css') }}">
 @endpush
 
 @section('name_page')
@@ -29,10 +30,10 @@
                         <thead>
                             <tr>
                                 <th class="col-1 text-center">ID</th>
-                                <th class="col-3 text-center">Description of Service</th>
-                                <th class="col-2 text-center">Customer Name</th>
-                                <th class="col-2 text-center">Service Cost</th>
-                                <th class="col-2 text-center">Date of Service</th>
+                                <th class="col-3 text-center descServiceColumn">Description of Service</th>
+                                <th class="col-2 text-center customerNameColumn">Customer Name</th>
+                                <th class="col-2 text-center serviceCostColumn">Service Cost</th>
+                                <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
                                 <th class="col-1 text-center">Service Status</th>
                             </tr>
                         </thead>
