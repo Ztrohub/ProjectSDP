@@ -13,3 +13,11 @@
 .wrapper-datatables, .wrapper-datatables th, .wrapper-datatables td, .wrapper-datatables .card-header h6{
     color: #e2e0e1;
 }
+
+table {
+    height: 100%;
+}
+
+.wrapper-datatables td {
+    height: 100%;
+}

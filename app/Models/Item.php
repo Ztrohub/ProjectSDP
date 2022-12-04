@@ -16,9 +16,10 @@ class Item extends Model
     public $timestamps = true;
     protected $fillable = [
         "item_name",
-        "item_description",
+        "item_brand",
         "item_price",
-        "item_stock"
+        "item_stock",
+        "item_image_name"
     ];
 
     public function Services()

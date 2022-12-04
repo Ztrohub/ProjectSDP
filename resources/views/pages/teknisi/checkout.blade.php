@@ -7,7 +7,7 @@
     <title>AsiaTeknik</title>
     <link rel="icon" href="{{ asset('src/sb-admin/img/logo_aja.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('src/checkout/checkout.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/teknisi/checkout/checkout.css') }}">
 </head>
 <body>
     <main class="page payment-page">

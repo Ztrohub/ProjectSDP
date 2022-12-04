@@ -1,6 +1,6 @@
-@extends('pages.PemilikUsaha.main')
+@extends("pages.owner.main_owner")
 
-@push('page_custom_css')
+@push('page_owner_custom_css')
 <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
 @endpush

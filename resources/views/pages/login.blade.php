@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>AsiaTeknik</title>
+
+    <!-- ===== Favicon ===== -->
+    <link rel="icon" href="{{ asset('src/sb-admin/img/logo_aja.png') }}">
     <!-- ===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="{{ asset('src/login/login.css') }}">
-
-    <title>LOGIN PAGE</title>
 
 </head>
 <body>
