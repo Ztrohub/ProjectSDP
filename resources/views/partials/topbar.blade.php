@@ -99,23 +99,26 @@
             </div>
         </li> --}}
 
-        <!-- Nav Item - Cart -->
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link" href="{{ route('cart') }}">
-                <i class="fa fa-shopping-cart color-white-high-emphasis nav-icon" aria-hidden="true"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">0</span>
-            </a>
-        </li>
+        @if ($loginUser->user_role == 3) <!-- KASIR -->
+            <!-- Nav Item - Cart -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="{{ route('kasir_cart') }}">
+                    <i class="fa fa-shopping-cart color-white-high-emphasis nav-icon" aria-hidden="true"></i>
+                    <!-- Counter - Messages -->
+                    <span class="badge badge-danger badge-counter">0</span>
+                </a>
+            </li>
 
-        <div class="topbar-divider d-none d-sm-block" style="border-color: #747273"></div>
+            <div class="topbar-divider d-none d-sm-block" style="border-color: #747273"></div>
+        @endif
+
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <span class="mr-2 d-none d-lg-inline large">Hello, <b class="color-white-high-emphasis">{{-- {{ $loginUser["username"] }} --}}</b></span>
+                <span class="mr-2 d-none d-lg-inline large">Hello, <b class="color-white-high-emphasis">{{ $loginUser->user_username }}</b></span>
                 <img class="img-profile rounded-circle"
                     src="{{ asset('src/sb-admin/img/undraw_profile.svg') }}">
             </a>
@@ -135,7 +138,7 @@
                     Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

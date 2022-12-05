@@ -1,7 +1,7 @@
 @extends('main')
 
 @push('page_custom_css')
-    <link rel="stylesheet" href="{{ asset('src/teknisi/store/css/store.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/kasir/store/css/store.css') }}">
 @endpush
 
 @section('name_page')
@@ -9,39 +9,39 @@
 @endsection
 
 @section('content')
-        <!-- Modal -->
-        <div class="modal fade" id="modalAddToCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><b>How many would you like to buy?</b></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <div class="d-flex justify-content-between">
-                                    <label for="exampleInputEmail1">Amount</label>
-                                    <i style="font-size: .9rem; paddding-top: 5px;">Rp <span id="showPriceEach">0</span>,- / each</i>
-                                </div>
-                                <input type="number" id="qty_input" class="form-control" placeholder="Number of items you wish to purchase.." min="1">
+    <!-- Modal -->
+    <div class="modal fade" id="modalAddToCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>How many would you like to buy?</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <div class="d-flex justify-content-between">
+                                <label for="exampleInputEmail1">Amount</label>
+                                <i style="font-size: .9rem; paddding-top: 5px;">Rp <span id="showPriceEach">0</span>,- / each</i>
                             </div>
-                        </form>
-                        <div class="d-flex">
-                            <div class="col-7"></div>
-                            <div class="col text-right"><b>Subtotal :</b> Rp <span id="showSubotal">0</span>,-</div>
+                            <input type="number" id="qty_input" class="form-control" placeholder="Number of items you wish to purchase.." min="1">
                         </div>
+                    </form>
+                    <div class="d-flex">
+                        <div class="col-7"></div>
+                        <div class="col text-right"><b>Subtotal :</b> Rp <span id="showSubotal">0</span>,-</div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add to cart</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-template">Add to cart</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="super-container">
         <div class="main-search-input-wrap">

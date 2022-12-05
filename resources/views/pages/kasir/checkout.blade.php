@@ -7,7 +7,7 @@
     <title>AsiaTeknik</title>
     <link rel="icon" href="{{ asset('src/sb-admin/img/logo_aja.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('src/teknisi/checkout/checkout.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/kasir/checkout/checkout.css') }}">
 </head>
 <body>
     <main class="page payment-page">
@@ -59,7 +59,7 @@
                                 <button type="button" class="btn btn-block btnProceed">Proceed</button>
                             </div>
                             <div class="form-group col-sm-12">
-                                <a href="{{ route('cart') }}" style="text-decoration: none;">
+                                <a href="{{ route('kasir_cart') }}" style="text-decoration: none;">
                                     <button type="button" class="btn btn-secondary btn-block">Back to cart</button>
                                 </a>
                             </div>

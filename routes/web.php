@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::middleware('login')->group(function(){
+Route::middleware('login')->group( function(){
     Route::get('/', function () {
         return redirect()->route('login');
     });
@@ -35,11 +35,23 @@ Route::get('/flush', function(){
     return redirect()->route('login');
 });
 
-// === OWNER ===
-Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(function () {
-    Route::get('/', function () {
-        return view('pages.teknisi.dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::middleware(['ability:owner'])->prefix('owner')->group(function () {
+
+    });
+
+    Route::middleware(['ability:manajer'])->prefix('manajer')->group(function () {
+
+    });
+
+    Route::middleware(['ability:teknisi'])->prefix('teknisi')->group(function () {
+
+    });
+
+    Route::middleware(['ability:kasir'])->prefix('kasir')->group(function () {
+
+    });
 
     Route::prefix('users')->group(function(){
         Route::get('/', [WebUserController::class, "index"]);
@@ -77,107 +89,192 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group(fun
 // });
 
 
-// == TEKNISI ==
-Route::get('/cart', function(Request $request){
-    $loginUser = array();
-    if($request->session()->has('loginUser')){
-        $loginUser = $request->session()->get('loginUser');
-    }
-    $param = array();
-    $param["loginUser"] = $loginUser;
-
-    return view('pages.teknisi.cart', $param);
-})->name('cart');
-
-Route::get('/checkout', function(){
-    $uname = "admin";
-    $param = $uname;
-
-    // Auth::user();
-
-    return view('pages.teknisi.checkout', compact('param'));
-})->name('checkout');
-
-Route::get('/store', function(Request $request){
-    $loginUser = array();
-    if($request->session()->has('loginUser')){
-        $loginUser = $request->session()->get('loginUser');
-    }
-    $param = array();
-    $param["loginUser"] = $loginUser;
-
-    return view('pages.teknisi.store', $param);
-})->name('store');
-
-Route::prefix('master')->group(function () {
-    Route::prefix('item')->group(function () {
-        Route::get('/', function (Request $request){
-            $loginUser = array();
-            if($request->session()->has('loginUser')){
-                $loginUser = $request->session()->get('loginUser');
-            }
-            $param = array();
-            $param["loginUser"] = $loginUser;
-
-            return view('pages.teknisi.master_item', $param);
-        })->name('master_item');
-
-        Route::get('/add', function (Request $request){
-            $loginUser = array();
-            if($request->session()->has('loginUser')){
-                $loginUser = $request->session()->get('loginUser');
-            }
-            $param = array();
-            $param["loginUser"] = $loginUser;
-
-            return view('pages.teknisi.add_item', $param);
-        })->name('master_item_add');
+// == KASIR ==
+Route::prefix('kasir')->group( function() {
+    Route::get('/', function() {
+        return redirect()->route("kasir_store");
     });
+
+    Route::get('/store', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.kasir.store', $param);
+    })->name('kasir_store');
+
+    Route::get('/cart', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.kasir.cart', $param);
+    })->name('kasir_cart');
+
+    Route::get('/checkout', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.kasir.checkout', $param);
+    })->name('kasir_checkout');
 });
 
-Route::get('/service',function(){
-    return view('pages.teknisi.service');
-})->name('teknisi_service');
 
-Route::get('/history',function(){
-    return view('pages.teknisi.history');
-})->name('service_history');
+// == TEKNISI ==
+Route::prefix('teknisi')->group( function() {
+    // Route::get('/', function() {
+    //     return view('pages.teknisi.dashboard');
+    // })->name('teknisi_dashboard');
+
+    Route::get('/', function() {
+        return redirect()->route("teknisi_service");
+    });
+
+    Route::prefix('service')->group( function() {
+        Route::get('/',function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.teknisi.my_service', $param);
+        })->name('teknisi_service');
+
+        Route::get('/edit',function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.teknisi.edit_my_service', $param);
+        })->name('teknisi_edit_service');
+    });
+
+    Route::get('/history',function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.teknisi.history', $param);
+    })->name('teknisi_service_history');
+});
 
 
 // == OWNER ==
+Route::prefix('owner')->group( function() {
+    Route::get('/', function() {
+        return redirect()->route("owner_report");
+    });
 
+    Route::get('/laporan', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
 
-Route::get('/owner/user', function () {
-    return view('pages.owner.contentPemilikUsaha'); //ini list user
-})->name('owner_user');
+        return view('pages.owner.laporan', $param); // ini list laporan
+    })->name('owner_report');
 
-Route::get('/owner/barang', function(){
-    return view('pages.owner.MasterBarang');
-})->name('owner_barang');;
+    Route::prefix('services')->group( function() {
+        Route::get('/', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
 
-Route::get('/owner/service', function(){
-    return view('pages.owner.MasterService');
-})->name('owner_service');
+            return view('pages.owner.master_service', $param);
+        })->name('owner_service');
 
-Route::get('/owner/laporan', function () {
-    return view('pages.owner.Laporan'); //ini list laporan
-})->name('owner_laporan');
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.owner.edit_service', $param);
+        })->name('owner_edit_service');
+    });
+
+    Route::prefix('items')->group( function() {
+        Route::get('/', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.owner.master_item', $param);
+        })->name('owner_item');
+
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.owner.edit_item', $param);
+        })->name('owner_edit_item');
+    });
+
+    Route::prefix('users')->group( function() {
+        Route::get('/', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.owner.master_user', $param); // ini list user
+        })->name('owner_user');
+
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.owner.edit_user', $param);
+        })->name('owner_edit_user');
+    });
+});
 
 
 // == MANAJER ==
-Route::get('/manager/users',function(){
-    return view('pages.manajer.Users');
-})->name('manager_masterusers');
+Route::prefix('manajer')->group( function() {
+    Route::get('/', function() {
+        return redirect()->route("manajer_masterservice");
+    });
 
-Route::get('/manager/barang', function () {
-    return view('pages.manajer.MasterBarang');
-})->name('manager_masterbarang');
+    Route::prefix('services')->group( function() {
+        Route::get('/', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
 
-Route::get('/manager/service', function () {
-    return view('pages.manajer.MasterService');
-})->name('manager_masterservice');
+            return view('pages.manajer.master_service', $param);
+        })->name('manajer_service');
 
-Route::get('/manager/gajian', function () {
-    return view('pages.manajer.Gajian'); //ini list gajian
-})->name('manager_gajian');
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.manajer.edit_service', $param);
+        })->name('manajer_edit_service');
+    });
+
+    Route::prefix('items')->group( function() {
+        Route::get('/', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.manajer.master_item', $param);
+        })->name('manajer_item');
+
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.manajer.edit_item', $param);
+        })->name('manajer_edit_item');
+    });
+
+    Route::prefix('users')->group( function() {
+        Route::get('/', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.manajer.master_user', $param);
+        })->name('manajer_user');
+
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.manajer.edit_user', $param);
+        })->name('manajer_edit_user');
+    });
+
+    Route::get('/paycheck', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.manajer.Gajian', $param); // ini list gajian
+    })->name('manajer_gajian');
+});
 
