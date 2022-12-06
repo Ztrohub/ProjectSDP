@@ -22,7 +22,7 @@ class WebUserController extends Controller
 
         // dd($users);
 
-        return view('pages.owner.master_user', compact('users'));
+        return view('pages.master.users.master_user', compact('users'));
     }
 
     public function doinsert(Request $request)

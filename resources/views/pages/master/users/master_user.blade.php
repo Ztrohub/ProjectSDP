@@ -20,12 +20,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ url('items/insert')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputFullname">Full Name</label>
-                            <input type="text" id="inputFullname" name="fullname" class="form-control" placeholder="Enter full name" min="1">
+                            <input type="text" id="inputFullname" name="name" class="form-control" placeholder="Enter full name" min="1">
                         </div>
                         <div class="form-group">
                             <label for="inputUsername">Username</label>
@@ -52,18 +52,18 @@
                         </div>
                         <div class="form-group">
                             <label for="inputMobileNumber">Mobile Number</label>
-                            <input type="number" id="inputMobileNumber" class="form-control" name="mobile_number" placeholder="Enter mobile number">
+                            <input type="number" id="inputMobileNumber" class="form-control" name="phone_number" placeholder="Enter mobile number">
                         </div>
                         <div class="form-group">
                             <label for="selectSex">Sex</label>
-                            <select class="custom-select" id="selectSex" name="sex">
+                            <select class="custom-select" id="selectSex" name="jk">
                                 <option value="L" selected>Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="selectPosition">Position</label>
-                            <select class="custom-select" id="selectPosition" name="position">
+                            <select class="custom-select" id="selectPosition" name="role">
                                 <option value="0">Owner</option>
                                 <option value="1">Manajer</option>
                                 <option value="2" selected>Teknisi</option>
