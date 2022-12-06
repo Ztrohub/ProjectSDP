@@ -32,65 +32,6 @@ Route::middleware('login')->group( function(){
 
 Route::get('/logout', [WebLoginController::class, 'doLogout'])->name('logout');
 
-Route::get('/flush', function(){
-    Session::flush();
-    return redirect()->route('login');
-});
-
-Route::middleware(['auth:sanctum'])->group(function () {
-
-    Route::middleware(['ability:owner'])->prefix('owner')->group(function () {
-
-    });
-
-    Route::middleware(['ability:manajer'])->prefix('manajer')->group(function () {
-
-    });
-
-    Route::middleware(['ability:teknisi'])->prefix('teknisi')->group(function () {
-
-    });
-
-    Route::middleware(['ability:kasir'])->prefix('kasir')->group(function () {
-
-    });
-
-    Route::middleware(['ability:owner'])->prefix('users')->group(function(){
-        Route::get('/', [WebUserController::class, "index"]);
-
-        Route::get('edit/{user_id}', [WebUserController::class, "edit"]);
-
-        Route::post('edit/{user_id}', [WebUserController::class, "doedit"]);
-
-        Route::get('delete/{user_id}', [WebUserController::class, "dodelete"]);
-
-        Route::get('insert', [WebUserController::class, "insert"]);
-
-        Route::post('insert', [WebUserController::class, "doinsert"]);
-    });
-});
-
-
-
-// Route::middleware(['auth:sanctum', 'ability:manajer'])->prefix('manajer')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('pages.dashboard')->name('dashboard');
-//     })->name('dashboard');
-// });
-
-// Route::middleware(['auth:sanctum', 'ability:teknisi'])->prefix('teknisi')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('pages.dashboard')->name('dashboard');
-//     })->name('dashboard');
-// });
-
-// Route::middleware(['auth:sanctum', 'ability:kasir'])->prefix('kasir')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('pages.dashboard')->name('dashboard');
-//     })->name('dashboard');
-// });
-
-
 // == KASIR ==
 Route::prefix('kasir')->group( function() {
     Route::get('/', function() {
@@ -156,7 +97,7 @@ Route::prefix('teknisi')->group( function() {
 
 
 // == OWNER ==
-Route::prefix('owner')->group( function() {
+Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( function() {
     Route::get('/', function() {
         return redirect()->route("owner_report");
     });
@@ -167,6 +108,19 @@ Route::prefix('owner')->group( function() {
 
         return view('pages.owner.laporan', $param); // ini list laporan
     })->name('owner_report');
+
+    // == USER ==
+    Route::prefix('users')->group( function() {
+        Route::get('/', [WebUserController::class, 'index'])->name('master_user');
+
+        Route::get('/edit', function() {
+            $param = array();
+            $param["loginUser"] = Auth::user();
+
+            return view('pages.master.users.edit_user', $param);
+        })->name('master_edit_user');
+    });
+
 });
 
 
@@ -213,7 +167,7 @@ Route::prefix('services')->group( function() {
 
 
 // == ITEM ==
-Route::prefix('items')->group( function() {
+Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('items')->group( function() {
     Route::get('/', function() {
         $param = array();
         $param["loginUser"] = Auth::user();
@@ -237,22 +191,4 @@ Route::prefix('items')->group( function() {
     Route::get('/delete', [APIItem::class, "delete"])->name('master_delete_item');
 
     Route::get('/restore', [APIItem::class, "restore"])->name('master_restore_item');
-});
-
-
-// == USER ==
-Route::prefix('users')->group( function() {
-    Route::get('/', function() {
-        $param = array();
-        $param["loginUser"] = Auth::user();
-
-        return view('pages.master.users.master_user', $param); // ini list user
-    })->name('master_user');
-
-    Route::get('/edit', function() {
-        $param = array();
-        $param["loginUser"] = Auth::user();
-
-        return view('pages.master.users.edit_user', $param);
-    })->name('master_edit_user');
 });

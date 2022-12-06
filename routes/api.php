@@ -53,8 +53,7 @@ Route::prefix('users')->group(function(){
 
 
 // == LOGOUT ==
-Route::get('/dologout', [APILoginRegisterController::class, 'doLogout'])
-    ->middleware('auth:sanctum');
+Route::get('/dologout', [APILoginRegisterController::class, 'doLogout']);
 
 
 // == LOGIN ==

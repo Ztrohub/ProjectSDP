@@ -20,7 +20,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('items/insert')}}" method="POST">
+                <form action="{{ url('users/insert')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -33,12 +33,12 @@
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Password</label>
-                            <input type="text" id="inputPassword" name="password" class="form-control" placeholder="Enter password" min="1">
+                            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Enter password" min="1">
                         </div>
                         <div class="form-group">
                             <label for="inputDOB">Date of Birth</label>
                             <div class="input-group date" id="datepicker">
-                                <input type="text" id="inputDOB" class="form-control" name="dob">
+                                <input type="date" id="inputDOB" class="form-control" name="dob">
                                 <span class="input-group-append">
                                     <span class="input-group-text bg-white">
                                         <i class="fa fa-calendar"></i>
@@ -93,37 +93,29 @@
                             <tr>
                                 <th class="col-4 text-center">Full Name</th>
                                 <th class="col-3 text-center">Username</th>
+                                <th class="col-1 text-center">JK</th>
+                                <th class="col-2 text-center">DOB</th>
                                 <th class="col-1 text-center">Position</th>
-                                <th class="col-2 text-center">Hire Date</th>
+                                <th class="col-3 text-center">Hire Date</th>
                                 <th class="col-1 text-center">Mobile Number</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 2; $i++)
-                                <tr>
-                                    <td>Windah Basudara</td>
-                                    <td>windahbasudara</td>
-                                    <td>Teknisi</td>
-                                    <td class="text-center">14 Nov 2022</td>
-                                    <td>081294294157</td>
+                            @foreach ($users as $user)
+                                <tr class="text-center">
+                                    <td>{{ $user->user_name }}</td>
+                                    <td>{{ $user->user_username }}</td>
+                                    <td>{{ $user->user_jk }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($user->user_dob)) }}</td>
+                                    <td>{{ UserHelper::getRole($user->user_role) }}</td>
+                                    <td>{{ date('d M Y', strtotime($user->created_at))}}</td>
+                                    <td>{{ $user->user_phone_number }}</td>
                                     <td class="d-flex justify-content-between">
                                         <a href="{{ route('master_edit_user') }}"><button class="btn btn-template btn_edit_user">EDIT</button></a>
                                     </td>
                                 </tr>
-                            @endfor
-                            @for ($i = 0; $i < 2; $i++)
-                                <tr>
-                                    <td>Garit Dewana</td>
-                                    <td>garitdewana</td>
-                                    <td>Manajer</td>
-                                    <td class="text-center">14 Nov 2022</td>
-                                    <td>081294294157</td>
-                                    <td>
-                                        <a href="{{ route('master_edit_user') }}"><button class="btn btn-template btn_edit_user">EDIT</button></a>
-                                    </td>
-                                </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

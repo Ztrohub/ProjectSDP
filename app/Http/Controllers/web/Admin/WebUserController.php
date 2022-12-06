@@ -18,15 +18,13 @@ class WebUserController extends Controller
 
         $users = $response->data;
 
-        // dd($users);
-
-        // dd($users);
-
         return view('pages.master.users.master_user', compact('users'));
     }
 
     public function doinsert(Request $request)
     {
+        
+
         $req = Request::create('api/users/insert', 'POST', [
             'name' => $request->name,
             'username' => $request->username,

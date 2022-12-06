@@ -4,9 +4,9 @@ namespace App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-class GetRole
+class UserHelper
 {
-    public static function get($user_id)
+    public static function getRole($user_id)
     {
         if ($user_id == '0')
             return "Owner";
@@ -15,5 +15,14 @@ class GetRole
         elseif ($user_id == '2')
             return "Teknisi";
         else return "Kasir";
+    }
+
+    public static function getJK($user_jk)
+    {
+        if ($user_jk == "L"){
+            return "Laki-laki";
+        } else {
+            return "Perempuan";
+        }
     }
 }

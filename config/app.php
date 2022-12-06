@@ -209,7 +209,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'GetRole' => App\Helpers\GetRole::class,
+        'UserHelper' => App\Helpers\UserHelper::class,
     ])->toArray(),
 
 ];
