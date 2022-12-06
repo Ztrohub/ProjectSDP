@@ -1,6 +1,6 @@
-@extends("pages.manajer.main_manajer")
+@extends("main")
 
-@push('page_manajer_custom_css')
+@push('page_custom_css')
     <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
 @endpush
@@ -9,7 +9,7 @@
     Master Service
 @endsection
 
-@section('content_manajer')
+@section('content')
     <!-- Modal tambah service -->
     <div class="modal fade" id="modalAddService" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -83,9 +83,9 @@
                                     <td>John Cena</td>
                                     <td>Rp 1.000.000</td>
                                     <td class="text-center">14 Nov 2022 14:00:00</td>
-                                    <td class="text-center text-bold text-danger">UNPAID</td>
+                                    <td class="text-center text-bold text-danger"">UNPAID</td>
                                     <td class="text-left">
-                                        <a href="{{ route('manajer_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
+                                        <a href="{{ route('master_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
                                     </td>
                                 </tr>
                             @endfor

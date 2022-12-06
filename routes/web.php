@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\APIItem;
 use App\Http\Controllers\web\Admin\WebUserController;
 use App\Http\Controllers\web\WebLoginController;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -159,122 +161,98 @@ Route::prefix('owner')->group( function() {
         return redirect()->route("owner_report");
     });
 
-    Route::get('/laporan', function() {
+    Route::get('/report', function() {
         $param = array();
         $param["loginUser"] = Auth::user();
 
         return view('pages.owner.laporan', $param); // ini list laporan
     })->name('owner_report');
-
-    Route::prefix('services')->group( function() {
-        Route::get('/', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.owner.master_service', $param);
-        })->name('owner_service');
-
-        Route::get('/edit', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.owner.edit_service', $param);
-        })->name('owner_edit_service');
-    });
-
-    Route::prefix('items')->group( function() {
-        Route::get('/', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.owner.master_item', $param);
-        })->name('owner_item');
-
-        Route::get('/edit', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.owner.edit_item', $param);
-        })->name('owner_edit_item');
-    });
-
-    Route::prefix('users')->group( function() {
-        Route::get('/', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.owner.master_user', $param); // ini list user
-        })->name('owner_user');
-
-        Route::get('/edit', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.owner.edit_user', $param);
-        })->name('owner_edit_user');
-    });
 });
 
 
 // == MANAJER ==
-Route::prefix('manajer')->group( function() {
+Route::prefix('manager')->group( function() {
     Route::get('/', function() {
-        return redirect()->route("manajer_masterservice");
+        return redirect()->route("master_service");
     });
 
-    Route::prefix('services')->group( function() {
+    Route::prefix('paycheck')->group( function() {
         Route::get('/', function() {
             $param = array();
             $param["loginUser"] = Auth::user();
 
-            return view('pages.manajer.master_service', $param);
-        })->name('manajer_service');
+            return view('pages.manager.paycheck', $param); // ini list gajian
+        })->name('manager_paycheck');
 
         Route::get('/edit', function() {
             $param = array();
             $param["loginUser"] = Auth::user();
 
-            return view('pages.manajer.edit_service', $param);
-        })->name('manajer_edit_service');
+            return view('pages.manager.edit_paycheck', $param); // ini list gajian
+        })->name('manager_edit_paycheck');
     });
+});
 
-    Route::prefix('items')->group( function() {
-        Route::get('/', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
 
-            return view('pages.manajer.master_item', $param);
-        })->name('manajer_item');
-
-        Route::get('/edit', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.manajer.edit_item', $param);
-        })->name('manajer_edit_item');
-    });
-
-    Route::prefix('users')->group( function() {
-        Route::get('/', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.manajer.master_user', $param);
-        })->name('manajer_user');
-
-        Route::get('/edit', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.manajer.edit_user', $param);
-        })->name('manajer_edit_user');
-    });
-
-    Route::get('/paycheck', function() {
+// == SERVICE ==
+Route::prefix('services')->group( function() {
+    Route::get('/', function() {
         $param = array();
         $param["loginUser"] = Auth::user();
 
-        return view('pages.manajer.Gajian', $param); // ini list gajian
-    })->name('manajer_gajian');
+        return view('pages.master.services.master_service', $param);
+    })->name('master_service');
+
+    Route::get('/edit', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.master.services.edit_service', $param);
+    })->name('master_edit_service');
 });
 
+
+// == ITEM ==
+Route::prefix('items')->group( function() {
+    Route::get('/', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+        $param["items"] = Item::withTrashed()->get();
+
+        return view('pages.master.items.master_item', $param);
+    })->name('master_item');
+
+    Route::get('/edit', function(Request $request) {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+        $param["item"] = Item::where('item_id', $request->item_id)->first();
+
+        return view('pages.master.items.edit_item', $param);
+    })->name('master_edit_item');
+
+    Route::post('/insert', [APIItem::class, "insert"])->name('master_insert_item');
+
+    Route::post('/update', [APIItem::class, "update"])->name('master_update_item');
+
+    Route::get('/delete', [APIItem::class, "delete"])->name('master_delete_item');
+
+    Route::get('/restore', [APIItem::class, "restore"])->name('master_restore_item');
+});
+
+
+// == USER ==
+Route::prefix('users')->group( function() {
+    Route::get('/', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.master.users.master_user', $param); // ini list user
+    })->name('master_user');
+
+    Route::get('/edit', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+
+        return view('pages.master.users.edit_user', $param);
+    })->name('master_edit_user');
+});

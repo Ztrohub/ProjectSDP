@@ -1,14 +1,14 @@
-@extends("pages.manajer.main_manajer")
+@extends("main")
+
+@push('page_custom_css')
+    <link rel="stylesheet" href="{{ asset('src/master/items/edit_item.css') }}">
+@endpush
 
 @section('name_page')
     Master Service
 @endsection
 
-@push('page_manajer_custom_css')
-    <link rel="stylesheet" href="{{ asset('src/teknisi/add_item/add_item.css') }}">
-@endpush
-
-@section('content_manajer')
+@section('content')
     <div class="container bg-that-more-light-than-black p-4" style="width: 90%;">
         <h3 class="mb-4 color-white-high-emphasis">Form to edit service</h3>
         <form action="#" method="POST">

@@ -1,19 +1,15 @@
 @extends("main")
 
 @push("page_custom_css")
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href=" {{ asset('src/pemilikUsaha/css/style.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-    @stack('page_manajer_custom_css')
+    @stack('page_manager_custom_css')
 @endpush
 
 @section("content")
-    @yield("content_manajer")
+    @yield("content_manager")
 @endsection
 
 @push("page_custom_js")
@@ -27,7 +23,7 @@
         });
     </script>
 
-    @stack('page_manajer_custom_js')
+    @stack('page_manager_custom_js')
 @endpush
 
 

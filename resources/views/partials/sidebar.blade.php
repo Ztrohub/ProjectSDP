@@ -22,23 +22,23 @@
         <li class="nav-item {{ (\Request::route()->getName() == 'owner_report') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('owner_report') }}">
                 <i class="fa fa-bar-chart nav-icon"></i>
-                <span>Laporan</span>
+                <span>Report</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'owner_service' || \Request::route()->getName() == 'owner_edit_service') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('owner_service') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_service' || \Request::route()->getName() == 'master_edit_service') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_service') }}">
                 <i class="fa fa-wrench nav-icon"></i>
                 <span>Master Service</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'owner_item' || \Request::route()->getName() == 'owner_edit_item') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('owner_item') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_item' || \Request::route()->getName() == 'master_edit_item') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_item') }}">
                 <i class="fa fa-cubes nav-icon"></i>
                 <span>Master Item</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'owner_user' || \Request::route()->getName() == 'owner_edit_user') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('owner_user') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_user') }}">
                 <i class="fa fa-users nav-icon"></i>
                 <span>List User</span>
             </a>
@@ -50,20 +50,20 @@
                 <span>Master Service</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'manajer_item' || \Request::route()->getName() == 'manajer_edit_item') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('manajer_item') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_item' || \Request::route()->getName() == 'master_edit_item') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_item') }}">
                 <i class="fa fa-cubes nav-icon"></i>
                 <span>Master Item</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'manajer_user' || \Request::route()->getName() == 'manajer_edit_user') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('manajer_user') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_user') }}">
                 <i class="fa fa-users nav-icon"></i>
                 <span>List User</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'manajer_gajian') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('manajer_gajian') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'manager_paycheck' || \Request::route()->getName() == 'manager_edit_paycheck') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('manager_paycheck') }}">
                 <i class="fa fa-usd nav-icon"></i>
                 <span>Paycheck</span>
             </a>
