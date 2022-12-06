@@ -24,51 +24,51 @@
                 <form action="{{ route('master_insert_item') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-                            <div class="form-group">
-                                <label for="inputNameItem">Name of Item</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ old('name') }}">
-                                @error('name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="inputBrandItem">Item Brand</label>
-                                <input type="text" class="form-control @error('brand') is-invalid @enderror" id="inputBrandItem" name="brand" placeholder="Enter the item brand" value="{{ old('brand') }}">
-                                @error('brand')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="inputStockItem">Stock Item</label>
-                                <input type="number" class="form-control @error('stock') is-invalid @enderror" id="inputStockItem" name="stock" placeholder="Enter stock item" value="{{ old('stock') }}">
-                                @error('stock')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="inputItemPrice">Item Price</label>
-                                <input type="number" class="form-control @error('price') is-invalid @enderror" id="inputItemPrice" name="price" placeholder="Enter the item price" value="{{ old('price') }}">
-                                @error('price')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="customFile">Upload Image</label>
-                                <input type="file" style="width: 99%;" class="form-control border-0 @error('image') is-invalid @enderror" id="customFile" name="image" value="{{ old('image') }}"/>
-                                @error('image')
-                                    <span class="invalid-feedback" style="margin-left: 2.5%;">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group">
+                            <label for="inputNameItem">Name of Item</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ old('name') }}">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBrandItem">Item Brand</label>
+                            <input type="text" class="form-control @error('brand') is-invalid @enderror" id="inputBrandItem" name="brand" placeholder="Enter the item brand" value="{{ old('brand') }}">
+                            @error('brand')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputStockItem">Stock Item</label>
+                            <input type="number" class="form-control @error('stock') is-invalid @enderror" id="inputStockItem" name="stock" placeholder="Enter stock item" value="{{ old('stock') }}">
+                            @error('stock')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputItemPrice">Item Price</label>
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="inputItemPrice" name="price" placeholder="Enter the item price" value="{{ old('price') }}">
+                            @error('price')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="customFile">Upload Image</label>
+                            <input type="file" style="width: 99%;" class="form-control border-0 @error('image') is-invalid @enderror" id="customFile" name="image" value="{{ old('image') }}"/>
+                            @error('image')
+                                <span class="invalid-feedback" style="margin-left: 2.5%;">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,8 +107,12 @@
                                     <th class="text-right">{{ $item->item_stock }}</th>
                                     <td class="priceColumn">Rp {{ number_format($item->item_price, 2, ',','.') }}</td>
                                     <td class="d-flex justify-content-center align-items-center">
-                                        <a href="{{ route('master_edit_item') }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
-                                        <a href="#"><button type="button" class="btn btn-danger">DELETE</button></a>
+                                        @if ($item->deleted_at == null)
+                                            <a href="{{ route('master_edit_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
+                                            <a href="{{ route('master_delete_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-danger">DELETE</button></a>
+                                        @else
+                                            <a href="{{ route('master_restore_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-success">RESTORE</button></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

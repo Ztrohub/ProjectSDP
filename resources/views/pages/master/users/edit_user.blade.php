@@ -1,7 +1,7 @@
 @extends("main")
 
 @push('page_custom_css')
-    <link rel="stylesheet" href="{{ asset('src/teknisi/add_item/add_item.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/master/items/edit_item.css') }}">
 @endpush
 
 @section('name_page')

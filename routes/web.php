@@ -217,19 +217,26 @@ Route::prefix('items')->group( function() {
     Route::get('/', function() {
         $param = array();
         $param["loginUser"] = Auth::user();
-        $param["items"] = Item::get();
+        $param["items"] = Item::withTrashed()->get();
 
         return view('pages.master.items.master_item', $param);
     })->name('master_item');
 
-    Route::get('/edit', function() {
+    Route::get('/edit', function(Request $request) {
         $param = array();
         $param["loginUser"] = Auth::user();
+        $param["item"] = Item::where('item_id', $request->item_id)->first();
 
         return view('pages.master.items.edit_item', $param);
     })->name('master_edit_item');
 
     Route::post('/insert', [APIItem::class, "insert"])->name('master_insert_item');
+
+    Route::post('/update', [APIItem::class, "update"])->name('master_update_item');
+
+    Route::get('/delete', [APIItem::class, "delete"])->name('master_delete_item');
+
+    Route::get('/restore', [APIItem::class, "restore"])->name('master_restore_item');
 });
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use File;
 
 class APIItem extends Controller
 {
@@ -36,7 +37,7 @@ class APIItem extends Controller
             'price.numeric' => ':attribute harus berupa angka!',
             'price.min' => ':attribute minimal Rp 1.000!',
             'image.required' => 'Gambar tidak boleh kosong!',
-            'image.mimes' => 'Tipe :attribute! harus bertipekan jpeg, jpg, atau png!',
+            'image.mimes' => 'Tipe :attribute harus bertipekan jpeg, jpg, atau png!',
             'image.max' => 'Ukuran :attribute tidak boleh besar dari 5 MB!',
         ], [
             'name' => 'Nama barang',
@@ -69,37 +70,58 @@ class APIItem extends Controller
     public function update(Request $request)
     {
         $fields = $request->validate([
-            'item_name' => "required",
-            'item_description' => "required",
-            'item_price' => "required|numeric|min:1000|bail",
-            'item_stock' => "required|numeric|min:1|bail"
+            'name' => 'required',
+            'brand' => 'required',
+            'stock' => 'required|numeric|min:1|bail',
+            'price' => 'required|numeric|min:1000|bail',
+            'image' => 'mimes:jpeg,jpg,png|max:5120'
         ], [
-            'item_name.required' => ':attribute tidak boleh kosong!',
-            'item_description.required' => ':attribute tidak boleh kosong!',
-            'item_price.required' => ':attribute tidak boleh kosong!',
-            'item_price.numeric' => ':attribute harus berupa angka!',
-            'item_price.min' => ':attribute minimal Rp 1.000!',
-            'item_stock.required' => ':attribute tidak boleh kosong!',
-            'item_stock.numeric' => ':attribute harus berupa angka!',
-            'item_stock.min' => ':attribute minimal 1!'
+            'name.required' => ':attribute tidak boleh kosong!',
+            'brand.required' => ':attribute tidak boleh kosong!',
+            'stock.required' => ':attribute tidak boleh kosong!',
+            'stock.numeric' => ':attribute harus berupa angka!',
+            'stock.min' => ':attribute minimal 1!',
+            'price.required' => ':attribute tidak boleh kosong!',
+            'price.numeric' => ':attribute harus berupa angka!',
+            'price.min' => ':attribute minimal Rp 1.000!',
+            'image.mimes' => 'Tipe :attribute harus bertipekan jpeg, jpg, atau png!',
+            'image.max' => 'Ukuran :attribute tidak boleh besar dari 5 MB!',
         ], [
-            'item_name' => 'Nama barang',
-            'item_description' => 'Deskripsi barang',
-            'item_price' => 'Harga barang',
-            'item_stock' => 'Jumlah stok'
+            'name' => 'Nama barang',
+            'brand' => 'Brand',
+            'stock' => 'Stok',
+            'price' => 'Harga',
+            'image' => 'gambar'
         ]);
 
         $item = Item::where("item_id", $request->item_id)->first();
-        $item->item_name = $fields['item_name'];
-        $item->item_description = $fields['item_description'];
-        $item->item_price = $fields['item_price'];
-        $item->item_stock = $fields['item_stock'];
-        $item->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => "Barang " . $item['item_name'] . " berhasil diupdate!"
-        ], 200);
+        if($request->has('image')){
+            File::delete("src/kasir/store/img/$item->image");
+
+            $new_image = time() . " - " . $fields['image']->getClientOriginalName();
+            $fields['image']->move('src/kasir/store/img/', $new_image);
+
+            $item->item_name = $fields['name'];
+            $item->item_brand = $fields['brand'];
+            $item->item_price = $fields['price'];
+            $item->item_stock = $fields['stock'];
+            $item->item_image_name = $new_image;
+        } else {
+            $item->item_name = $fields['name'];
+            $item->item_brand = $fields['brand'];
+            $item->item_price = $fields['price'];
+            $item->item_stock = $fields['stock'];
+        }
+
+        $item->save();
+        alert()->success('Yayyy!!', $item["item_name"] . ' berhasil diupdate!');
+        return redirect()->back();
+
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => "Barang " . $item['item_name'] . " berhasil diupdate!"
+        // ], 200);
     }
 
     public function delete(Request $request)
@@ -108,23 +130,27 @@ class APIItem extends Controller
         $item->deleted_at = Carbon::now();
         $item->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => "Barang " . $item['item_name'] . " berhasil dihapus!"
-        ], 200);
+        alert()->success('Yayyy!!', $item["item_name"] . ' berhasil dihapus!');
+        return redirect()->back();
+
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => "Barang " . $item['item_name'] . " berhasil dihapus!"
+        // ], 200);
     }
 
     public function restore(Request $request)
     {
-        $item = Item::where("item_id", $request->item_id)->first();
+        $item = Item::withTrashed()->where("item_id", $request->item_id)->first();
         $item->deleted_at = null;
         $item->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => "Barang " . $item['item_name'] . " berhasil direstore!"
-        ], 200);
+        alert()->success('Yayyy!!', $item["item_name"] . ' berhasil direstore!');
+        return redirect()->back();
+
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => "Barang " . $item['item_name'] . " berhasil direstore!"
+        // ], 200);
     }
-
-
 }
