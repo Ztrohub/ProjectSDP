@@ -1,14 +1,14 @@
-@extends("pages.manajer.main_manajer")
+@extends("main")
+
+@push('page_custom_css')
+    <link rel="stylesheet" href="{{ asset('src/teknisi/add_item/add_item.css') }}">
+@endpush
 
 @section('name_page')
     Master User
 @endsection
 
-@push('page_manajer_custom_css')
-    <link rel="stylesheet" href="{{ asset('src/teknisi/add_item/add_item.css') }}">
-@endpush
-
-@section('content_manajer')
+@section('content')
     <div class="container bg-that-more-light-than-black p-4" style="width: 90%;">
         <h3 class="mb-4 color-white-high-emphasis">Form to edit user data</h3>
         <form action="#" method="POST">
@@ -59,10 +59,6 @@
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="2" selected>Teknisi</option>
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="3">Kasir</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="inputSalary">Salary</label>
-                <input type="number" id="inputSalary" name="salary" class="form-control bg-content border-1 ml-2" placeholder="Enter salary" min="1000">
             </div>
 
             <div class="d-md-flex justify-content-between">

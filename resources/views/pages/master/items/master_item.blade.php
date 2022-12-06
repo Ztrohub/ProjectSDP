@@ -1,16 +1,16 @@
-@extends("pages.owner.main_owner")
+@extends("main")
+
+@push('page_custom_css')
+    <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/master/items/table_item.css') }}">
+@endpush
 
 @section('name_page')
     Master Item
 @endsection
 
-@push('page_owner_custom_css')
-    <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
-    <link rel="stylesheet" href="{{ asset('src/teknisi/item/table_item.css') }}">
-@endpush
-
-@section('content_owner')
+@section('content')
     <!-- Modal -->
     <div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -21,28 +21,53 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('master_insert_item') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                             <div class="form-group">
                                 <label for="inputNameItem">Name of Item</label>
-                                <input type="text" class="form-control" id="inputNameItem" name="name" placeholder="Enter the item name">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ old('name') }}">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputBrandItem">Item Brand</label>
-                                <input type="text" class="form-control" id="inputBrandItem" name="brand" placeholder="Enter the item brand">
+                                <input type="text" class="form-control @error('brand') is-invalid @enderror" id="inputBrandItem" name="brand" placeholder="Enter the item brand" value="{{ old('brand') }}">
+                                @error('brand')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputStockItem">Stock Item</label>
-                                <input type="number" class="form-control" id="inputStockItem" name="stock" placeholder="Enter stock item">
+                                <input type="number" class="form-control @error('stock') is-invalid @enderror" id="inputStockItem" name="stock" placeholder="Enter stock item" value="{{ old('stock') }}">
+                                @error('stock')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputItemPrice">Item Price</label>
-                                <input type="number" class="form-control" id="inputItemPrice" name="price" placeholder="Enter the item price">
+                                <input type="number" class="form-control @error('price') is-invalid @enderror" id="inputItemPrice" name="price" placeholder="Enter the item price" value="{{ old('price') }}">
+                                @error('price')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="customFile">Upload Image</label>
-                                <input type="file" class="form-control border-0 w-25" id="customFile" name="img"/>
+                                <input type="file" style="width: 99%;" class="form-control border-0 @error('image') is-invalid @enderror" id="customFile" name="image" value="{{ old('image') }}"/>
+                                @error('image')
+                                    <span class="invalid-feedback" style="margin-left: 2.5%;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -74,24 +99,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 4; $i++)
+                            @foreach ($items as $item)
                                 <tr>
-                                    <td>#123</td>
-                                    <td class="nameColumn">Toshiba 3000</td>
-                                    <td>Panasonic</td>
-                                    <th class="text-right">69</th>
-                                    <td class="priceColumn">Rp. 30.000.000</td>
-                                    <td class="d-flex justify-content-center">
-                                        <a href="{{ route('owner_edit_item') }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
+                                    <td>#{{ $item->item_id }}</td>
+                                    <td class="nameColumn">{{ $item->item_name }}</td>
+                                    <td>{{ $item->item_brand }}</td>
+                                    <th class="text-right">{{ $item->item_stock }}</th>
+                                    <td class="priceColumn">Rp {{ number_format($item->item_price, 2, ',','.') }}</td>
+                                    <td class="d-flex justify-content-center align-items-center">
+                                        <a href="{{ route('master_edit_item') }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
                                         <a href="#"><button type="button" class="btn btn-danger">DELETE</button></a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
+
+@push('page_custom_js')
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+                $('#modalAddItem').modal('show');
+        </script>
+    @endif
+@endpush

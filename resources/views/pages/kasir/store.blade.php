@@ -58,7 +58,7 @@
             @for ($i = 0; $i < 10; $i++)
                 <div class="wrapper-card mb-4" data-price=5000 data-toggle="modal" data-target="#modalAddToCart">
                     <div class="card">
-                        <img src="{{ asset('src/teknisi/store/img/ac.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('src/kasir/store/img/ac.png') }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="brand-text color-white-medium-emphasis">BRAND</p>
                             <h5 class="card-title">Product name</h5>
