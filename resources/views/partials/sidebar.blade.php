@@ -18,7 +18,7 @@
     </div>
 
     <!-- Nav Item - Dashboard -->
-    @if ($loginUser->user_role == 0) <!-- OWNER -->
+    @if (Auth::user()->user_role == 0) <!-- OWNER -->
         <li class="nav-item {{ (\Request::route()->getName() == 'owner_report') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('owner_report') }}">
                 <i class="fa fa-bar-chart nav-icon"></i>
@@ -43,7 +43,7 @@
                 <span>List User</span>
             </a>
         </li>
-    @elseif ($loginUser->user_role == 1) <!-- MANAJER -->
+    @elseif (Auth::user()->user_role == 1) <!-- MANAJER -->
         <li class="nav-item {{ (\Request::route()->getName() == 'manajer_service' || \Request::route()->getName() == 'manajer_edit_service') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('manajer_service') }}">
                 <i class="fa fa-wrench nav-icon"></i>
@@ -68,7 +68,7 @@
                 <span>Paycheck</span>
             </a>
         </li>
-    @elseif ($loginUser->user_role == 2) <!-- TEKNISI -->
+    @elseif (Auth::user()->user_role == 2) <!-- TEKNISI -->
         {{-- <li class="nav-item {{ (\Request::route()->getName() == 'teknisi_dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('teknisi_dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt nav-icon"></i>

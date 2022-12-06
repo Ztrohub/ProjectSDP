@@ -53,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     });
 
-    Route::prefix('users')->group(function(){
+    Route::middleware(['ability:owner'])->prefix('users')->group(function(){
         Route::get('/', [WebUserController::class, "index"]);
 
         Route::get('edit/{user_id}', [WebUserController::class, "edit"]);

@@ -24,35 +24,31 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::middleware(['auth:sanctum', 'ability:owner'])->group(function(){
-    Route::prefix('item')->group(function(){
+Route::prefix('item')->group(function(){
+    // == QUERY TO GET ALL ITEMS ==
+    Route::get('/getall', [APIItem::class, 'getAllItems']);
 
-        // == QUERY TO GET ALL ITEMS ==
-        Route::get('/getall', [APIItem::class, 'getAllItems']);
+    // == QUERY TO INSERT NEW ITEM ==
+    Route::get('/insert', [APIItem::class, 'insert']);
 
-        // == QUERY TO INSERT NEW ITEM ==
-        Route::get('/insert', [APIItem::class, 'insert']);
+    // == QUERY TO UPDATE ITEM ==
+    Route::get
+    ('/update', [APIItem::class, 'update']);
 
-        // == QUERY TO UPDATE ITEM ==
-        Route::get('/update', [APIItem::class, 'update']);
+    // == QUERY TO DELETE ITEM ==
+    Route::get('/delete', [APIItem::class, 'delete']);
 
-        // == QUERY TO DELETE ITEM ==
-        Route::get('/delete', [APIItem::class, 'delete']);
-
-        // == QUERY TO RESTORE ITEM ==
-        Route::get('/restore', [APIItem::class, 'restore']);
-    });
+    // == QUERY TO RESTORE ITEM ==
+    Route::get('/restore', [APIItem::class, 'restore']);
 });
 
-Route::middleware(['auth:sanctum', 'ability:owner'])->group(function(){
-    Route::prefix('users')->group(function(){
-        Route::get('/getall', [APIAdminUsersController::class, 'getAll']);
-        Route::get('/get/{user_id}', [APIAdminUsersController::class, 'getUser']);
-        Route::post('/insert', [APIAdminUsersController::class, 'insert']);
-        Route::post('/changePassword/{user_id}', [APIAdminUsersController::class, 'changePassword']);
-        Route::post('/update/{user_id}', [APIAdminUsersController::class, 'update']);
-        Route::get('/delete/{user_id}', [APIAdminUsersController::class, 'delete']);
-    });
+Route::prefix('users')->group(function(){
+    Route::get('/getall', [APIAdminUsersController::class, 'getAll']);
+    Route::get('/get/{user_id}', [APIAdminUsersController::class, 'getUser']);
+    Route::post('/insert', [APIAdminUsersController::class, 'insert']);
+    Route::post('/changePassword/{user_id}', [APIAdminUsersController::class, 'changePassword']);
+    Route::post('/update/{user_id}', [APIAdminUsersController::class, 'update']);
+    Route::get('/delete/{user_id}', [APIAdminUsersController::class, 'delete']);
 });
 
 

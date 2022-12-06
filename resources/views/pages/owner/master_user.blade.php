@@ -15,7 +15,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ url('users/insert')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                             <div class="form-group">
@@ -100,32 +100,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 2; $i++)
+                            @foreach ($users as $user)
                                 <tr>
-                                    <td>Windah Basudara</td>
-                                    <td>windahbasudara</td>
-                                    <td>Teknisi</td>
-                                    <td class="text-center">14 Nov 2022</td>
-                                    <td>081294294157</td>
-                                    <td>Rp 100.000.000</td>
-                                    <td class="d-flex justify-content-between">
-                                        <a href="{{ route('owner_edit_user') }}"><button class="btn btn-template btn_edit_user">EDIT</button></a>
-                                    </td>
-                                </tr>
-                            @endfor
-                            @for ($i = 0; $i < 2; $i++)
-                                <tr>
-                                    <td>Garit Dewana</td>
-                                    <td>garitdewana</td>
-                                    <td>Manajer</td>
-                                    <td class="text-center">14 Nov 2022</td>
-                                    <td>081294294157</td>
+                                    <td>{{ $user->user_name }}</td>
+                                    <td>{{ $user->user_username }}</td>
+                                    <td>{{ GetRole::get($user->user_role) }}</td>
+                                    <td class="text-center">{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
+                                    <td>{{ $user->user_phone_number}}</td>
                                     <td>Rp 100.000.000</td>
                                     <td>
                                         <a href="{{ route('owner_edit_user') }}"><button class="btn btn-template btn_edit_user">EDIT</button></a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

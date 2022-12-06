@@ -99,7 +99,7 @@
             </div>
         </li> --}}
 
-        @if ($loginUser->user_role == 3) <!-- KASIR -->
+        @if (Auth::user()->user_role == 3) <!-- KASIR -->
             <!-- Nav Item - Cart -->
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="{{ route('kasir_cart') }}">
@@ -118,7 +118,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <span class="mr-2 d-none d-lg-inline large">Hello, <b class="color-white-high-emphasis">{{ $loginUser->user_username }}</b></span>
+                <span class="mr-2 d-none d-lg-inline large">Hello, <b class="color-white-high-emphasis">{{ Auth::user()->user_username }}</b></span>
                 <img class="img-profile rounded-circle"
                     src="{{ asset('src/sb-admin/img/undraw_profile.svg') }}">
             </a>
