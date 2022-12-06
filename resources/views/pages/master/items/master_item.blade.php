@@ -111,7 +111,7 @@
                                             <a href="{{ route('master_edit_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
                                             <a href="{{ route('master_delete_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-danger">DELETE</button></a>
                                         @else
-                                            <a href="{{ route('master_restore_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-success">RESTORE</button></a>
+                                            <a style="width: 100%" href="{{ route('master_restore_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-success" style="width: 100%">RESTORE</button></a>
                                         @endif
                                     </td>
                                 </tr>

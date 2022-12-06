@@ -125,7 +125,7 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
 
 
 // == MANAJER ==
-Route::prefix('manager')->group( function() {
+Route::prefix('manajer')->group( function() {
     Route::get('/', function() {
         return redirect()->route("master_service");
     });

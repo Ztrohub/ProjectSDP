@@ -3,6 +3,7 @@
 @push('page_custom_css')
     <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/master/users/table_user.css') }}">
 @endpush
 
 @section('name_page')
@@ -25,50 +26,90 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="inputFullname">Full Name</label>
-                            <input type="text" id="inputFullname" name="name" class="form-control" placeholder="Enter full name" min="1">
+                            <input type="text" id="inputFullname" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter full name" min="1">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputUsername">Username</label>
-                            <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Enter username" min="1">
+                            <input type="text" id="inputUsername" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Enter username" min="1">
+                            @error('username')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Password</label>
-                            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Enter password" min="1">
+                            <input type="password" id="inputPassword" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter password" min="1">
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputDOB">Date of Birth</label>
                             <div class="input-group date" id="datepicker">
-                                <input type="date" id="inputDOB" class="form-control" name="dob">
+                                <input type="date" id="inputDOB" class="form-control @error('dob') is-invalid @enderror" name="dob">
                                 <span class="input-group-append">
                                     <span class="input-group-text bg-white">
                                         <i class="fa fa-calendar"></i>
                                     </span>
                                 </span>
                             </div>
+                            @error('dob')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Address</label>
-                            <input type="text" id="inputAddress" class="form-control" name="address" placeholder="Enter address">
+                            <input type="text" id="inputAddress" class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Enter address">
+                            @error('address')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputMobileNumber">Mobile Number</label>
-                            <input type="number" id="inputMobileNumber" class="form-control" name="phone_number" placeholder="Enter mobile number">
+                            <input type="number" id="inputMobileNumber" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="Enter mobile number">
+                            @error('phone_number')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="selectSex">Sex</label>
-                            <select class="custom-select" id="selectSex" name="jk">
+                            <select class="custom-select @error('jk') is-invalid @enderror" id="selectSex" name="jk">
                                 <option value="L" selected>Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
+                            @error('jk')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="selectPosition">Position</label>
-                            <select class="custom-select" id="selectPosition" name="role">
+                            <select class="custom-select @error('role') is-invalid @enderror" id="selectPosition" name="role">
                                 <option value="0">Owner</option>
                                 <option value="1">Manajer</option>
                                 <option value="2" selected>Teknisi</option>
                                 <option value="3">Kasir</option>
                             </select>
+                            @error('role')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -91,25 +132,25 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="col-4 text-center">Full Name</th>
-                                <th class="col-3 text-center">Username</th>
+                                <th class="col-3 text-center">Full Name</th>
+                                <th class="col-2 text-center">Username</th>
                                 <th class="col-1 text-center">JK</th>
                                 <th class="col-2 text-center">DOB</th>
                                 <th class="col-1 text-center">Position</th>
-                                <th class="col-3 text-center">Hire Date</th>
-                                <th class="col-1 text-center">Mobile Number</th>
+                                <th class="col-2 text-center">Hire Date</th>
+                                <th class="col-1 text-center">Phone Number</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr class="text-center">
-                                    <td>{{ $user->user_name }}</td>
+                                    <td class="fullnameColumn">{{ $user->user_name }}</td>
                                     <td>{{ $user->user_username }}</td>
                                     <td>{{ $user->user_jk }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($user->user_dob)) }}</td>
+                                    <td class="dobColumn">{{ date('d-m-Y', strtotime($user->user_dob)) }}</td>
                                     <td>{{ UserHelper::getRole($user->user_role) }}</td>
-                                    <td>{{ date('d M Y', strtotime($user->created_at))}}</td>
+                                    <td class="hireDateColumn">{{ date('d M Y', strtotime($user->created_at))}}</td>
                                     <td>{{ $user->user_phone_number }}</td>
                                     <td class="d-flex justify-content-between">
                                         <a href="{{ route('master_edit_user') }}"><button class="btn btn-template btn_edit_user">EDIT</button></a>

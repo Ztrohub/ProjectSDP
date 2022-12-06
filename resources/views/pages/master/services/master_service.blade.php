@@ -3,6 +3,7 @@
 @push('page_custom_css')
     <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/master/services/table_service.css') }}">
 @endpush
 
 @section('name_page')
@@ -24,26 +25,46 @@
                     <form action="">
                         <div class="form-group">
                             <label for="inputServiceDescription">Service Description</label>
-                            <input type="text" class="form-control" id="inputServiceDescription" name="description" placeholder="Enter the service name">
+                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="inputServiceDescription" name="description" placeholder="Enter the service name">
+                            @error('description')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputDateService">Date of Service</label>
-                            <input type="text" class="form-control" id="inputDateService" name="dateOfService" placeholder="Enter the service date">
+                            <input type="text" class="form-control @error('dateOfService') is-invalid @enderror" id="inputDateService" name="dateOfService" placeholder="Enter the service date">
+                            @error('dateOfService')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputNameFirstTechnician">Name of First Technician</label>
-                            <select class="custom-select" id="inputNameFirstTechnician" name="nameFirstTechnician">
+                            <select class="custom-select @error('nameFirstTechnician') is-invalid @enderror" id="inputNameFirstTechnician" name="nameFirstTechnician">
                                 <option value="1" selected>nando</option>
                                 <option value="2">lukas</option>
                                 <option value="3">jojo</option>
                             </select>
+                            @error('nameFirstTechnician')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="inputNameSecondTechnician">Name of Second Technician</label>
-                            <select class="custom-select" id="inputNameSecondTechnician" name="nameSecondTechnician">
+                            <select class="custom-select @error('nameSecondTechnician') is-invalid @enderror" id="inputNameSecondTechnician" name="nameSecondTechnician">
                                 <option value="1" selected>lukas</option>
                                 <option value="2">jojo</option>
                             </select>
+                            @error('nameSecondTechnician')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </form>
                 </div>
@@ -72,20 +93,21 @@
                                 <th class="col-2 text-center serviceCostColumn">Service Cost</th>
                                 <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
                                 <th class="col-1 text-center">Payment Status</th>
-                                <th class="col-1 text-center">Service Status</th>
+                                <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @for ($i = 0; $i < 4; $i++)
                                 <tr>
                                     <td>#123</td>
-                                    <td>Ganti freon bocor dan kipas baru</td>
-                                    <td>John Cena</td>
-                                    <td>Rp 1.000.000</td>
-                                    <td class="text-center">14 Nov 2022 14:00:00</td>
+                                    <td class="descriptionColumn">Ganti freon bocor dan kipas baru</td>
+                                    <td class="nameCustomerColumn">John Cena</td>
+                                    <td class="costColumn">Rp 1.000.000</td>
+                                    <td class="text-center dateServiceColumn">14 Nov 2022 14:00:00</td>
                                     <td class="text-center text-bold text-danger"">UNPAID</td>
-                                    <td class="text-left">
+                                    <td class="d-flex justify-content-between">
                                         <a href="{{ route('master_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
+                                        <a style="width: 100%" class="ml-2" href="{{ route('master_edit_service') }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
                                     </td>
                                 </tr>
                             @endfor

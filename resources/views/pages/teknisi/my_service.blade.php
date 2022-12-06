@@ -27,7 +27,7 @@
                                 <th class="col-2 text-center serviceCostColumn">Service Cost</th>
                                 <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
                                 <th class="col-1 text-center">Payment Status</th>
-                                <th class="col-1 text-center">Action</th>
+                                <th class="col-1 text-center">Service Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
                                     <td class="text-center">14 Nov 2022 14:00:00</td>
                                     <td class="text-center text-bold text-danger">UNPAID</td>
                                     <td class="text-left">
-                                        <a href="{{ route('teknisi_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
+                                        <a href="#"><button class="btn btn-success">DONE</button></a>
                                     </td>
                                 </tr>
                             @endfor

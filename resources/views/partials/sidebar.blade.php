@@ -40,12 +40,12 @@
         <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('master_user') }}">
                 <i class="fa fa-users nav-icon"></i>
-                <span>List User</span>
+                <span>Master User</span>
             </a>
         </li>
     @elseif (Auth::user()->user_role == 1) <!-- MANAJER -->
-        <li class="nav-item {{ (\Request::route()->getName() == 'manajer_service' || \Request::route()->getName() == 'manajer_edit_service') ? 'active' : '' }}">
-            <a class="nav-link"href="{{ route('manajer_service') }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_service' || \Request::route()->getName() == 'master_edit_service') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_service') }}">
                 <i class="fa fa-wrench nav-icon"></i>
                 <span>Master Service</span>
             </a>
@@ -59,7 +59,7 @@
         <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('master_user') }}">
                 <i class="fa fa-users nav-icon"></i>
-                <span>List User</span>
+                <span>Master User</span>
             </a>
         </li>
         <li class="nav-item {{ (\Request::route()->getName() == 'manager_paycheck' || \Request::route()->getName() == 'manager_edit_paycheck') ? 'active' : '' }}">

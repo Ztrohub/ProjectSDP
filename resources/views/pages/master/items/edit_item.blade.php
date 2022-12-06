@@ -19,7 +19,7 @@
                 <label for="inputNameItem" style="color: #e2e0e1;">Name of Item</label>
                 <input type="text" class="form-control bg-content border-1 ml-2 @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ $item->item_name }}">
                 @error('name')
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback ml-2">
                         {{ $message }}
                     </div>
                 @enderror

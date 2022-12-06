@@ -15,50 +15,90 @@
             @csrf
             <div class="form-group">
                 <label for="inputFullname">Full Name</label>
-                <input type="text" id="inputFullname" name="fullname" class="form-control bg-content border-1 ml-2" placeholder="Enter full name">
+                <input type="text" id="inputFullname" name="fullname" class="form-control bg-content border-1 ml-2 @error('fullname') is-invalid @enderror" placeholder="Enter full name">
+                @error('fullname')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="inputUsername">Username</label>
-                <input type="text" id="inputUsername" name="username" class="form-control bg-content border-1 ml-2" placeholder="Enter username">
+                <input type="text" id="inputUsername" name="username" class="form-control bg-content border-1 ml-2 @error('username') is-invalid @enderror" placeholder="Enter username">
+                @error('username')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="inputPassword">Password</label>
-                <input type="text" id="inputPassword" name="password" class="form-control bg-content border-1 ml-2" placeholder="Enter password">
+                <input type="text" id="inputPassword" name="password" class="form-control bg-content border-1 ml-2 @error('password') is-invalid @enderror" placeholder="Enter password">
+                @error('password')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="selectDOB">Date of Birth</label>
                 <div class="input-group date" id="datepicker">
-                    <input type="text" id="selectDOB" class="form-control bg-content border-1 ml-2" name="dob" placeholder="Select date of birth">
+                    <input type="text" id="selectDOB" class="form-control bg-content border-1 ml-2 @error('dob') is-invalid @enderror" name="dob" placeholder="Select date of birth">
                     <span class="input-group-append">
                         <span class="input-group-text bg-content">
                             <i class="fa fa-calendar"></i>
                         </span>
                     </span>
                 </div>
+                @error('dob')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" id="inputAddress" class="form-control bg-content border-1 ml-2" name="address" placeholder="Enter address">
+                <input type="text" id="inputAddress" class="form-control bg-content border-1 ml-2 @error('address') is-invalid @enderror" name="address" placeholder="Enter address">
+                @error('address')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
-                <label for="inputMobileNumber">Mobile Number</label>
-                <input type="number" id="inputMobileNumber" class="form-control bg-content border-1 ml-2" name="mobile_number" placeholder="Enter mobile number">
+                <label for="inputPhoneNumber">Phone Number</label>
+                <input type="number" id="inputPhoneNumber" class="form-control bg-content border-1 ml-2 @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="Enter phone number">
+                @error('phone_number')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="selectSex">Sex</label>
-                <select id="selectSex" class="custom-select bg-content border-1 ml-2" name="sex">
+                <select id="selectSex" class="custom-select bg-content border-1 ml-2 @error('sex') is-invalid @enderror" name="sex">
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="L" selected>Laki-laki</option>
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="P">Perempuan</option>
                 </select>
+                @error('sex')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for= "selectPosition">Position</label>
-                <select id="selectPosition" class="custom-select bg-content border-1 ml-2" name="position">
+                <select id="selectPosition" class="custom-select bg-content border-1 ml-2 @error('position') is-invalid @enderror" name="position">
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="0">Owner</option>
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="1">Manajer</option>
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="2" selected>Teknisi</option>
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="3">Kasir</option>
                 </select>
+                @error('position')
+                    <div class="invalid-feedback ml-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="d-md-flex justify-content-between">

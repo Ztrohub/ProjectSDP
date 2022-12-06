@@ -21,37 +21,37 @@
                         <h3 class="title">Checkout</h3>
                         <div class="wrap-item">
                             <div class="item">
-                                <span class="price">$200</span>
+                                <span class="price">Rp 2.000.000,-</span>
                                 <p class="item-name">Product 1</p>
                                 <p class="item-description">Lorem ipsum dolor sit amet</p>
                             </div>
                             <div class="item">
-                                <span class="price">$120</span>
+                                <span class="price">Rp 1.020.000,-</span>
                                 <p class="item-name">Product 2</p>
                                 <p class="item-description">Lorem ipsum dolor sit amet</p>
                             </div>
                             <div class="item">
-                                <span class="price">$120</span>
+                                <span class="price">Rp 1.020.000,-</span>
                                 <p class="item-name">Product 2</p>
                                 <p class="item-description">Lorem ipsum dolor sit amet</p>
                             </div>
                             <div class="item">
-                                <span class="price">$120</span>
+                                <span class="price">Rp 1.020.000,-</span>
                                 <p class="item-name">Product 2</p>
                                 <p class="item-description">Lorem ipsum dolor sit amet</p>
                             </div>
                             <div class="item">
-                                <span class="price">$120</span>
+                                <span class="price">Rp 1.020.000,-</span>
                                 <p class="item-name">Product 2</p>
                                 <p class="item-description">Lorem ipsum dolor sit amet</p>
                             </div>
                             <div class="item">
-                                <span class="price">$120</span>
+                                <span class="price">Rp 1.020.000,-</span>
                                 <p class="item-name">Product 2</p>
                                 <p class="item-description">Lorem ipsum dolor sit amet</p>
                             </div>
                         </div>
-                        <div class="total">Total<span class="price">$320</span></div>
+                        <div class="total">Total<span class="price">Rp 100.000.000,-</span></div>
                     </div>
                     <div class="card-details pt-0">
                         <div class="row pt-0 mt-0">

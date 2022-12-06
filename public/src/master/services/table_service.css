@@ -1,0 +1,18 @@
+.descriptionColumn {
+    min-width: 240px;
+}
+
+.nameCustomerColumn {
+    min-width: 145px;
+}
+
+
+.costColumn {
+    min-width: 150px;
+}
+
+
+.dateServiceColumn {
+    min-width: 150px;
+}
+

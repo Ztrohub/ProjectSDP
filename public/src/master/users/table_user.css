@@ -1,0 +1,11 @@
+.fullnameColumn {
+    min-width: 200px;
+}
+
+.dobColumn {
+    min-width: 150px;
+}
+
+.hireDateColumn {
+    min-width: 150px;
+}
