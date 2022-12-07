@@ -97,20 +97,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 4; $i++)
+                            @foreach ($services as $service)
                                 <tr>
-                                    <td>#123</td>
-                                    <td class="descriptionColumn">Ganti freon bocor dan kipas baru</td>
-                                    <td class="nameCustomerColumn">John Cena</td>
-                                    <td class="costColumn">Rp 1.000.000</td>
-                                    <td class="text-center dateServiceColumn">14 Nov 2022 14:00:00</td>
-                                    <td class="text-center text-bold text-danger"">UNPAID</td>
+                                    <td>#{{ $service->service_id}}</td>
+                                    <td class="descriptionColumn">{{ $service->service_description}}</td>
+                                    <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
+                                    <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
+                                    <td class="text-center dateServiceColumn">{{ date('d M Y h:m:s', strtotime($service->service_date))}}</td>
+                                    <td class="text-center text-bold text-danger">UNPAID</td>
                                     <td class="d-flex justify-content-between">
                                         <a href="{{ route('master_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
                                         <a style="width: 100%" class="ml-2" href="{{ route('master_edit_service') }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

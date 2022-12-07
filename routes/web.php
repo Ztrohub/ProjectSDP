@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\APIItem;
 use App\Http\Controllers\web\Admin\WebUserController;
+use App\Http\Controllers\web\Service\WebServiceController;
 use App\Http\Controllers\web\WebLoginController;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -113,12 +114,13 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
     Route::prefix('users')->group( function() {
         Route::get('/', [WebUserController::class, 'index'])->name('master_user');
 
-        Route::get('/edit', function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
+        Route::get('/add', [WebUserController::class, 'add'])->name('master_add_user');
 
-            return view('pages.master.users.edit_user', $param);
-        })->name('master_edit_user');
+        Route::post('/insert', [WebUserController::class, 'doinsert'])->name('master_insert_user');
+
+        Route::get('/edit/{user_id}', [WebUserController::class, 'edit']);
+
+        Route::post('/edit/{user_id}', [WebUserController::class, 'doedit']);
     });
 
 });
@@ -150,12 +152,7 @@ Route::prefix('manajer')->group( function() {
 
 // == SERVICE ==
 Route::prefix('services')->group( function() {
-    Route::get('/', function() {
-        $param = array();
-        $param["loginUser"] = Auth::user();
-
-        return view('pages.master.services.master_service', $param);
-    })->name('master_service');
+    Route::get('/', [WebServiceController::class, 'index'])->name('master_service');
 
     Route::get('/edit', function() {
         $param = array();

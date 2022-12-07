@@ -44,10 +44,10 @@ Route::prefix('item')->group(function(){
 
 Route::prefix('users')->group(function(){
     Route::get('/getall', [APIAdminUsersController::class, 'getAll']);
-    Route::get('/get/{user_id}', [APIAdminUsersController::class, 'getUser']);
+    Route::get('/get/{user_id}', [APIAdminUsersController::class, 'get']);
     Route::post('/insert', [APIAdminUsersController::class, 'insert']);
-    Route::post('/changePassword/{user_id}', [APIAdminUsersController::class, 'changePassword']);
-    Route::post('/update/{user_id}', [APIAdminUsersController::class, 'update']);
+    Route::post('/changePassword', [APIAdminUsersController::class, 'changePassword']);
+    Route::post('/update', [APIAdminUsersController::class, 'update']);
     Route::get('/delete/{user_id}', [APIAdminUsersController::class, 'delete']);
 });
 

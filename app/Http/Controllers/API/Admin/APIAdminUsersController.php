@@ -36,11 +36,10 @@ class APIAdminUsersController extends Controller
         $user->user_name = $request->name;
         $user->user_username = $request->username;
         $user->user_role = $request->role;
-        $user->dob = DateTime::createFromFormat('d-m-Y', $request->dob);
-        $user->user_phone_number = $request->user_phone;
-        $user->user_address = $request->user_address;
-        $user->jk = $request->jk;
-        $user->status = $request->status;
+        $user->user_dob = date('Y-m-d', strtotime($request->dob));
+        $user->user_phone_number = $request->phone_number;
+        $user->user_address = $request->address;
+        $user->user_jk = $request->jk;
 
         $user->save();
 
@@ -71,7 +70,7 @@ class APIAdminUsersController extends Controller
             'user_name' => $request->name,
             'user_username' => $request->username,
             'user_password' => Hash::make($request->password),
-            'user_dob' => DateTime::createFromFormat('d-m-Y', $request->dob),
+            'user_dob' => date('Y-m-d', strtotime($request->dob)),
             'user_address' => $request->address,
             'user_phone_number' => $request->phone_number,
             'user_jk' => $request->jk,
@@ -90,7 +89,7 @@ class APIAdminUsersController extends Controller
     {
         $user = User::where('user_id', $request->user_id)->first();
 
-        $user->status = 1 - $user->status;
+        $user->user_status = 1 - $user->user_status;
         $user->save();
 
         return response()->json([

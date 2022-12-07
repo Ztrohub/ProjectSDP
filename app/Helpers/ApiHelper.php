@@ -12,8 +12,8 @@ class ApiHelper
         $response = Route::dispatch($request);
         $responseBody = json_decode($response->getContent(), false);
 
-        // if ($responseBody == null)
-        //     abort(503, "API is not responding");
+        if ($responseBody == null)
+            abort(503, "API is not responding");
 
         return $responseBody;
     }

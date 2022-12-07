@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Helpers\ApiHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class WebLoginController extends Controller
 {
@@ -30,6 +31,8 @@ class WebLoginController extends Controller
         ]);
 
         $response = ApiHelper::getResponse($req);
+
+
 
         if ($response->success == true) {
             return redirect('/');
