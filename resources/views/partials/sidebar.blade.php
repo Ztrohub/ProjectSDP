@@ -37,7 +37,7 @@
                 <span>Master Item</span>
             </a>
         </li>
-        <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_add_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('master_user') }}">
                 <i class="fa fa-users nav-icon"></i>
                 <span>Master User</span>

@@ -97,20 +97,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($services as $service)
+                            @if (count($services) > 0)
+                                @foreach ($services as $service)
+                                    <tr>
+                                        <td>#{{ $service->service_id}}</td>
+                                        <td class="descriptionColumn">{{ $service->service_description}}</td>
+                                        <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
+                                        <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
+                                        <td class="text-center dateServiceColumn">{{ date('d M Y h:m:s', strtotime($service->service_date))}}</td>
+                                        <td class="text-center text-bold text-danger">
+                                            @if ($service->service_payment_status == 1)
+                                                <a href="#"><button type="button" class="btn btn-success">PAID</button></a>
+                                            @else
+                                                <a href="#"><button type="button" class="btn btn-danger">UNPAID</button></a>
+                                            @endif
+                                        </td>
+                                        <td class="d-flex justify-content-between">
+                                            <a href="{{ route('master_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
+                                            <a style="width: 100%" class="ml-2" href="{{ route('master_edit_service') }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td>#{{ $service->service_id}}</td>
-                                    <td class="descriptionColumn">{{ $service->service_description}}</td>
-                                    <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
-                                    <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
-                                    <td class="text-center dateServiceColumn">{{ date('d M Y h:m:s', strtotime($service->service_date))}}</td>
-                                    <td class="text-center text-bold text-danger">UNPAID</td>
-                                    <td class="d-flex justify-content-between">
-                                        <a href="{{ route('master_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
-                                        <a style="width: 100%" class="ml-2" href="{{ route('master_edit_service') }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
-                                    </td>
+                                    <td class="text-center text-danger font-weight-bold py-4" colspan="7">NO SERVICE</td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -119,8 +131,10 @@
     </div>
 @endsection
 
-
-
-
-
-
+@push('page_custom_js')
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+                $('#modalAddService').modal('show');
+        </script>
+    @endif
+@endpush

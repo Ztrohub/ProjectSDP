@@ -3,9 +3,11 @@
 }
 
 .dobColumn {
-    min-width: 150px;
+    min-width: 130px;
+    max-width: 130px;
 }
 
 .hireDateColumn {
-    min-width: 150px;
+    min-width: 130px;
+    max-width: 130px;
 }

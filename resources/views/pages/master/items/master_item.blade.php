@@ -28,7 +28,7 @@
                             <label for="inputNameItem">Name of Item</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ old('name') }}">
                             @error('name')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback ml-1">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -37,7 +37,7 @@
                             <label for="inputBrandItem">Item Brand</label>
                             <input type="text" class="form-control @error('brand') is-invalid @enderror" id="inputBrandItem" name="brand" placeholder="Enter the item brand" value="{{ old('brand') }}">
                             @error('brand')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback ml-1">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -46,7 +46,7 @@
                             <label for="inputStockItem">Stock Item</label>
                             <input type="number" class="form-control @error('stock') is-invalid @enderror" id="inputStockItem" name="stock" placeholder="Enter stock item" value="{{ old('stock') }}">
                             @error('stock')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback ml-1">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -55,7 +55,7 @@
                             <label for="inputItemPrice">Item Price</label>
                             <input type="number" class="form-control @error('price') is-invalid @enderror" id="inputItemPrice" name="price" placeholder="Enter the item price" value="{{ old('price') }}">
                             @error('price')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback ml-1">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -64,7 +64,7 @@
                             <label class="form-label" for="customFile">Upload Image</label>
                             <input type="file" style="width: 99%;" class="form-control border-0 @error('image') is-invalid @enderror" id="customFile" name="image" value="{{ old('image') }}"/>
                             @error('image')
-                                <span class="invalid-feedback" style="margin-left: 2.5%;">
+                                <span class="invalid-feedback ml-1" style="margin-left: 2.5%;">
                                     {{ $message }}
                                 </span>
                             @enderror
@@ -99,23 +99,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @if (count($items) > 0)
+                                @foreach ($items as $item)
+                                    <tr>
+                                        <td>#{{ $item->item_id }}</td>
+                                        <td class="nameColumn">{{ $item->item_name }}</td>
+                                        <td>{{ $item->item_brand }}</td>
+                                        <th class="text-right">{{ $item->item_stock }}</th>
+                                        <td class="priceColumn">Rp {{ number_format($item->item_price, 2, ',','.') }}</td>
+                                        <td class="d-flex justify-content-center align-items-center">
+                                            @if ($item->deleted_at == null)
+                                                <a href="{{ route('master_edit_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
+                                                <a href="{{ route('master_delete_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-danger">DELETE</button></a>
+                                            @else
+                                                <a style="width: 100%" href="{{ route('master_restore_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-success" style="width: 100%">RESTORE</button></a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td>#{{ $item->item_id }}</td>
-                                    <td class="nameColumn">{{ $item->item_name }}</td>
-                                    <td>{{ $item->item_brand }}</td>
-                                    <th class="text-right">{{ $item->item_stock }}</th>
-                                    <td class="priceColumn">Rp {{ number_format($item->item_price, 2, ',','.') }}</td>
-                                    <td class="d-flex justify-content-center align-items-center">
-                                        @if ($item->deleted_at == null)
-                                            <a href="{{ route('master_edit_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
-                                            <a href="{{ route('master_delete_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-danger">DELETE</button></a>
-                                        @else
-                                            <a style="width: 100%" href="{{ route('master_restore_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-success" style="width: 100%">RESTORE</button></a>
-                                        @endif
-                                    </td>
+                                    <td class="text-center text-danger font-weight-bold py-4" colspan="6">NO ITEM</td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

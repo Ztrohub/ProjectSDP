@@ -118,11 +118,10 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
 
         Route::post('/insert', [WebUserController::class, 'doinsert'])->name('master_insert_user');
 
-        Route::get('/edit/{user_id}', [WebUserController::class, 'edit']);
+        Route::get('/edit/{user_id}', [WebUserController::class, 'edit'])->name('master_edit_user');
 
         Route::post('/edit/{user_id}', [WebUserController::class, 'doedit']);
     });
-
 });
 
 
