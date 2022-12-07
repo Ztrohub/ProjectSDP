@@ -16,7 +16,7 @@
             <input type="hidden" name="item_id" value="{{ $item->item_id }}">
 
             <div class="form-group">
-                <label for="inputNameItem" style="color: #e2e0e1;">Name of Item</label>
+                <label for="inputNameItem">Name of Item</label>
                 <input type="text" class="form-control bg-content border-1 ml-2 @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ $item->item_name }}">
                 @error('name')
                     <div class="invalid-feedback ml-2">
@@ -25,7 +25,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputBrandItem" style="color: #e2e0e1;">Item Brand</label>
+                <label for="inputBrandItem">Item Brand</label>
                 <input type="text" class="form-control bg-content border-1 ml-2 @error('brand') is-invalid @enderror" id="inputBrandItem" name="brand" placeholder="Enter the item brand"  value="{{ $item->item_brand }}">
                 @error('brand')
                     <div class="invalid-feedback ml-2">
@@ -34,7 +34,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputStockItem" style="color: #e2e0e1;">Stock Item</label>
+                <label for="inputStockItem">Stock Item</label>
                 <input type="number" class="form-control bg-content border-1 ml-2 mr-3 @error('stock') is-invalid @enderror" id="inputStockItem" name="stock" placeholder="Enter stock item"  value="{{ $item->item_stock }}">
                 @error('stock')
                     <div class="invalid-feedback ml-2">
@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputItemPrice" style="color: #e2e0e1;">Item Price</label>
+                <label for="inputItemPrice">Item Price</label>
                 <input type="number" class="form-control bg-content border-1 ml-2 @error('price') is-invalid @enderror" id="inputItemPrice" name="price" placeholder="Enter the item price"  value="{{ $item->item_price }}">
                 @error('price')
                     <div class="invalid-feedback ml-2">
@@ -52,7 +52,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label class="form-label" for="customFile" style="color: #e2e0e1;">Upload Image</label>
+                <label class="form-label" for="customFile">Upload Image</label>
                 <input type="file" class="form-control bg-that-more-light-than-black border-0 ml-2 w-25 @error('image') is-invalid @enderror" id="customFile" name="image" />
                 @error('image')
                     <span class="invalid-feedback" style="margin-left: 2.5%;">

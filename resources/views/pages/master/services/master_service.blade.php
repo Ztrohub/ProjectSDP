@@ -92,7 +92,7 @@
                                 <th class="col-2 text-center customerNameColumn">Customer Name</th>
                                 <th class="col-2 text-center serviceCostColumn">Service Cost</th>
                                 <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
-                                <th class="col-1 text-center">Payment Status</th>
+                                <th class="col-1 text-center">Payment</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
@@ -103,7 +103,7 @@
                                         <td>#{{ $service->service_id}}</td>
                                         <td class="descriptionColumn">{{ $service->service_description}}</td>
                                         <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
-                                        <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
+                                        <td class="costColumn">Rp {{ number_format($service->service_cost, 0, ',','.')}}</td>
                                         <td class="text-center dateServiceColumn">{{ date('d M Y h:m:s', strtotime($service->service_date))}}</td>
                                         <td class="text-center text-bold text-danger">
                                             @if ($service->service_payment_status == 1)

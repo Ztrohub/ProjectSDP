@@ -139,7 +139,7 @@
                                 <th class="col-2 text-center">DOB</th>
                                 <th class="col-1 text-center">Position</th>
                                 <th class="col-2 text-center">Hire Date</th>
-                                <th class="col-1 text-center">Phone Number</th>
+                                <th class="col-1 text-center">Phone Num</th>
                                 <th class="col-1 text-center">Status</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
@@ -147,14 +147,14 @@
                         <tbody>
                             @if (count($users) > 0)
                                 @foreach ($users as $user)
-                                    <tr class="text-center">
+                                    <tr>
                                         <td class="fullnameColumn">{{ $user->user_name }} ({{ $user->user_jk }})</td>
                                         <td>{{ $user->user_username }}</td>
-                                        <td class="dobColumn">{{ date('d-m-Y', strtotime($user->user_dob)) }}</td>
-                                        <td>{{ UserHelper::getRole($user->user_role) }}</td>
-                                        <td class="hireDateColumn">{{ date('d M Y', strtotime($user->created_at))}}</td>
-                                        <td>{{ $user->user_phone_number }}</td>
-                                        <td>
+                                        <td class="dobColumn text-center">{{ date('d-m-Y', strtotime($user->user_dob)) }}</td>
+                                        <td class="text-center">{{ UserHelper::getRole($user->user_role) }}</td>
+                                        <td class="hireDateColumn text-center">{{ date('d M Y', strtotime($user->created_at))}}</td>
+                                        <td class="text-center">{{ $user->user_phone_number }}</td>
+                                        <td class="text-center">
                                             @if ($user->user_status == 1)
                                                 <span class="text-success">Bekerja</span>
                                             @else

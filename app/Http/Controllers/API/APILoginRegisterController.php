@@ -126,7 +126,8 @@ class APILoginRegisterController extends Controller
             'user_phone_number' => $request->phone_number,
             'user_jk' => $request->jk,
             'user_status' => 1,
-            'user_role' => $request->role
+            'user_role' => $request->role,
+            'user_salary' => 0
         ]);
 
         return response()->json([

@@ -5,6 +5,7 @@ use App\Http\Controllers\web\Admin\WebUserController;
 use App\Http\Controllers\web\Service\WebServiceController;
 use App\Http\Controllers\web\WebLoginController;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,21 +42,18 @@ Route::prefix('kasir')->group( function() {
 
     Route::get('/store', function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
 
         return view('pages.kasir.store', $param);
     })->name('kasir_store');
 
     Route::get('/cart', function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
 
         return view('pages.kasir.cart', $param);
     })->name('kasir_cart');
 
     Route::get('/checkout', function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
 
         return view('pages.kasir.checkout', $param);
     })->name('kasir_checkout');
@@ -75,22 +73,17 @@ Route::prefix('teknisi')->group( function() {
     Route::prefix('service')->group( function() {
         Route::get('/',function() {
             $param = array();
-            $param["loginUser"] = Auth::user();
 
             return view('pages.teknisi.my_service', $param);
         })->name('teknisi_service');
 
         Route::get('/edit',function() {
-            $param = array();
-            $param["loginUser"] = Auth::user();
-
-            return view('pages.teknisi.edit_my_service', $param);
+            return view('pages.teknisi.edit_my_service');
         })->name('teknisi_edit_service');
     });
 
     Route::get('/history',function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
 
         return view('pages.teknisi.history', $param);
     })->name('teknisi_service_history');
@@ -105,7 +98,6 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
 
     Route::get('/report', function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
 
         return view('pages.owner.laporan', $param); // ini list laporan
     })->name('owner_report');
@@ -134,17 +126,26 @@ Route::prefix('manajer')->group( function() {
     Route::prefix('paycheck')->group( function() {
         Route::get('/', function() {
             $param = array();
-            $param["loginUser"] = Auth::user();
+            $param["users"] = User::where('user_status', 1)->get();
 
             return view('pages.manager.paycheck', $param); // ini list gajian
         })->name('manager_paycheck');
 
-        Route::get('/edit', function() {
+        Route::get('/edit', function(Request $request) {
             $param = array();
-            $param["loginUser"] = Auth::user();
+            $param["user"] = User::where('user_id', $request->user_id)->first();
 
             return view('pages.manager.edit_paycheck', $param); // ini list gajian
         })->name('manager_edit_paycheck');
+
+        Route::post('/update', function(Request $request) {
+            $user = User::where("user_id", $request->user_id)->first();
+            $user->user_salary = $request->finalSalary;
+            $user->save();
+
+            alert()->success('Yayyy!!', 'Gaji milik ' . $user->user_name . ' berhasil diubah!');
+            return redirect()->route('manager_paycheck');
+        })->name('manager_update_paycheck');
     });
 });
 
@@ -155,7 +156,6 @@ Route::prefix('services')->group( function() {
 
     Route::get('/edit', function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
 
         return view('pages.master.services.edit_service', $param);
     })->name('master_edit_service');
@@ -166,7 +166,6 @@ Route::prefix('services')->group( function() {
 Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('items')->group( function() {
     Route::get('/', function() {
         $param = array();
-        $param["loginUser"] = Auth::user();
         $param["items"] = Item::withTrashed()->get();
 
         return view('pages.master.items.master_item', $param);
@@ -174,7 +173,6 @@ Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('items')->g
 
     Route::get('/edit', function(Request $request) {
         $param = array();
-        $param["loginUser"] = Auth::user();
         $param["item"] = Item::where('item_id', $request->item_id)->first();
 
         return view('pages.master.items.edit_item', $param);

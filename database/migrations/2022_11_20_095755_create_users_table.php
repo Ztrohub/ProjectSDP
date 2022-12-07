@@ -17,7 +17,7 @@ return new class extends Migration
             Schema::create('users', function (Blueprint $table) {
                 $table->id("user_id");
                 $table->string("user_name", 255);
-                $table->text("user_username")->unique();
+                $table->string("user_username", 255)->unique();
                 $table->text("user_password")->comment("Sudah dalam bentuk enkripsi");
                 $table->date("user_dob");
                 $table->string("user_address", 255);
@@ -25,6 +25,7 @@ return new class extends Migration
                 $table->string("user_jk", 1)->comment("L laki, P perempuan");
                 $table->tinyInteger("user_status");
                 $table->integer("user_role")->comment("0 owner, 1 manajer, 2 teknisi, 3 kasir");
+                $table->integer("user_salary");
                 $table->timestamps(); // created_at dan updated_at
                 $table->softDeletes();
             });
