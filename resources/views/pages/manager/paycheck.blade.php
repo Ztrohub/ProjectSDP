@@ -17,25 +17,27 @@
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="col-5 text-center">Full Name</th>
+                                <th class="col-4 text-center">Full Name</th>
                                 <th class="col-3 text-center">Username</th>
+                                <th class="col-1 text-center">Gender</th>
                                 <th class="col-1 text-center">Position</th>
                                 <th class="col-2 text-center">Salary</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 4; $i++)
+                            @foreach ($users as $user)
                                 <tr>
-                                    <td>Windah Basudara</td>
-                                    <td>windahbasudara</td>
-                                    <td>Teknisi</td>
-                                    <td>Rp 1.000.000</td>
+                                    <td>{{ $user->user_name }}</td>
+                                    <td>{{ $user->user_username }}</td>
+                                    <td class="text-center">{{ $user->user_jk }}</td>
+                                    <td class="text-center">{{ UserHelper::getRole($user->user_role) }}</td>
+                                    <td>Rp {{ number_format($user->user_salary, 0, ',','.') }}</td>
                                     <td>
-                                        <a href="{{ route('manager_edit_paycheck') }}"><button class="btn btn-template">EDIT</button></a>
+                                        <a href="{{ route('manager_edit_paycheck', ['user_id'=>$user->user_id]) }}"><button class="btn btn-template">EDIT</button></a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

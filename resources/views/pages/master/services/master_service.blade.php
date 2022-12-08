@@ -117,7 +117,7 @@
                                 <th class="col-2 text-center customerNameColumn">Address</th>
                                 <th class="col-2 text-center serviceCostColumn">Service Cost</th>
                                 <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
-                                <th class="col-1 text-center">Payment Status</th>
+                                <th class="col-1 text-center">Payment</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>

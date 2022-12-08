@@ -105,8 +105,8 @@
                                         <td>#{{ $item->item_id }}</td>
                                         <td class="nameColumn">{{ $item->item_name }}</td>
                                         <td>{{ $item->item_brand }}</td>
-                                        <th class="text-right">{{ $item->item_stock }}</th>
-                                        <td class="priceColumn">Rp {{ number_format($item->item_price, 2, ',','.') }}</td>
+                                        <td class="text-right">{{ $item->item_stock }}</td>
+                                        <td class="priceColumn">Rp {{ number_format($item->item_price, 0, ',','.') }}</td>
                                         <td class="d-flex justify-content-center align-items-center">
                                             @if ($item->deleted_at == null)
                                                 <a href="{{ route('master_edit_item', ['item_id'=>$item->item_id]) }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>

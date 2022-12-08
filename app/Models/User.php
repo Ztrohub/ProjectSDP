@@ -27,7 +27,8 @@ class User extends Authenticatable
         "user_phone_number",
         "user_jk",
         "user_status",
-        "user_role"
+        "user_role",
+        "user_salary"
     ];
 
     public function Services()
