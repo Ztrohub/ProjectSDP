@@ -133,14 +133,18 @@
                                         <td class="text-center dateServiceColumn">{{ date('d M Y', strtotime($service->service_date))}}</td>
                                         <td class="text-center text-bold text-danger">
                                             @if ($service->service_payment_status == 1)
-                                                <a href="#"><button type="button" class="btn btn-success">PAID</button></a>
+                                                <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-success">PAID</button></a>
                                             @else
-                                                <a href="#"><button type="button" class="btn btn-danger">UNPAID</button></a>
+                                                <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-danger">UNPAID</button></a>
                                             @endif
                                         </td>
                                         <td class="d-flex justify-content-between">
-                                            <a href="{{ route('master_edit_service') }}"><button class="btn btn-template">EDIT</button></a>
-                                            <a style="width: 100%" class="ml-2" href="{{ route('master_edit_service') }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
+                                            <a href="{{ route('master_edit_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-template">EDIT</button></a>
+                                            @if ($service->service_status == 0)
+                                            <a style="width: 100%" class="ml-2" href="{{ route('master_done_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
+                                            @else
+                                            <a style="width: 100%" class="ml-2" href="{{ route('master_done_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-success" style="width: 100%">DONE</button></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

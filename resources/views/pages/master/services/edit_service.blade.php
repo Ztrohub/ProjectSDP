@@ -11,46 +11,80 @@
 @section('content')
     <div class="container bg-that-more-light-than-black p-4" style="width: 90%;">
         <h3 class="mb-4 color-white-high-emphasis">Form to edit service</h3>
-        <form action="#" method="POST">
+        <form action="{{ route('master_update_service')}}" method="POST">
             @csrf
+            <input type="hidden" name="service_id" value="{{ $service->service_id }}">
             <div class="form-group">
-                <label for="inputDescriptionService">Description of Service</label>
-                <input type="text" class="form-control bg-content border-1 ml-2 @error('description') is-invalid @enderror" id="inputDescriptionService" name="description" placeholder="Enter the description of service">
+                <label for="inputNameSecondTechnician">Customer</label>
+                <select class="custom-select color-white-high-emphasis bg-content border-1 @error('customer') is-invalid @enderror" id="inputNameSecondTechnician" name="customer">
+                    @foreach ($customers as $customer)
+                    <option class="bg-white-high-emphasis color-white-low-emphasis" value="{{ $customer->customer_id }}"
+                        @if ($customer->customer_id == $service->Customers->customer_id) selected
+                    @endif>{{ $customer->customer_name}}</option>
+                    @endforeach
+                </select>
+                @error('customer')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="inputServiceDescription">Service Description</label>
+                <input type="text" class="form-control @error('description') is-invalid @enderror" id="inputServiceDescription" name="description" placeholder="Enter the service name"
+                value="{{ old('description', $service->service_description ) }}">
                 @error('description')
-                    <div class="invalid-feedback ml-2">
+                    <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputServiceCost">Service Cost</label>
-                <input type="number" class="form-control bg-content border-1 ml-2 @error('cost') is-invalid @enderror" id="inputServiceCost" name="cost" placeholder="Enter the service cost">
+                <label for="inputDateService">Date of Service</label>
+                <input type="date" class="form-control @error('date') is-invalid @enderror" id="inputDateService" name="date" placeholder="Enter the service date"
+                value="{{ old('date', $service->service_date ) }}">
+                @error('date')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="inputItemPrice">Service Cost</label>
+                <input type="number" class="form-control @error('cost') is-invalid @enderror" id="inputItemPrice" name="cost" placeholder="Enter the service cost"
+                value="{{ old('cost', $service->service_cost ) }}">
                 @error('cost')
-                    <div class="invalid-feedback ml-2">
+                    <div class="invalid-feedback ml-1">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputPaymentStatus">Service Payment Status</label>
-                <select class="custom-select bg-content border-1 ml-2 @error('paymentStatus') is-invalid @enderror" name="qty_edit_position" id="inputPaymentStatus" name="paymentStatus">
-                    <option class="bg-white-high-emphasis color-white-low-emphasis" value="0" selected>Unpaid</option>
-                    <option class="bg-white-high-emphasis color-white-low-emphasis" value="1">Paid</option>
+                <label for="inputNameFirstTechnician">Name of First Technician</label>
+                <select class="custom-select color-white-high-emphasis bg-content border-1 @error('firstTech') is-invalid @enderror" id="inputNameFirstTechnician" name="firstTech">
+                    @foreach ($teknisis as $teknisi)
+                        <option class="bg-white-high-emphasis color-white-low-emphasis" value="{{ $teknisi->user_id }}"
+                            @if ($teknisi->user_id == $service->Users->first()->user_id) selected
+                            @endif>{{ $teknisi->user_name }}</option>
+                    @endforeach
                 </select>
-                @error('paymentStatus')
-                    <div class="invalid-feedback ml-2">
+                @error('firstTech')
+                    <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputServiceStatus">Service Status</label>
-                <select class="custom-select bg-content border-1 ml-2 @error('serviceStatus') is-invalid @enderror" name="qty_edit_position" id="inputServiceStatus" name="serviceStatus">
-                    <option class="bg-white-high-emphasis color-white-low-emphasis" value="0" selected>Undone</option>
-                    <option class="bg-white-high-emphasis color-white-low-emphasis" value="1">Done</option>
+                <label for="inputNameSecondTechnician">Name of Second Technician</label>
+                <select class="custom-select color-white-high-emphasis bg-content border-1 @error('secondTech') is-invalid @enderror" id="inputNameSecondTechnician" name="secondTech">
+                    @foreach ($teknisis as $teknisi)
+                        <option class="bg-white-high-emphasis color-white-low-emphasis" value="{{ $teknisi->user_id }}"
+                            @if ($teknisi->user_id == $service->Users->last()->user_id) selected
+                            @endif>{{ $teknisi->user_name }}</option>
+                    @endforeach
                 </select>
-                @error('serviceStatus')
-                    <div class="invalid-feedback ml-2">
+                @error('secondTech')
+                    <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror

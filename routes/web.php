@@ -7,6 +7,7 @@ use App\Http\Controllers\web\Service\WebServiceController;
 use App\Http\Controllers\web\WebLoginController;
 use App\Models\Customer;
 use App\Models\Item;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -156,8 +157,11 @@ Route::prefix('manajer')->group( function() {
 Route::prefix('services')->group( function() {
     Route::get('/', [WebServiceController::class, 'index'])->name('master_service');
 
-    Route::get('/edit', function() {
+    Route::get('/edit', function(Request $request) {
         $param = array();
+        $param["service"] = Service::where('service_id', $request->service_id)->first();
+        $param["customers"] = Customer::all();
+        $param["teknisis"] = User::where('user_role', 2)->get();
 
         return view('pages.master.services.edit_service', $param);
     })->name('master_edit_service');
@@ -167,6 +171,10 @@ Route::prefix('services')->group( function() {
     Route::post('/update', [WebServiceController::class, "update"])->name('master_update_service');
 
     Route::get('/delete', [WebServiceController::class, "delete"])->name('master_delete_service');
+
+    Route::get('/done', [WebServiceController::class, "done"])->name('master_done_service');
+
+    Route::get('/paid', [WebServiceController::class, "paid"])->name('master_paid_service');
 });
 
 

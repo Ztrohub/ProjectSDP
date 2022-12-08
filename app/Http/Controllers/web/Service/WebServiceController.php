@@ -30,7 +30,7 @@ class WebServiceController extends Controller
             'secondTech' => "required",
             'cost' => "required|numeric|min:1000|bail",
         ], [
-            'name.required' => ':attribute tidak boleh kosong!',
+            'customer.required' => ':attribute tidak boleh kosong!',
             'description.required' => ':attribute tidak boleh kosong!',
             'date.required' => ':attribute tidak boleh kosong!',
             'firstTech.required' => ':attribute tidak boleh kosong!',
@@ -39,11 +39,11 @@ class WebServiceController extends Controller
             'cost.numeric' => ':attribute harus berupa angka!',
             'cost.min' => ':attribute minimal Rp 1.000!',
         ], [
-            'name' => 'Customer',
+            'customer' => 'Customer',
             'description' => 'Deskripsi',
-            'date' => 'Alamat',
-            'firstTech' => 'Nomor telepon',
-            'secondTech' => 'Jenis kelamin',
+            'date' => 'Tanggal',
+            'firstTech' => 'First Technician',
+            'secondTech' => 'Second Technician',
             'cost' => 'Biaya'
         ]);
 
@@ -61,5 +61,63 @@ class WebServiceController extends Controller
 
         return redirect()->route('master_service')->with('success');
 
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'customer' => "required",
+            'description' => "required",
+            'date' => "required",
+            'firstTech' => "required",
+            'secondTech' => "required",
+            'cost' => "required|numeric|min:1000|bail",
+        ], [
+            'customer.required' => ':attribute tidak boleh kosong!',
+            'description.required' => ':attribute tidak boleh kosong!',
+            'date.required' => ':attribute tidak boleh kosong!',
+            'firstTech.required' => ':attribute tidak boleh kosong!',
+            'secondTech.required' => ':attribute tidak boleh kosong!',
+            'cost.required' => ':attribute tidak boleh kosong!',
+            'cost.numeric' => ':attribute harus berupa angka!',
+            'cost.min' => ':attribute minimal Rp 1.000!',
+        ], [
+            'customer' => 'Customer',
+            'description' => 'Deskripsi',
+            'date' => 'Tanggal',
+            'firstTech' => 'First Technician',
+            'secondTech' => 'Second Technician',
+            'cost' => 'Biaya'
+        ]);
+
+        $service = Service::find($request->service_id);
+        $service->service_description = $request->description;
+        $service->service_date = $request->date;
+        $service->customer_id = $request->customer;
+        $service->service_cost = $request->cost;
+
+        $service->Users()->detach();
+        $service->Users()->attach($request->firstTech);
+        $service->Users()->attach($request->secondTech);
+
+        $service->save();
+
+        return redirect()->route('master_service')->with('success');
+    }
+
+    public function done(Request $request){
+        $service = Service::find($request->service_id);
+        $service->service_status = 1 - $service->service_status;
+        $service->save();
+
+        return redirect()->route('master_service')->with('success');
+    }
+
+    public function paid(Request $request){
+        $service = Service::find($request->service_id);
+        $service->service_payment_status = 1 - $service->service_payment_status;
+        $service->save();
+
+        return redirect()->route('master_service')->with('success');
     }
 }

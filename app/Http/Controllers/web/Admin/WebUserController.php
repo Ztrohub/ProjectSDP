@@ -31,7 +31,7 @@ class WebUserController extends Controller
 
         $request->validate([
             'name' => "required|max:50|bail",
-            'username' => "required|unique:users,user_username|bail",
+            'username' => "required|unique:users,user_username|max:18|bail",
             'password' => "required|confirmed|bail",
             'dob' => "required",
             'address' => "required",
@@ -43,6 +43,7 @@ class WebUserController extends Controller
             'name.max' => ":attribute maximal 50 karakter!",
             'username.required' => ':attribute tidak boleh kosong!',
             'username.unique' => ':attribute telah dipakai!',
+            'username.max' => ':attribute maximal 18 karakter!',
             'password.required' => ':attribute tidak boleh kosong!',
             'password.confirmed' => ':attribute tidak sama!',
             'dob.required' => ':attribute tidak boleh kosong!',

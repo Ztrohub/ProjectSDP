@@ -25,7 +25,7 @@ return new class extends Migration
                 $table->string("user_jk", 1)->comment("L laki, P perempuan");
                 $table->tinyInteger("user_status");
                 $table->integer("user_role")->comment("0 owner, 1 manajer, 2 teknisi, 3 kasir");
-                $table->integer("user_salary");
+                $table->integer("user_salary")->default(0);
                 $table->timestamps(); // created_at dan updated_at
                 $table->softDeletes();
             });

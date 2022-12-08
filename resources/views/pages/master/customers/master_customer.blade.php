@@ -85,7 +85,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4 wrapper-datatables border-0">
             <div class="card-header py-3 border-0 bg-that-more-light-than-black d-flex justify-content-between">
-                <h4 class="m-0 font-weight-bold mt-auto mb-auto mr-3">Items Table</h4>
+                <h4 class="m-0 font-weight-bold mt-auto mb-auto mr-3">Customers Table</h4>
                 <button type="button" class="btn btn-template" data-toggle="modal" data-target="#modalAddItem">Add Customer</button>
             </div>
             <div class="card-body bg-that-more-light-than-black">
