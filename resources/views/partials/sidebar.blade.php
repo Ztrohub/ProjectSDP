@@ -31,6 +31,12 @@
                 <span>Master Service</span>
             </a>
         </li>
+        <li class="nav-item {{ (\Request::route()->getName() == 'master_customer' || \Request::route()->getName() == 'master_edit_customer') ? 'active' : '' }}">
+            <a class="nav-link"href="{{ route('master_customer') }}">
+                <i class="fa fa-users nav-icon"></i>
+                <span>Master Customer</span>
+            </a>
+        </li>
         <li class="nav-item {{ (\Request::route()->getName() == 'master_item' || \Request::route()->getName() == 'master_edit_item') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('master_item') }}">
                 <i class="fa fa-cubes nav-icon"></i>

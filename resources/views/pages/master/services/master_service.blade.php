@@ -22,7 +22,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="{{route('master_insert_service') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="inputNameSecondTechnician">Customer</label>
+                            <select class="custom-select @error('customer') is-invalid @enderror" id="inputNameSecondTechnician" name="customer">
+                                @foreach ($customers as $customer)
+                                <option value="{{ $customer->customer_id }}" selected>{{ $customer->customer_name}}</option>
+                                @endforeach
+                            </select>
+                            @error('customer')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="inputServiceDescription">Service Description</label>
                             <input type="text" class="form-control @error('description') is-invalid @enderror" id="inputServiceDescription" name="description" placeholder="Enter the service name">
@@ -34,21 +48,30 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDateService">Date of Service</label>
-                            <input type="text" class="form-control @error('dateOfService') is-invalid @enderror" id="inputDateService" name="dateOfService" placeholder="Enter the service date">
-                            @error('dateOfService')
+                            <input type="date" class="form-control @error('date') is-invalid @enderror" id="inputDateService" name="date" placeholder="Enter the service date">
+                            @error('date')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="inputItemPrice">Service Cost</label>
+                            <input type="number" class="form-control @error('cost') is-invalid @enderror" id="inputItemPrice" name="cost" placeholder="Enter the service cost" value="{{ old('cost') }}">
+                            @error('cost')
+                                <div class="invalid-feedback ml-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="inputNameFirstTechnician">Name of First Technician</label>
-                            <select class="custom-select @error('nameFirstTechnician') is-invalid @enderror" id="inputNameFirstTechnician" name="nameFirstTechnician">
-                                <option value="1" selected>nando</option>
-                                <option value="2">lukas</option>
-                                <option value="3">jojo</option>
+                            <select class="custom-select @error('firstTech') is-invalid @enderror" id="inputNameFirstTechnician" name="firstTech">
+                                @foreach ($teknisis as $teknisi)
+                                    <option value="{{ $teknisi->user_id }}">{{ $teknisi->user_name }}</option>
+                                @endforeach
                             </select>
-                            @error('nameFirstTechnician')
+                            @error('firstTech')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -56,21 +79,22 @@
                         </div>
                         <div class="form-group">
                             <label for="inputNameSecondTechnician">Name of Second Technician</label>
-                            <select class="custom-select @error('nameSecondTechnician') is-invalid @enderror" id="inputNameSecondTechnician" name="nameSecondTechnician">
-                                <option value="1" selected>lukas</option>
-                                <option value="2">jojo</option>
+                            <select class="custom-select @error('secondTech') is-invalid @enderror" id="inputNameSecondTechnician" name="secondTech">
+                                @foreach ($teknisis as $teknisi)
+                                    <option value="{{ $teknisi->user_id }}">{{ $teknisi->user_name }}</option>
+                                @endforeach
                             </select>
-                            @error('nameSecondTechnician')
+                            @error('secondTech')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-template">Add new service</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-template">Add new service</button>
                 </div>
             </div>
         </div>
@@ -90,6 +114,7 @@
                                 <th class="col-1 text-center">ID</th>
                                 <th class="col-3 text-center descServiceColumn">Description of Service</th>
                                 <th class="col-2 text-center customerNameColumn">Customer Name</th>
+                                <th class="col-2 text-center customerNameColumn">Address</th>
                                 <th class="col-2 text-center serviceCostColumn">Service Cost</th>
                                 <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
                                 <th class="col-1 text-center">Payment Status</th>
@@ -103,8 +128,9 @@
                                         <td>#{{ $service->service_id}}</td>
                                         <td class="descriptionColumn">{{ $service->service_description}}</td>
                                         <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
+                                        <td class="nameCustomerColumn">{{ $service->Customers->customer_address}}</td>
                                         <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
-                                        <td class="text-center dateServiceColumn">{{ date('d M Y h:m:s', strtotime($service->service_date))}}</td>
+                                        <td class="text-center dateServiceColumn">{{ date('d M Y', strtotime($service->service_date))}}</td>
                                         <td class="text-center text-bold text-danger">
                                             @if ($service->service_payment_status == 1)
                                                 <a href="#"><button type="button" class="btn btn-success">PAID</button></a>

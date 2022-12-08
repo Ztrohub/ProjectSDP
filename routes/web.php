@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\API\APIItem;
 use App\Http\Controllers\web\Admin\WebUserController;
+use App\Http\Controllers\web\Customer\CustomerController;
 use App\Http\Controllers\web\Service\WebServiceController;
 use App\Http\Controllers\web\WebLoginController;
+use App\Models\Customer;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -159,6 +161,12 @@ Route::prefix('services')->group( function() {
 
         return view('pages.master.services.edit_service', $param);
     })->name('master_edit_service');
+
+    Route::post('/insert', [WebServiceController::class, "insert"])->name('master_insert_service');
+
+    Route::post('/update', [WebServiceController::class, "update"])->name('master_update_service');
+
+    Route::get('/delete', [WebServiceController::class, "delete"])->name('master_delete_service');
 });
 
 
@@ -188,3 +196,29 @@ Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('items')->g
 
     Route::get('/restore', [APIItem::class, "restore"])->name('master_restore_item');
 });
+
+// == CUSTOMER ==
+Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('customers')->group( function() {
+    Route::get('/', function() {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+        $param["customers"] = Customer::withTrashed()->get();
+
+        return view('pages.master.customers.master_customer', $param);
+    })->name('master_customer');
+
+    Route::get('/edit', function(Request $request) {
+        $param = array();
+        $param["loginUser"] = Auth::user();
+        $param["customer"] = Customer::where('customer_id', $request->customer_id)->first();
+
+        return view('pages.master.customers.edit_customer', $param);
+    })->name('master_edit_customer');
+
+    Route::post('/insert', [CustomerController::class, "insert"])->name('master_insert_customer');
+
+    Route::post('/update', [CustomerController::class, "update"])->name('master_update_customer');
+
+    Route::get('/delete', [CustomerController::class, "delete"])->name('master_delete_customer');
+});
+
