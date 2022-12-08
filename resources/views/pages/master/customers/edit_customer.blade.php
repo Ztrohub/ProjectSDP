@@ -16,7 +16,7 @@
             <input type="hidden" name="customer_id" value="{{ $customer->customer_id }}">
 
             <div class="form-group">
-                <label for="inputNameItem" style="color: #e2e0e1;">Customer Name</label>
+                <label for="inputNameItem">Customer Name</label>
                 <input type="text" class="form-control bg-content border-1 ml-2 @error('name') is-invalid @enderror" id="inputNameItem" name="name" placeholder="Enter the item name" value="{{ $customer->customer_name }}">
                 @error('name')
                     <div class="invalid-feedback ml-2">
@@ -25,7 +25,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputBrandItem" style="color: #e2e0e1;">Customer Email</label>
+                <label for="inputBrandItem">Customer Email</label>
                 <input type="email" class="form-control bg-content border-1 ml-2 @error('email') is-invalid @enderror" id="inputBrandItem" name="email" placeholder="Enter the item email"  value="{{ $customer->customer_email }}">
                 @error('email')
                     <div class="invalid-feedback ml-2">
@@ -34,7 +34,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputBrandItem" style="color: #e2e0e1;">Customer Address</label>
+                <label for="inputBrandItem">Customer Address</label>
                 <input type="text" class="form-control bg-content border-1 ml-2 @error('address') is-invalid @enderror" id="inputBrandItem" name="address" placeholder="Enter the item address"  value="{{ $customer->customer_address }}">
                 @error('address')
                     <div class="invalid-feedback ml-2">
@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="inputBrandItem" style="color: #e2e0e1;">Customer Phone Number</label>
+                <label for="inputBrandItem">Customer Phone Number</label>
                 <input type="text" class="form-control bg-content border-1 ml-2 @error('phone_number') is-invalid @enderror" id="inputBrandItem" name="phone_number" placeholder="Enter the item phone_number"  value="{{ $customer->customer_phone_number }}">
                 @error('phone_number')
                     <div class="invalid-feedback ml-2">

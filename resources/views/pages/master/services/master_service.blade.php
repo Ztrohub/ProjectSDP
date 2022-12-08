@@ -25,10 +25,10 @@
                     <form action="{{route('master_insert_service') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="inputNameSecondTechnician">Customer</label>
-                            <select class="custom-select @error('customer') is-invalid @enderror" id="inputNameSecondTechnician" name="customer">
+                            <label for="inputNameCustomer">Customer</label>
+                            <select class="custom-select @error('customer') is-invalid @enderror" id="inputNameCustomer" name="customer">
                                 @foreach ($customers as $customer)
-                                <option value="{{ $customer->customer_id }}" selected>{{ $customer->customer_name}}</option>
+                                    <option value="{{ $customer->customer_id }}" {{ (old("customer") == $customer->customer_id ? "selected":"") }}>{{ $customer->customer_name}}</option>
                                 @endforeach
                             </select>
                             @error('customer')
@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputServiceDescription">Service Description</label>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="inputServiceDescription" name="description" placeholder="Enter the service name">
+                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="inputServiceDescription" name="description" placeholder="Enter the service name" value="{{ old('description') }}">
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDateService">Date of Service</label>
-                            <input type="date" class="form-control @error('date') is-invalid @enderror" id="inputDateService" name="date" placeholder="Enter the service date">
+                            <input type="date" class="form-control @error('date') is-invalid @enderror" id="inputDateService" name="date" placeholder="Enter the service date" value="{{ old('date') }}">
                             @error('date')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -68,7 +68,7 @@
                             <label for="inputNameFirstTechnician">Name of First Technician</label>
                             <select class="custom-select @error('firstTech') is-invalid @enderror" id="inputNameFirstTechnician" name="firstTech">
                                 @foreach ($teknisis as $teknisi)
-                                    <option value="{{ $teknisi->user_id }}">{{ $teknisi->user_name }}</option>
+                                    <option value="{{ $teknisi->user_id }}" {{ (old("firstTech") == $teknisi->user_id ? "selected":"") }}>{{ $teknisi->user_name }}</option>
                                 @endforeach
                             </select>
                             @error('firstTech')
@@ -80,8 +80,9 @@
                         <div class="form-group">
                             <label for="inputNameSecondTechnician">Name of Second Technician</label>
                             <select class="custom-select @error('secondTech') is-invalid @enderror" id="inputNameSecondTechnician" name="secondTech">
+                                <option hidden></option>
                                 @foreach ($teknisis as $teknisi)
-                                    <option value="{{ $teknisi->user_id }}">{{ $teknisi->user_name }}</option>
+                                    <option value="{{ $teknisi->user_id }}" {{ (old("secondTech") == $teknisi->user_id ? "selected":"") }}>{{ $teknisi->user_name }}</option>
                                 @endforeach
                             </select>
                             @error('secondTech')
@@ -112,12 +113,11 @@
                         <thead>
                             <tr>
                                 <th class="col-1 text-center">ID</th>
-                                <th class="col-3 text-center descServiceColumn">Description of Service</th>
-                                <th class="col-2 text-center customerNameColumn">Customer Name</th>
-                                <th class="col-2 text-center customerNameColumn">Address</th>
-                                <th class="col-2 text-center serviceCostColumn">Service Cost</th>
-                                <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
-                                <th class="col-1 text-center">Payment</th>
+                                <th class="col-2 text-center">Description of Service</th>
+                                <th class="col-2 text-center">Cust. Name</th>
+                                <th class="col-2 text-center">Address</th>
+                                <th class="col-2 text-center">Service Cost</th>
+                                <th class="col-2 text-center dateServiceColumn">Date of Service</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
@@ -125,26 +125,27 @@
                             @if (count($services) > 0)
                                 @foreach ($services as $service)
                                     <tr>
-                                        <td>#{{ $service->service_id}}</td>
+                                        <td class="idColumn">#{{ $service->service_id}}</td>
                                         <td class="descriptionColumn">{{ $service->service_description}}</td>
                                         <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
-                                        <td class="nameCustomerColumn">{{ $service->Customers->customer_address}}</td>
+                                        <td class="addressCustomerColumn">{{ $service->Customers->customer_address}}</td>
                                         <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
                                         <td class="text-center dateServiceColumn">{{ date('d M Y', strtotime($service->service_date))}}</td>
-                                        <td class="text-center text-bold text-danger">
-                                            @if ($service->service_payment_status == 1)
-                                                <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-success">PAID</button></a>
-                                            @else
-                                                <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-danger">UNPAID</button></a>
-                                            @endif
-                                        </td>
-                                        <td class="d-flex justify-content-between">
-                                            <a href="{{ route('master_edit_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-template">EDIT</button></a>
-                                            @if ($service->service_status == 0)
-                                            <a style="width: 100%" class="ml-2" href="{{ route('master_done_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
-                                            @else
-                                            <a style="width: 100%" class="ml-2" href="{{ route('master_done_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-success" style="width: 100%">DONE</button></a>
-                                            @endif
+                                        <td>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                @if ($service->service_payment_status == 1)
+                                                    <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-success">PAID</button></a>
+                                                @else
+                                                    <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-danger">UNPAID</button></a>
+                                                @endif
+
+                                                @if ($service->service_status == 0)
+                                                    <a style="width: 100%" class="ml-2" href="{{ route('master_done_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-danger" style="width: 100%">UNDONE</button></a>
+                                                @else
+                                                    <a style="width: 100%" class="ml-2" href="{{ route('master_done_service', ['service_id'=>$service->service_id]) }}"><button class="btn btn-success" style="width: 100%">DONE</button></a>
+                                                @endif
+                                            </div>
+                                            <a href="{{ route('master_edit_service', ['service_id'=>$service->service_id]) }}" class="w-100"><button class="btn btn-template w-100">EDIT</button></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -167,4 +168,26 @@
                 $('#modalAddService').modal('show');
         </script>
     @endif
+
+    <script>
+        function checkDropdown($selectedName, $anotherName){
+            let $boxval = $($selectedName).val();
+
+            $($anotherName + " > option").each(function(ind) {
+                let ele = $($anotherName + " > option").eq(ind);
+                if (ele.val() === $boxval) ele.hide();
+                else ele.show();
+            });
+        }
+
+        checkDropdown("#inputNameFirstTechnician", "#inputNameSecondTechnician")
+
+        $("#inputNameFirstTechnician").on("change", function() {
+            checkDropdown("#inputNameFirstTechnician", "#inputNameSecondTechnician")
+        });
+
+        $("#inputNameSecondTechnician").on("change", function() {
+            checkDropdown("#inputNameSecondTechnician", "#inputNameFirstTechnician")
+        });
+    </script>
 @endpush

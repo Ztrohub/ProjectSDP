@@ -21,3 +21,8 @@ table {
 .wrapper-datatables td {
     height: 100%;
 }
+
+input:-webkit-autofill, input:-webkit-autofill:focus, input:-webkit-autofill:hover {
+    -webkit-box-shadow:0 0 0 50px transparent inset;
+    -webkit-text-fill-color: #747273;
+}

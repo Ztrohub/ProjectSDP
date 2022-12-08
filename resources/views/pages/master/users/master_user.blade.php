@@ -79,8 +79,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="inputMobileNumber">Mobile Number</label>
-                            <input type="number" id="inputMobileNumber" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="Enter mobile number" value="{{ old('phone_number')}}">
+                            <label for="inputMobileNumber">Phone Number</label>
+                            <input type="number" id="inputMobileNumber" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="Enter phone number" value="{{ old('phone_number')}}">
                             @error('phone_number')
                                 <div class="invalid-feedback ml-1">
                                     {{ $message }}

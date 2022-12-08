@@ -15,8 +15,8 @@
             @csrf
             <input type="hidden" name="service_id" value="{{ $service->service_id }}">
             <div class="form-group">
-                <label for="inputNameSecondTechnician">Customer</label>
-                <select class="custom-select color-white-high-emphasis bg-content border-1 @error('customer') is-invalid @enderror" id="inputNameSecondTechnician" name="customer">
+                <label for="inputNameCustomer">Customer</label>
+                <select class="custom-select color-white-high-emphasis bg-content border-1 @error('customer') is-invalid @enderror" id="inputNameCustomer" name="customer">
                     @foreach ($customers as $customer)
                     <option class="bg-white-high-emphasis color-white-low-emphasis" value="{{ $customer->customer_id }}"
                         @if ($customer->customer_id == $service->Customers->customer_id) selected
@@ -95,3 +95,28 @@
         </form>
     </div>
 @endsection
+
+@push('page_custom_js')
+    <script>
+        function checkDropdown($selectedName, $anotherName){
+            let $boxval = $($selectedName).val();
+
+            $($anotherName + " > option").each(function(ind) {
+                let ele = $($anotherName + " > option").eq(ind);
+                if (ele.val() === $boxval) ele.hide();
+                else ele.show();
+            });
+        }
+
+        checkDropdown("#inputNameFirstTechnician", "#inputNameSecondTechnician")
+        checkDropdown("#inputNameSecondTechnician", "#inputNameFirstTechnician")
+
+        $("#inputNameFirstTechnician").on("change", function() {
+            checkDropdown("#inputNameFirstTechnician", "#inputNameSecondTechnician")
+        });
+
+        $("#inputNameSecondTechnician").on("change", function() {
+            checkDropdown("#inputNameSecondTechnician", "#inputNameFirstTechnician")
+        });
+    </script>
+@endpush

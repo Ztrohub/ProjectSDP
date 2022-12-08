@@ -3,7 +3,7 @@
 @push('page_custom_css')
     <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
-    <link rel="stylesheet" href="{{ asset('src/master/items/table_item.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('src/master/items/table_item.css') }}"> --}}
 @endpush
 
 @section('name_page')
@@ -96,8 +96,8 @@
                                 <th class="col-1 text-center">ID</th>
                                 <th class="col-4 text-center">Name</th>
                                 <th class="col-2 text-center">Email</th>
-                                <th class="col-4 text-center">Address</th>
-                                <th class="col-2 text-center">Phone Number</th>
+                                <th class="col-3 text-center">Address</th>
+                                <th class="col-1 text-center">Phone Number</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>
@@ -122,7 +122,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td class="text-center text-danger font-weight-bold py-4" colspan="6">NO ITEM</td>
+                                    <td class="text-center text-danger font-weight-bold py-4" colspan="6">NO CUSTOMER</td>
                                 </tr>
                             @endif
                         </tbody>

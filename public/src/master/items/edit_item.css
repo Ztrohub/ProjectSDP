@@ -7,3 +7,9 @@ input[type]:not([type="search"]):not([type="url"]):not([type="hidden"]):not([typ
     background-color: #111011; /* or any other color you want when user starts typing in input */
     color: #e2e0e1;
 }
+input:-webkit-autofill {
+    -webkit-text-fill-color: #e2e0e1;
+}
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #e2e0e1;
+}
