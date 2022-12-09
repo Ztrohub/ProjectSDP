@@ -40,4 +40,10 @@ class User extends Authenticatable
 
         return $this->belongsToMany(Service::class, 'services_technicians', 'technician_id', 'service_id');
     }
+
+    public function Carts(){
+        return $this->belongsToMany(Item::class, 'carts', 'user_id', 'item_id')
+            ->withPivot('item_qty')
+            ->withTimestamps();
+    }
 }

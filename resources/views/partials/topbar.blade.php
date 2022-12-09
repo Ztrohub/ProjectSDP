@@ -105,7 +105,7 @@
                 <a class="nav-link" href="{{ route('kasir_cart') }}">
                     <i class="fa fa-shopping-cart color-white-high-emphasis nav-icon" aria-hidden="true"></i>
                     <!-- Counter - Messages -->
-                    <span class="badge badge-danger badge-counter">0</span>
+                    <span class="badge badge-danger badge-counter">{{ Auth::user()->Carts()->count() }}</span>
                 </a>
             </li>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\APIItem;
+use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\web\Admin\WebUserController;
 use App\Http\Controllers\web\Customer\CustomerController;
 use App\Http\Controllers\web\Service\WebServiceController;
@@ -11,6 +12,7 @@ use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -43,23 +45,74 @@ Route::prefix('kasir')->group( function() {
         return redirect()->route("kasir_store");
     });
 
-    Route::get('/store', function() {
-        $param = array();
+    Route::get('/store', function(Request $request) {
+        $search = "";
+        if($request->has('search')) {
+            $items = Item::where('item_name', 'like', '%'.$request->search.'%')->get();
+            $search = $request->search;
+        } else {
+            $items = Item::all();
+        }
 
-        return view('pages.kasir.store', $param);
+        return view('pages.kasir.store', compact('items', 'search'));
     })->name('kasir_store');
 
     Route::get('/cart', function() {
-        $param = array();
+        $items = User::find(Auth::user()->user_id)->Carts()->get();
 
-        return view('pages.kasir.cart', $param);
+        $total = 0;
+        foreach($items as $item) {
+            $total += $item->pivot->item_qty * $item->item_price;
+        }
+
+        return view('pages.kasir.cart', compact('items', 'total'));
     })->name('kasir_cart');
 
     Route::get('/checkout', function() {
-        $param = array();
+        $items = User::find(Auth::user()->user_id)->Carts()->get();
 
-        return view('pages.kasir.checkout', $param);
+        $total = 0;
+        foreach($items as $item) {
+            $total += $item->pivot->item_qty * $item->item_price;
+        }
+
+        return view('pages.kasir.checkout', compact('items', 'total'));
     })->name('kasir_checkout');
+
+    Route::post('/cart', function(Request $request) {
+
+        $user = User::find(Auth::user()->user_id);
+
+        if($user->Carts()->wherePivot('item_id', $request->item_id)->exists()){
+            $user->Carts()->updateExistingPivot($request->item_id, ['item_qty' => DB::raw('item_qty + '. $request->item_qty)]);
+        } else {
+            $user->Carts()->attach($request->item_id, ['item_qty' => $request->item_qty]);
+        };
+
+        return redirect()->route("kasir_store");
+    })->name('kasir_insert_cart');
+
+    Route::post('/cart/change', function(Request $request){
+        $user = User::find(Auth::user()->user_id);
+
+        if($request->item_qty == 0) {
+            $user->Carts()->detach($request->item_id);
+        } else {
+            $user->Carts()->updateExistingPivot($request->item_id, ['item_qty' => $request->item_qty]);
+        }
+
+        return redirect()->route("kasir_cart");
+    })->name('kasir_change_cart');
+
+    Route::get('/cart/remove', function(Request $request){
+        $user = User::find(Auth::user()->user_id);
+
+        $user->Carts()->detach($request->item_id);
+
+        return redirect()->route("kasir_cart");
+    })->name('kasir_remove_cart');
+
+    Route::get('/pay', [MidtransController::class, 'pay'])->name('kasir_pay');
 });
 
 

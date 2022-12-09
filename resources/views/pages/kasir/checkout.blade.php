@@ -20,43 +20,20 @@
                     <div class="products">
                         <h3 class="title">Checkout</h3>
                         <div class="wrap-item">
-                            <div class="item">
-                                <span class="price">Rp 2.000.000,-</span>
-                                <p class="item-name">Product 1</p>
-                                <p class="item-description">Lorem ipsum dolor sit amet</p>
-                            </div>
-                            <div class="item">
-                                <span class="price">Rp 1.020.000,-</span>
-                                <p class="item-name">Product 2</p>
-                                <p class="item-description">Lorem ipsum dolor sit amet</p>
-                            </div>
-                            <div class="item">
-                                <span class="price">Rp 1.020.000,-</span>
-                                <p class="item-name">Product 2</p>
-                                <p class="item-description">Lorem ipsum dolor sit amet</p>
-                            </div>
-                            <div class="item">
-                                <span class="price">Rp 1.020.000,-</span>
-                                <p class="item-name">Product 2</p>
-                                <p class="item-description">Lorem ipsum dolor sit amet</p>
-                            </div>
-                            <div class="item">
-                                <span class="price">Rp 1.020.000,-</span>
-                                <p class="item-name">Product 2</p>
-                                <p class="item-description">Lorem ipsum dolor sit amet</p>
-                            </div>
-                            <div class="item">
-                                <span class="price">Rp 1.020.000,-</span>
-                                <p class="item-name">Product 2</p>
-                                <p class="item-description">Lorem ipsum dolor sit amet</p>
-                            </div>
+                            @foreach ($items as $item)
+                                <div class="item">
+                                    <span class="price">Rp. {{number_format($item->item_price * $item->pivot->item_qty, 2, ',','.')}}</span>
+                                    <p class="item-name">{{ $item->item_name }}</p>
+                                    <p class="item-description">{{$item->pivot->item_qty}} x Rp. {{number_format($item->item_price, 2, ',','.')}}</p>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="total">Total<span class="price">Rp 100.000.000,-</span></div>
+                        <div class="total">Total<span class="price">Rp {{ number_format($total, 2, ',','.')}},-</span></div>
                     </div>
                     <div class="card-details pt-0">
                         <div class="row pt-0 mt-0">
                             <div class="col-sm-12">
-                                <button type="button" class="btn btn-block btnProceed">Proceed</button>
+                                <a href="{{ route('kasir_pay')}}" type="button" class="btn btn-block btnProceed">Proceed</a>
                             </div>
                             <div class="form-group col-sm-12">
                                 <a href="{{ route('kasir_cart') }}" style="text-decoration: none;">
