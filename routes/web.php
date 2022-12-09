@@ -182,7 +182,10 @@ Route::prefix('manajer')->group( function() {
     Route::prefix('paycheck')->group( function() {
         Route::get('/', function() {
             $param = array();
-            $param["users"] = User::where('user_status', 1)->get();
+            $param["users"] = User::where([
+                ['user_status', 1],
+                ['user_role', '<>', '0']
+            ])->get();
 
             return view('pages.manager.paycheck', $param); // ini list gajian
         })->name('manager_paycheck');
@@ -255,6 +258,7 @@ Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('items')->g
 
     Route::get('/restore', [APIItem::class, "restore"])->name('master_restore_item');
 });
+
 
 // == CUSTOMER ==
 Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('customers')->group( function() {

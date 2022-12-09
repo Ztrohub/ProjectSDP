@@ -74,6 +74,7 @@ body {
 .payment-form .products .item-name{
 	font-weight:600;
 	font-size: 0.9em;
+    max-width: 60%;
 }
 
 .payment-form .products .item-description{
