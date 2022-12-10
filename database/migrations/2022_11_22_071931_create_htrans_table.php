@@ -16,10 +16,9 @@ return new class extends Migration
         if (!Schema::hasTable("htrans")){
             Schema::create('htrans', function (Blueprint $table) {
                 $table->id("htrans_id");
-                $table->unsignedBigInteger("customer_id");
-                $table->foreign("customer_id")->references("customer_id")->on("customers")->onDelete("cascade");
                 $table->date("htrans_date");
                 $table->decimal("htrans_total", 10, 2);
+                $table->integer("htrans_status")->comment("1 Done, 0 Undone");
                 $table->unsignedBigInteger("cashier_id");
                 $table->foreign("cashier_id")->references("user_id")->on("users")->onDelete("cascade");
                 $table->timestamps(); // created_at dan updated_at

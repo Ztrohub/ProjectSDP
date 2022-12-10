@@ -16,7 +16,20 @@ class Htrans extends Model
     protected $fillable = [
         "htrans_date",
         "htrans_total",
-        "htrans_status",
-        "customer_id"
+        "cashier_id",
+        'htrans_status',
+        'midtrans_url'
     ];
+
+    public function Cashier()
+    {
+        return $this->belongsTo(User::class, "cashier_id", "user_id");
+    }
+
+    public function Dtrans()
+    {
+        return $this->belongsToMany(Item::class, 'dtrans', 'htrans_id', 'item_id')
+            ->withPivot('dtrans_quantity', 'dtrans_subtotal');
+    }
+
 }

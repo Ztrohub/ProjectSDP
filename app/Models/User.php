@@ -38,12 +38,16 @@ class User extends Authenticatable
         // Param 3. kau punya apa untuk masuk ke pivot?
         // Param 4. lha table yg kamu rujuk dia dikenali sebagai apa di pivot?
 
-        return $this->belongsToMany(Service::class, 'services_technicians', 'technician_id', 'service_id');
+        return $this->belongsToMany(Service::class, 'services_users', 'user_id', 'service_id');
     }
 
     public function Carts(){
         return $this->belongsToMany(Item::class, 'carts', 'user_id', 'item_id')
             ->withPivot('item_qty')
             ->withTimestamps();
+    }
+
+    public function Htrans(){
+        return $this->hasMany(Htrans::class, "cashier_id", "user_id");
     }
 }

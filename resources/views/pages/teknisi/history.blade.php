@@ -7,22 +7,14 @@
 @endpush
 
 @section('name_page')
-    History
+    History Service
 @endsection
 
 @section('content')
     <div class="container-fluid">
-
-        <!-- Page Heading -->
-        {{-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p> --}}
-
-        <!-- DataTales Example -->
         <div class="card shadow mb-4 wrapper-datatables border-0">
             <div class="card-header py-3 border-0 bg-that-more-light-than-black d-flex justify-content-between">
-                <h4 class="m-0 font-weight-bold mt-auto mb-auto mr-3">Histories Table</h4>
+                <h4 class="m-0 font-weight-bold mt-auto mb-auto mr-3">Services Table</h4>
             </div>
             <div class="card-body bg-that-more-light-than-black">
                 <div class="table-responsive">
@@ -32,24 +24,34 @@
                                 <th class="col-1 text-center">ID</th>
                                 <th class="col-3 text-center descServiceColumn">Description of Service</th>
                                 <th class="col-2 text-center customerNameColumn">Customer Name</th>
+                                <th class="col-2 text-center dateOfServiceColumn">Address</th>
                                 <th class="col-2 text-center serviceCostColumn">Service Cost</th>
-                                <th class="col-2 text-center dateOfServiceColumn">Date of Service</th>
+                                <th class="col-1 text-center">Payment Status</th>
                                 <th class="col-1 text-center">Service Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 4; $i++)
+                            @foreach ($services as $service)
                                 <tr>
-                                    <td>#123</td>
-                                    <td>Ganti freon bocor dan kipas baru</td>
-                                    <td>John Cena</td>
-                                    <td>Rp 1.000.000</td>
-                                    <td class="text-center">14 Nov 2022 14:00:00</td>
-                                    <td class="text-center text-bold text-success">
-                                        DONE
+                                    <td>#{{ $service->service_id}}</td>
+                                    <td>{{ $service->service_description}}</td>
+                                    <td>{{ $service->Customers->customer_name}}</td>
+                                    <td class="text-center">{{ $service->Customers->customer_address}}</td>
+                                    <td>Rp {{ number_format($service->service_cost, 0, ',','.') }}</td>
+                                    @if ($service->service_payment_status == 0)
+                                    <td class="text-center text-bold text-danger">UNPAID</td>
+                                    @else
+                                    <td class="text-center text-bold text-success">PAID</td>
+                                    @endif
+                                    <td class="text-left">
+                                        @if ($service->service_status == 1)
+                                        <a href="{{ route('teknisi_done_service', ['service_id' => $service->service_id]) }}"><button class="btn btn-success">DONE</button></a>
+                                        @else
+                                        <a href="{{ route('teknisi_done_service', ['service_id' => $service->service_id]) }}"><button class="btn btn-danger">UNDONE</button></a>
+                                        @endif
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -57,12 +59,3 @@
         </div>
     </div>
 @endsection
-
-@push('page_custom_js')
-    {{-- <!-- Page level plugins -->
-    <script src="{{ asset('src/sb-admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('src/sb-admin/js/demo/datatables-demo.js') }}"></script> --}}
-@endpush

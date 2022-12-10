@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Htrans;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,8 @@ class MidtransController extends Controller
 
         $statement = DB::select("SHOW TABLE STATUS LIKE 'htrans'");
         $nextId = $statement[0]->Auto_increment;
-        $nextId = str_pad($nextId, 6, '0', STR_PAD_LEFT);
+        $nextId = str_pad($nextId, 4, '0', STR_PAD_LEFT);
+        $nextId = str_pad(date('dmy').$nextId, 10, '0', STR_PAD_LEFT);
 
         MidtransConfig::$serverKey = env('MIDTRANS_SERVER_KEY');
         MidtransConfig::$clientKey = env('MIDTRANS_CLIENT_KEY');
@@ -56,7 +58,23 @@ class MidtransController extends Controller
 
         $paymentURL = Snap::createTransaction($transaction)->redirect_url;
 
+        $user->Carts()->detach();
 
+        $htrans = $user->Htrans()->create([
+            'htrans_date' => date('Y-m-d'),
+            'htrans_total' => $total * 100,
+            'htrans_status' => '0',
+            'midtrans_url' => $paymentURL
+        ]);
+
+        $htrans = Htrans::find($htrans->htrans_id);
+
+        foreach ($items as $item){
+            $htrans->Dtrans()->attach($item['id'], [
+                'dtrans_quantity' => $item['quantity'],
+                'dtrans_subtotal' => $item['price'] * 100 * $item['quantity']
+            ]);
+        }
 
         return redirect($paymentURL);
     }

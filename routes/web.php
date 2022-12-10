@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Item;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -128,9 +129,13 @@ Route::prefix('teknisi')->group( function() {
 
     Route::prefix('service')->group( function() {
         Route::get('/',function() {
-            $param = array();
+            $user = User::find(Auth::user()->user_id);
 
-            return view('pages.teknisi.my_service', $param);
+            $services = $user->Services()->whereDate('service_date', Carbon::today())->get();
+            // $services = [];
+
+
+            return view('pages.teknisi.my_service', compact('services'));
         })->name('teknisi_service');
 
         Route::get('/edit',function() {
@@ -139,10 +144,22 @@ Route::prefix('teknisi')->group( function() {
     });
 
     Route::get('/history',function() {
-        $param = array();
+        $user = User::find(Auth::user()->user_id);
 
-        return view('pages.teknisi.history', $param);
+        $services = $user->Services()->get();
+
+        return view('pages.teknisi.history', compact('services'));
     })->name('teknisi_service_history');
+
+    Route::get('/done', function(Request $request){
+        $service = Service::find($request->service_id);
+
+        $service->service_status = 1 - $service->service_status;
+        $service->save();
+
+        return redirect()->route("teknisi_service");
+
+    })->name('teknisi_done_service');;
 });
 
 

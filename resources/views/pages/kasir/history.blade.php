@@ -7,7 +7,7 @@
 @endpush
 
 @section('name_page')
-    My Service
+    History Store
 @endsection
 
 @section('content')
@@ -22,12 +22,11 @@
                         <thead>
                             <tr>
                                 <th class="col-1 text-center">ID</th>
-                                <th class="col-3 text-center descServiceColumn">Description of Service</th>
-                                <th class="col-2 text-center customerNameColumn">Customer Name</th>
-                                <th class="col-2 text-center dateOfServiceColumn">Address</th>
-                                <th class="col-2 text-center serviceCostColumn">Service Cost</th>
+                                <th class="col-3 text-center descServiceColumn">Date</th>
+                                <th class="col-2 text-center customerNameColumn">Total Item</th>
+                                <th class="col-2 text-center dateOfServiceColumn">Total Price</th>
                                 <th class="col-1 text-center">Payment Status</th>
-                                <th class="col-1 text-center">Service Status</th>
+                                <th class="col-1 text-center">Payment Link</th>
                             </tr>
                         </thead>
                         <tbody>
