@@ -19,34 +19,32 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('kasir_insert_cart')}}" method="POST">
-                        @csrf
+                <form action="{{ route('kasir_insert_cart')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <input type="hidden" id="item_id" name="item_id">
                         <span id="item_name"></span>
                         <div class="form-group">
                             <div class="d-flex justify-content-between">
                                 <label for="exampleInputEmail1">Amount</label>
-                                <i style="font-size: .9rem; paddding-top: 5px;">Rp <span id="showPriceEach">0</span>,- / each</i>
+                                <i style="font-size: .9rem; paddding-top: 5px;">Rp <span id="showPriceEach">0</span> / each</i>
                             </div>
                             <input type="number" id="qty_input" name="item_qty" class="form-control" placeholder="Number of items you wish to purchase.." min="1">
                         </div>
-                        <div class="d-flex">
-                            <div class="col-7"></div>
-                            <div class="col text-right"><b>Subtotal :</b> Rp <span id="showSubotal">0</span>,-</div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-template">Add to cart</button>
-                        </div>
-                    </form>
-                </div>
+                        <div class="col text-right"><b>Subtotal :</b> Rp <span id="showSubotal">0</span></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-template">Add to cart</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <div class="super-container">
-        <div class="main-search-input-wrap">
+    <div class="super-container ml-3">
+        <div class="main-search-input-wrap bg-warning mx-3 mb-4">
             <div class="main-search-input fl-wrap">
                 <form action="{{ route('kasir_store')}}" method="GET">
                     <div class="main-search-input-item">
@@ -58,16 +56,16 @@
             </div>
         </div>
 
-        <div class="container-store mx-4">
+        <div class="container-store mx-3">
             @foreach ($items as $item)
                 <div class="wrapper-card mb-4" data-name={{$item->item_name}} data-id={{$item->item_id}} data-price={{$item->item_price}} data-toggle="modal" data-target="#modalAddToCart">
                     <div class="card">
                         <img src="{{ asset('src/kasir/store/img/'.$item->item_image_name) }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="brand-text color-white-medium-emphasis">{{ $item->item_brand}}</p>
+                            <p class="brand-text color-white-medium-emphasis font-weight-bold">{{ $item->item_brand}}</p>
                             <h5 class="card-title">{{ $item->item_name}}</h5>
                             <div class="wrapper-bottom mt-2">
-                                <p class="card-price">Rp. {{ number_format($item->item_price, 2, ',','.')}}</p>
+                                <p class="card-price color-white-high-emphasis">Rp {{ number_format($item->item_price, 0, ',','.')}}</p>
                             </div>
                         </div>
                     </div>
@@ -87,7 +85,7 @@
                 console.log(id);
                 $("#showPriceEach").html( itemPrice );
                 $("#showSubotal").html( itemPrice );
-                $("#item_name").html( name );
+                // $("#item_name").html( name );
                 $("#qty_input").val( 1 );
                 $("#item_id").val( id );
             });

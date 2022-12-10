@@ -134,7 +134,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="col-3 text-center">Full Name</th>
+                                <th class="col-3 text-center">Full Name (Sex)</th>
                                 <th class="col-2 text-center">Username</th>
                                 <th class="col-2 text-center">DOB</th>
                                 <th class="col-1 text-center">Position</th>

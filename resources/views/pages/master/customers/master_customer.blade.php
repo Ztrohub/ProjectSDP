@@ -3,7 +3,7 @@
 @push('page_custom_css')
     <link href="{{ asset('src/sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('src/datatables/datatables.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('src/master/items/table_item.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('src/master/customers/table_customer.css') }}">
 @endpush
 
 @section('name_page')
@@ -94,7 +94,7 @@
                         <thead>
                             <tr>
                                 <th class="col-1 text-center">ID</th>
-                                <th class="col-4 text-center">Name</th>
+                                <th class="col-4 text-center">Full Name (Sex)</th>
                                 <th class="col-2 text-center">Email</th>
                                 <th class="col-3 text-center">Address</th>
                                 <th class="col-1 text-center">Phone Number</th>
@@ -108,7 +108,7 @@
                                         <td>#{{ $customer->customer_id }}</td>
                                         <td class="nameColumn">{{ $customer->customer_name }} ({{ $customer->customer_jk }})</td>
                                         <td>{{ $customer->customer_email }}</td>
-                                        <td>{{ $customer->customer_address }}</td>
+                                        <td class="addressColumn">{{ $customer->customer_address }}</td>
                                         <td>{{ $customer->customer_phone_number }}</td>
                                         <td class="d-flex justify-content-center align-items-center">
                                             @if ($customer->deleted_at == null)

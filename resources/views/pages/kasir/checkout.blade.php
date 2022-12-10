@@ -22,18 +22,20 @@
                         <div class="wrap-item">
                             @foreach ($items as $item)
                                 <div class="item">
-                                    <span class="price">Rp. {{number_format($item->item_price * $item->pivot->item_qty, 2, ',','.')}}</span>
+                                    <span class="price">Rp {{number_format($item->item_price * $item->pivot->item_qty, 0, ',','.')}}</span>
                                     <p class="item-name">{{ $item->item_name }}</p>
-                                    <p class="item-description">{{$item->pivot->item_qty}} x Rp. {{number_format($item->item_price, 2, ',','.')}}</p>
+                                    <p class="item-description">{{$item->pivot->item_qty}} x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
                                 </div>
                             @endforeach
                         </div>
-                        <div class="total">Total<span class="price">Rp {{ number_format($total, 2, ',','.')}},-</span></div>
+                        <div class="total">Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span></div>
                     </div>
                     <div class="card-details pt-0">
                         <div class="row pt-0 mt-0">
                             <div class="col-sm-12">
-                                <a href="{{ route('kasir_pay')}}" type="button" class="btn btn-block btnProceed">Proceed</a>
+                                <a href="{{ route('kasir_pay')}}">
+                                    <button type="button" class="btn btn-block btnProceed">Proceed</button>
+                                </a>
                             </div>
                             <div class="form-group col-sm-12">
                                 <a href="{{ route('kasir_cart') }}" style="text-decoration: none;">
