@@ -27,6 +27,7 @@
                         <div class="form-group">
                             <label for="inputNameCustomer">Customer</label>
                             <select class="custom-select @error('customer') is-invalid @enderror" id="inputNameCustomer" name="customer">
+                                <option hidden></option>
                                 @foreach ($customers as $customer)
                                     <option value="{{ $customer->customer_id }}" {{ (old("customer") == $customer->customer_id ? "selected":"") }}>{{ $customer->customer_name}}</option>
                                 @endforeach
@@ -67,6 +68,7 @@
                         <div class="form-group">
                             <label for="inputNameFirstTechnician">Name of First Technician</label>
                             <select class="custom-select @error('firstTech') is-invalid @enderror" id="inputNameFirstTechnician" name="firstTech">
+                                <option hidden></option>
                                 @foreach ($teknisis as $teknisi)
                                     <option value="{{ $teknisi->user_id }}" {{ (old("firstTech") == $teknisi->user_id ? "selected":"") }}>{{ $teknisi->user_name }}</option>
                                 @endforeach
@@ -129,12 +131,12 @@
                                         <td class="descriptionColumn">{{ $service->service_description}}</td>
                                         <td class="nameCustomerColumn">{{ $service->Customers->customer_name}}</td>
                                         <td class="addressCustomerColumn">{{ $service->Customers->customer_address}}</td>
-                                        <td class="costColumn">Rp {{ number_format($service->service_cost, 2, ',','.')}}</td>
+                                        <td class="costColumn">Rp {{ number_format($service->service_cost, 0, ',','.')}}</td>
                                         <td class="text-center dateServiceColumn">{{ date('d M Y', strtotime($service->service_date))}}</td>
                                         <td>
                                             <div class="d-flex justify-content-between mb-2">
                                                 @if ($service->service_payment_status == 1)
-                                                    <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-success">PAID</button></a>
+                                                    <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}" class="w-100"><button type="button" class="btn btn-success w-100">PAID</button></a>
                                                 @else
                                                     <a href="{{ route('master_paid_service', ['service_id'=>$service->service_id])}}"><button type="button" class="btn btn-danger">UNPAID</button></a>
                                                 @endif

@@ -17,8 +17,9 @@ return new class extends Migration
             Schema::create('htrans', function (Blueprint $table) {
                 $table->id("htrans_id");
                 $table->date("htrans_date");
-                $table->decimal("htrans_total", 10, 2);
-                $table->integer("htrans_status")->comment("1 Done, 0 Undone");
+                $table->decimal("htrans_total", 65, 2);
+                $table->string("midtrans_id", 8);
+                $table->string("midtrans_url", 255);
                 $table->unsignedBigInteger("cashier_id");
                 $table->foreign("cashier_id")->references("user_id")->on("users")->onDelete("cascade");
                 $table->timestamps(); // created_at dan updated_at

@@ -18,6 +18,9 @@
 </head>
 <body>
 
+    <!-- Sweet Alert -->
+    @include('sweetalert::alert')
+
     <div class="container">
         <div class="forms">
             <div class="form login">

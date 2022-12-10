@@ -32,11 +32,10 @@ class WebLoginController extends Controller
 
         $response = ApiHelper::getResponse($req);
 
-
-
         if ($response->success == true) {
             return redirect('/');
         } else {
+            alert()->error('Ooppss!!', 'Gagal login!');
             return redirect()->route('login')->with('error', $response->message);
         }
     }

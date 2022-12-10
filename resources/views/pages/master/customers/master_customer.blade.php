@@ -63,6 +63,7 @@
                         <div class="form-group">
                             <label for="selectSex">Customer Sex</label>
                             <select class="custom-select @error('jk') is-invalid @enderror" id="selectSex" name="jk">
+                                <option hidden></option>
                                 <option value="L" {{ (old("jk") == 'L' ? "selected":"") }}>Laki-laki</option>
                                 <option value="P" {{ (old("jk") == 'P' ? "selected":"") }}>Perempuan</option>
                             </select>
@@ -115,7 +116,7 @@
                                                 <a href="{{ route('master_edit_customer', ['customer_id'=>$customer->customer_id]) }}"><button type="button" class="btn btn-template mr-md-2">EDIT</button></a>
                                                 <a href="{{ route('master_delete_customer', ['customer_id'=>$customer->customer_id]) }}"><button type="button" class="btn btn-danger">DELETE</button></a>
                                             @else
-                                                <a style="width: 100%" href="{{ route('master_delete_customer', ['customer_id'=>$customer->customer_id]) }}"><button type="button" class="btn btn-success" style="width: 100%">RESTORE</button></a>
+                                                <a style="width: 100%" href="{{ route('master_restore_customer', ['customer_id'=>$customer->customer_id]) }}"><button type="button" class="btn btn-success" style="width: 100%">RESTORE</button></a>
                                             @endif
                                         </td>
                                     </tr>

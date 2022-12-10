@@ -25,7 +25,7 @@ class CustomerFactory extends Factory
             'customer_name' => "$firstname $lastname",
             'customer_email' => $this->generateMaskedEmail($firstname, $lastname),
             'customer_address' => $this->faker->streetAddress(),
-            'customer_phone_number' => $this->faker->e164PhoneNumber(),
+            'customer_phone_number' => $this->faker->numerify('08##########'),
             'customer_jk' => ($gender == 'male') ? 'L' : 'P',
         ];
     }

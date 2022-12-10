@@ -24,19 +24,19 @@ class MidtransController extends Controller
         foreach ($temp as $t){
             $items[] = [
                 'id' => $t->item_id,
-                'price' => $t->item_price/100,
+                'price' => $t->item_price,
                 'quantity' => $t->pivot->item_qty,
                 'name' => $t->item_name
             ];
             $total += $t->pivot->item_qty * $t->item_price;
         }
 
-        $total /= 100;
+        // $total /= 100;
 
-        $statement = DB::select("SHOW TABLE STATUS LIKE 'htrans'");
-        $nextId = $statement[0]->Auto_increment;
-        $nextId = str_pad($nextId, 4, '0', STR_PAD_LEFT);
-        $nextId = str_pad(date('dmy').$nextId, 10, '0', STR_PAD_LEFT);
+        // $statement = DB::select("SHOW TABLE STATUS LIKE 'htrans'");
+        // $nextId = $statement[0]->Auto_increment;
+        $nextId = str_pad(random_int(0, 99999999), 8, '0', STR_PAD_LEFT);
+        // $nextId = str_pad(date('dmy').$nextId, 8, '0', STR_PAD_LEFT);
 
         MidtransConfig::$serverKey = env('MIDTRANS_SERVER_KEY');
         MidtransConfig::$clientKey = env('MIDTRANS_CLIENT_KEY');
@@ -62,9 +62,9 @@ class MidtransController extends Controller
 
         $htrans = $user->Htrans()->create([
             'htrans_date' => date('Y-m-d'),
-            'htrans_total' => $total * 100,
-            'htrans_status' => '0',
-            'midtrans_url' => $paymentURL
+            'htrans_total' => $total,
+            'midtrans_url' => $paymentURL,
+            'midtrans_id' => $nextId
         ]);
 
         $htrans = Htrans::find($htrans->htrans_id);

@@ -17,7 +17,7 @@ class Htrans extends Model
         "htrans_date",
         "htrans_total",
         "cashier_id",
-        'htrans_status',
+        'midtrans_id',
         'midtrans_url'
     ];
 

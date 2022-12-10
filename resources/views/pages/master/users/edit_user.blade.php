@@ -13,6 +13,8 @@
         <h3 class="mb-4 color-white-high-emphasis">Form to edit user data</h3>
         <form action="{{ url('owner/users/edit/'.$user->user_id) }}" method="POST">
             @csrf
+            <input type="hidden" name="old_username" value="{{ $user->user_username }}">
+            
             <div class="form-group">
                 <label for="inputFullname">Full Name</label>
                 <input type="text" id="inputFullname" name="name" class="form-control bg-content border-1 ml-2 @error('name') is-invalid @enderror" placeholder="Enter full name" value="{{ old('name', $user->user_name ) }}">

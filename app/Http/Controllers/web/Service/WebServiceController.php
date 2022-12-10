@@ -59,8 +59,8 @@ class WebServiceController extends Controller
         $service->Users()->attach($request->firstTech);
         $service->Users()->attach($request->secondTech);
 
+        alert()->success('Yayyy!!', 'Servis berhasil ditambahkan!');
         return redirect()->route('master_service')->with('success');
-
     }
 
     public function update(Request $request)
@@ -102,6 +102,7 @@ class WebServiceController extends Controller
 
         $service->save();
 
+        alert()->success('Yayyy!!', 'Servis berhasil diupdate!');
         return redirect()->route('master_service')->with('success');
     }
 
@@ -110,6 +111,7 @@ class WebServiceController extends Controller
         $service->service_status = 1 - $service->service_status;
         $service->save();
 
+        alert()->success('Yayyy!!', 'Status servis #' . $request->service_id . ' berhasil diupdate!');
         return redirect()->route('master_service')->with('success');
     }
 
@@ -118,6 +120,7 @@ class WebServiceController extends Controller
         $service->service_payment_status = 1 - $service->service_payment_status;
         $service->save();
 
+        alert()->success('Yayyy!!', 'Status pembayaran servis #' . $request->service_id . ' berhasil diupdate!');
         return redirect()->route('master_service')->with('success');
     }
 }

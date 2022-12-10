@@ -45,8 +45,14 @@
         </li>
         <li class="nav-item {{ (\Request::route()->getName() == 'master_user' || \Request::route()->getName() == 'master_add_user' || \Request::route()->getName() == 'master_edit_user') ? 'active' : '' }}">
             <a class="nav-link"href="{{ route('master_user') }}">
-                <i class="fa fa-users nav-icon"></i>
+                <i class="fa fa-user nav-icon"></i>
                 <span>Master User</span>
+            </a>
+        </li>
+        <li class="nav-item {{ (\Request::route()->getName() == 'kasir_history') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('kasir_history') }}">
+                <i class="fa fa-shopping-basket nav-icon"></i>
+                <span>History Store</span>
             </a>
         </li>
     @elseif (Auth::user()->user_role == 1) <!-- MANAJER -->
@@ -74,6 +80,12 @@
                 <span>Paycheck</span>
             </a>
         </li>
+        <li class="nav-item {{ (\Request::route()->getName() == 'kasir_history') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('kasir_history') }}">
+                <i class="fa fa-shopping-basket nav-icon"></i>
+                <span>History Store</span>
+            </a>
+        </li>
     @elseif (Auth::user()->user_role == 2) <!-- TEKNISI -->
         {{-- <li class="nav-item {{ (\Request::route()->getName() == 'teknisi_dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('teknisi_dashboard') }}">
@@ -98,6 +110,12 @@
             <a class="nav-link" href="{{ route('kasir_store') }}">
                 <i class="fa fa-shopping-basket nav-icon"></i>
                 <span>Store</span>
+            </a>
+        </li>
+        <li class="nav-item {{ (\Request::route()->getName() == 'kasir_history') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('kasir_history') }}">
+                <i class="fa fa-history nav-icon"></i>
+                <span>History</span>
             </a>
         </li>
     @endif
