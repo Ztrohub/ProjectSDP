@@ -1,129 +1,199 @@
 @extends("pages.owner.main_owner")
 
 @section('name_page')
-    Laporan
+    Report (Monthly)
 @endsection
 
+@push('page_owner_custom_css')
+    <style>
+        ol {
+            counter-reset: li;
+            list-style: none;
+            padding: 0;
+            text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        }
+
+        ol li {
+            position: relative;
+            display: block;
+            padding: .4em .4em .4em 2em;
+            margin: .5em 0;
+            background: #111011;
+            text-decoration: none;
+            border-radius: .3em;
+            transition: .3s ease-out;
+        }
+
+        ol li:hover {
+            background: #484DB3;
+        }
+
+        ol li:hover:before {
+            transform: rotate(360deg);
+            background: #484DB3;
+        }
+
+        ol li:before {
+            content: counter(li);
+            counter-increment: li;
+            position: absolute;
+            left: -1.3em;
+            top: 50%;
+            margin-top: -1em;
+            background: #6b6fc3;
+            height: 2em;
+            width: 2em;
+            line-height: 1.6em;
+            border: .3em solid #1f1f28;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 2em;
+            transition: all .3s ease-out;
+        }
+    </style>
+@endpush
+
 @section('content_owner')
+    <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">List Laporan</h1>
-        {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p> --}}
+        <!-- Content Row -->
+        <div class="row">
 
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4  bg-that-more-light-than-black">
-            <div class="card-header py-3  bg-that-more-light-than-black">
-                <h6 class="m-0 font-weight-bold text-white">List Laporan</h6>
+            <!-- Earnings (Monthly) Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2 bg-that-more-light-than-black border-0">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Earnings Service</div>
+                                <div class="h5 mb-0 font-weight-bold color-white-high-emphasis">Rp {{ number_format($earningService, 0, ',','.')}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body text-white">
-                <div class="table-responsive">
-                    <table class="table table-bordered  bg-that-more-light-than-black" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="text-white">
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="font-weight-bold text-white">Tiger Nixon</td>
-                                <td class="font-weight-bold text-white">System Architect</td>
-                                <td class="font-weight-bold text-white">Edinburgh</td>
-                                <td class="font-weight-bold text-white">61</td>
-                                <td class="font-weight-bold text-white">2011/04/25</td>
-                                <td class="font-weight-bold text-white">$320,800</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Garrett Winters</td>
-                                <td class="font-weight-bold text-white">Accountant</td>
-                                <td class="font-weight-bold text-white">Tokyo</td>
-                                <td class="font-weight-bold text-white">63</td>
-                                <td class="font-weight-bold text-white">2011/07/25</td>
-                                <td class="font-weight-bold text-white">$170,750</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Ashton Cox</td>
-                                <td class="font-weight-bold text-white">Junior Technical Author</td>
-                                <td class="font-weight-bold text-white">San Francisco</td>
-                                <td class="font-weight-bold text-white">66</td>
-                                <td class="font-weight-bold text-white">2009/01/12</td>
-                                <td class="font-weight-bold text-white">$86,000</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Cedric Kelly</td>
-                                <td class="font-weight-bold text-white">Senior Javascript Developer</td>
-                                <td class="font-weight-bold text-white">Edinburgh</td>
-                                <td class="font-weight-bold text-white">22</td>
-                                <td class="font-weight-bold text-white">2012/03/29</td>
-                                <td class="font-weight-bold text-white">$433,060</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Airi Satou</td>
-                                <td class="font-weight-bold text-white">Accountant</td>
-                                <td class="font-weight-bold text-white">Tokyo</td>
-                                <td class="font-weight-bold text-white">33</td>
-                                <td class="font-weight-bold text-white">2008/11/28</td>
-                                <td class="font-weight-bold text-white">$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Brielle Williamson</td>
-                                <td class="font-weight-bold text-white">Integration Specialist</td>
-                                <td class="font-weight-bold text-white">New York</td>
-                                <td class="font-weight-bold text-white">61</td>
-                                <td class="font-weight-bold text-white">2012/12/02</td>
-                                <td class="font-weight-bold text-white">$372,000</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Herrod Chandler</td>
-                                <td class="font-weight-bold text-white">Sales Assistant</td>
-                                <td class="font-weight-bold text-white">San Francisco</td>
-                                <td class="font-weight-bold text-white">59</td>
-                                <td class="font-weight-bold text-white">2012/08/06</td>
-                                <td class="font-weight-bold text-white">$137,500</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Rhona Davidson</td>
-                                <td class="font-weight-bold text-white">Integration Specialist</td>
-                                <td class="font-weight-bold text-white">Tokyo</td>
-                                <td class="font-weight-bold text-white">55</td>
-                                <td class="font-weight-bold text-white">2010/10/14</td>
-                                <td class="font-weight-bold text-white">$327,900</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Colleen Hurst</td>
-                                <td class="font-weight-bold text-white">Javascript Developer</td>
-                                <td class="font-weight-bold text-white">San Francisco</td>
-                                <td class="font-weight-bold text-white">39</td>
-                                <td class="font-weight-bold text-white">2009/09/15</td>
-                                <td class="font-weight-bold text-white">$205,500</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Sonya Frost</td>
-                                <td class="font-weight-bold text-white">Software Engineer</td>
-                                <td class="font-weight-bold text-white">Edinburgh</td>
-                                <td class="font-weight-bold text-white">23</td>
-                                <td class="font-weight-bold text-white">2008/12/13</td>
-                                <td class="font-weight-bold text-white">$103,600</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-bold text-white">Jena Gaines</td>
-                                <td class="font-weight-bold text-white">Office Manager</td>
-                                <td class="font-weight-bold text-white">London</td>
-                                <td class="font-weight-bold text-white">30</td>
-                                <td class="font-weight-bold text-white">2008/12/19</td>
-                                <td class="font-weight-bold text-white">$90,560</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <!-- Earnings (Monthly) Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2 bg-that-more-light-than-black border-0">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Number of services</div>
+                                <div class="h5 mb-0 font-weight-bold color-white-high-emphasis">{{ $numberOfServices }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-wrench fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2 bg-that-more-light-than-black border-0">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Earnings Store</div>
+                                <div class="h5 mb-0 font-weight-bold color-white-high-emphasis">Rp {{ number_format($earningSales, 0, ',','.')}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2 bg-that-more-light-than-black border-0">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Number of items sold</div>
+                                <div class="h5 mb-0 font-weight-bold color-white-high-emphasis">{{ $numberOfSales }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-cubes fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-6 col-sm-12">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-that-more-light-than-black border-0">
+                        <h6 class="m-0 font-weight-bold color-white-high-emphasis">Top 3 Customer</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body pt-0">
+                        <ol class="color-white-high-emphasis mx-4">
+                            @if (count($top3customer) > 0)
+                                @foreach ($top3customer as $customer)
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-7">{{ $customer['customer_name'] }}</div>
+                                            <div class="col-5 pr-4 text-success d-flex justify-content-end align-items-center">Rp {{ number_format($customer['total'], 0, ',','.') }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @else
+                                <div class="d-flex justify-content-center text-danger">
+                                    NO CUSTOMER
+                                </div>
+                            @endif
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="col-xl-6 col-sm-12">
+                <div class="card shadow mb-4 bg-that-more-light-than-black border-0">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-that-more-light-than-black border-0">
+                        <h6 class="m-0 font-weight-bold color-white-high-emphasis">Top 3 Item</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body pt-0">
+                        <ol class="color-white-high-emphasis mx-4">
+                            @if (count($top3item) > 0)
+                                @foreach ($top3item as $item)
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-9">{{ $item['item_name'] }}</div>
+                                            <div class="col-3 pr-4 text-success d-flex justify-content-end align-items-center">{{ $item['total'] }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @else
+                                <div class="d-flex justify-content-center text-danger">
+                                    NO ITEM
+                                </div>
+                            @endif
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- /.container-fluid -->
 @endsection

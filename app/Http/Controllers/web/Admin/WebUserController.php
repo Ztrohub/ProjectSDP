@@ -101,6 +101,7 @@ class WebUserController extends Controller
 
             ApiHelper::getResponse($req);
 
+            alert()->success('Yayyy!!', 'Status user berhasil diupdate!');
             return redirect()->route('master_user');
         }
 

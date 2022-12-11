@@ -102,7 +102,7 @@
         <li class="nav-item {{ (\Request::route()->getName() == 'teknisi_service_history') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('teknisi_service_history') }}">
                 <i class="fa fa-history nav-icon"></i>
-                <span>History</span>
+                <span>History Service</span>
             </a>
         </li>
     @else <!-- KASIR -->
@@ -115,7 +115,7 @@
         <li class="nav-item {{ (\Request::route()->getName() == 'kasir_history') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('kasir_history') }}">
                 <i class="fa fa-history nav-icon"></i>
-                <span>History</span>
+                <span>History Store</span>
             </a>
         </li>
     @endif
