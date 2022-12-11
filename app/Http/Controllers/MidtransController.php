@@ -64,7 +64,7 @@ class MidtransController extends Controller
             'htrans_date' => date('Y-m-d'),
             'htrans_total' => $total * 100,
             'htrans_status' => '0',
-            'midtrans_url' => $paymentURL
+            // 'midtrans_url' => $paymentURL
         ]);
 
         $htrans = Htrans::find($htrans->htrans_id);
