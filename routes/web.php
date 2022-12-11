@@ -7,6 +7,7 @@ use App\Http\Controllers\web\Customer\CustomerController;
 use App\Http\Controllers\web\Service\WebServiceController;
 use App\Http\Controllers\web\WebLoginController;
 use App\Models\Customer;
+use App\Models\Htrans;
 use App\Models\Item;
 use App\Models\Service;
 use App\Models\User;
@@ -40,23 +41,38 @@ Route::middleware('login')->group( function(){
 
 Route::get('/logout', [WebLoginController::class, 'doLogout'])->name('logout');
 
+
 // == KASIR ==
 Route::prefix('kasir')->group( function() {
     Route::get('/', function() {
         return redirect()->route("kasir_store");
     });
 
-    Route::get('/store', function(Request $request) {
-        $search = "";
-        if($request->has('search')) {
-            $items = Item::where('item_name', 'like', '%'.$request->search.'%')->get();
-            $search = $request->search;
-        } else {
-            $items = Item::all();
-        }
+    Route::prefix('store')->group( function() {
+        Route::get('/', function(Request $request) {
+            $search = "";
+            if($request->has('search')) {
+                $items = Item::where('item_name', 'like', '%'.$request->search.'%')->get();
+                $search = $request->search;
+            } else {
+                $items = Item::all();
+            }
 
-        return view('pages.kasir.store', compact('items', 'search'));
-    })->name('kasir_store');
+            return view('pages.kasir.store', compact('items', 'search'));
+        })->name('kasir_store');
+
+        Route::prefix('history')->group( function() {
+            Route::get('/', function(Request $request) {
+                $historys = Htrans::get();
+
+                return view('pages.kasir.history', compact('historys'));
+            })->name('kasir_history');
+
+            Route::get('/detail/{id}', function(Request $request) {
+                return Htrans::where('htrans_id', $request->id)->first()->Dtrans()->get();
+            })->name('kasir_history_detail');
+        });
+    });
 
     Route::get('/cart', function() {
         $items = User::find(Auth::user()->user_id)->Carts()->get();
@@ -81,7 +97,6 @@ Route::prefix('kasir')->group( function() {
     })->name('kasir_checkout');
 
     Route::post('/cart', function(Request $request) {
-
         $user = User::find(Auth::user()->user_id);
 
         if($user->Carts()->wherePivot('item_id', $request->item_id)->exists()){
@@ -90,6 +105,7 @@ Route::prefix('kasir')->group( function() {
             $user->Carts()->attach($request->item_id, ['item_qty' => $request->item_qty]);
         };
 
+        alert()->success('Yayyy!!', 'Barang berhasil ditambahkan ke keranjang!');
         return redirect()->route("kasir_store");
     })->name('kasir_insert_cart');
 
@@ -102,6 +118,7 @@ Route::prefix('kasir')->group( function() {
             $user->Carts()->updateExistingPivot($request->item_id, ['item_qty' => $request->item_qty]);
         }
 
+        alert()->success('Yayyy!!', 'Barang di keranjang berhasil diupdate!');
         return redirect()->route("kasir_cart");
     })->name('kasir_change_cart');
 
@@ -110,6 +127,7 @@ Route::prefix('kasir')->group( function() {
 
         $user->Carts()->detach($request->item_id);
 
+        alert()->success('Yayyy!!', 'Barang berhasil dihapus ke keranjang!');
         return redirect()->route("kasir_cart");
     })->name('kasir_remove_cart');
 
@@ -134,7 +152,6 @@ Route::prefix('teknisi')->group( function() {
             $services = $user->Services()->whereDate('service_date', Carbon::today())->get();
             // $services = [];
 
-
             return view('pages.teknisi.my_service', compact('services'));
         })->name('teknisi_service');
 
@@ -157,8 +174,8 @@ Route::prefix('teknisi')->group( function() {
         $service->service_status = 1 - $service->service_status;
         $service->save();
 
-        return redirect()->route("teknisi_service");
-
+        alert()->success('Yayyy!!', 'Status servis berhasil diupdate!');
+        return redirect()->back();
     })->name('teknisi_done_service');;
 });
 
@@ -170,16 +187,61 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
     });
 
     Route::get('/report', function() {
-        $param = array();
+        $serviceThisMonth = Service::whereMonth('service_date', Carbon::now()->month)->orderBy('service_cost', 'DESC')->get();
+        $earningService = $serviceThisMonth->sum('service_cost');
+        $numberOfServices = $serviceThisMonth->count();
 
-        return view('pages.owner.laporan', $param); // ini list laporan
+        $top3customer = [];
+        $allCustomers = Customer::get();
+        foreach($allCustomers as $customer){
+            $temp_total = $serviceThisMonth->where('customer_id', $customer->customer_id)->sum('service_cost');
+
+            if($temp_total > 0){
+                array_push($top3customer, [
+                    'customer_name' => $customer->customer_name,
+                    'total' => $temp_total
+                ]);
+            }
+        }
+        usort($top3customer, fn($a, $b) => strcmp($b['total'], $a['total']));
+        $top3customer = array_slice($top3customer, 0, 3);
+        // dd($top3customer);
+
+        $salesThisMonth = Htrans::whereMonth('htrans_date', Carbon::now()->month)->get();
+        $earningSales = $salesThisMonth->sum('htrans_total');
+        $numberOfSales = $salesThisMonth->count();
+
+        $top3item = [];
+        $allItems = Item::get();
+        foreach($allItems as $item){
+            $tempCtr = 0;
+
+            foreach($salesThisMonth as $sales){
+                $detailSales = $sales->Dtrans()->get();
+
+                $tempDetail = $detailSales->where('item_id', $item->item_id)->first();
+                if($tempDetail){
+                    $tempCtr += $tempDetail->pivot->dtrans_quantity;
+                }
+            }
+
+            if($tempCtr > 0){
+                array_push($top3item, [
+                    'item_name' => $item->item_name,
+                    'total' => $tempCtr
+                ]);
+            }
+        }
+        usort($top3item, fn($a, $b) => strcmp($b['total'], $a['total']));
+        $top3item = array_slice($top3item, 0, 3);
+        // dd($top3item);
+
+        return view('pages.owner.laporan', compact('earningService', 'numberOfServices', 'earningSales', 'numberOfSales', 'top3customer', 'top3item'));
     })->name('owner_report');
 
     // == USER ==
     Route::prefix('users')->group( function() {
         Route::get('/', [WebUserController::class, 'index'])->name('master_user');
-
-        Route::get('/add', [WebUserController::class, 'add'])->name('master_add_user');
 
         Route::post('/insert', [WebUserController::class, 'doinsert'])->name('master_insert_user');
 
@@ -300,5 +362,7 @@ Route::middleware(['auth:sanctum', 'ability:owner,manajer'])->prefix('customers'
     Route::post('/update', [CustomerController::class, "update"])->name('master_update_customer');
 
     Route::get('/delete', [CustomerController::class, "delete"])->name('master_delete_customer');
+
+    Route::get('/restore', [CustomerController::class, "restore"])->name('master_restore_customer');
 });
 

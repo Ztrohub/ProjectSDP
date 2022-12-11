@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -42,6 +43,7 @@ class CustomerController extends Controller
             'customer_jk' => $request->jk,
         ]);
 
+        alert()->success('Yayyy!!', 'Customer berhasil ditambahkan!');
         return redirect()->route('master_customer')->with('success');
     }
 
@@ -81,6 +83,27 @@ class CustomerController extends Controller
 
         $customer->save();
 
+        alert()->success('Yayyy!!', 'Customer berhasil diupdate!');
         return redirect()->route('master_customer')->with('success');
+    }
+
+    public function delete(Request $request)
+    {
+        $customer = Customer::where('customer_id', $request->customer_id)->first();
+        $customer->deleted_at = Carbon::now();
+        $customer->save();
+
+        alert()->success('Yayyy!!', $customer["customer_name"] . ' berhasil dihapus!');
+        return redirect()->back();
+    }
+
+    public function restore(Request $request)
+    {
+        $customer = Customer::withTrashed()->where('customer_id', $request->customer_id)->first();
+        $customer->deleted_at = null;
+        $customer->save();
+
+        alert()->success('Yayyy!!', $customer["customer_name"] . ' berhasil direstore!');
+        return redirect()->back();
     }
 }

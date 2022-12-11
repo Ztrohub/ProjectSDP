@@ -10,7 +10,7 @@ use File;
 
 class APIItem extends Controller
 {
-    public function getAllItems(Request $request)
+    public function getAllItems()
     {
         return response()->json([
             'success' => true,
@@ -60,11 +60,6 @@ class APIItem extends Controller
 
         alert()->success('Yayyy!!', $item["item_name"] . ' berhasil ditambahkan!');
         return redirect()->route("master_item");
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => "Barang " . $item['item_name'] . " berhasil ditambahkan!"
-        // ], 200);
     }
 
     public function update(Request $request)
@@ -116,12 +111,7 @@ class APIItem extends Controller
 
         $item->save();
         alert()->success('Yayyy!!', $item["item_name"] . ' berhasil diupdate!');
-        return redirect()->back();
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => "Barang " . $item['item_name'] . " berhasil diupdate!"
-        // ], 200);
+        return redirect()->route('master_item')->with('success');
     }
 
     public function delete(Request $request)
@@ -132,11 +122,6 @@ class APIItem extends Controller
 
         alert()->success('Yayyy!!', $item["item_name"] . ' berhasil dihapus!');
         return redirect()->back();
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => "Barang " . $item['item_name'] . " berhasil dihapus!"
-        // ], 200);
     }
 
     public function restore(Request $request)
@@ -147,10 +132,5 @@ class APIItem extends Controller
 
         alert()->success('Yayyy!!', $item["item_name"] . ' berhasil direstore!');
         return redirect()->back();
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => "Barang " . $item['item_name'] . " berhasil direstore!"
-        // ], 200);
     }
 }

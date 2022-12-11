@@ -90,6 +90,7 @@
                         <div class="form-group">
                             <label for="selectSex">Sex</label>
                             <select class="custom-select @error('jk') is-invalid @enderror" id="selectSex" name="jk">
+                                <option hidden></option>
                                 <option value="L" {{ (old("jk") == 'L' ? "selected":"") }}>Laki-laki</option>
                                 <option value="P" {{ (old("jk") == 'P' ? "selected":"") }}>Perempuan</option>
                             </select>
@@ -102,6 +103,7 @@
                         <div class="form-group">
                             <label for="selectPosition">Position</label>
                             <select class="custom-select @error('role') is-invalid @enderror" id="selectPosition" name="role">
+                                <option hidden></option>
                                 <option value="0" {{ (old("role") == '0' ? "selected":"") }}>Owner</option>
                                 <option value="1" {{ (old("role") == '1' ? "selected":"") }}>Manajer</option>
                                 <option value="2" {{ (old("role") == '2' ? "selected":"") }}>Teknisi</option>

@@ -103,11 +103,11 @@
     <script src="{{ asset('src/sb-admin/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('src/sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
+    {{-- <script src="{{ asset('src/sb-admin/vendor/chart.js/Chart.min.js') }}"></script> --}}
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('src/sb-admin/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('src/sb-admin/js/demo/chart-pie-demo.js') }}"></script>
+    {{-- <script src="{{ asset('src/sb-admin/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('src/sb-admin/js/demo/chart-pie-demo.js') }}"></script> --}}
     @stack("page_custom_js")
 </body>
 

@@ -31,27 +31,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($services as $service)
-                                <tr>
-                                    <td>#{{ $service->service_id}}</td>
-                                    <td>{{ $service->service_description}}</td>
-                                    <td>{{ $service->Customers->customer_name}}</td>
-                                    <td class="text-center">{{ $service->Customers->customer_address}}</td>
-                                    <td>Rp {{ number_format($service->service_cost, 0, ',','.') }}</td>
-                                    @if ($service->service_payment_status == 0)
-                                    <td class="text-center text-bold text-danger">UNPAID</td>
-                                    @else
-                                    <td class="text-center text-bold text-success">PAID</td>
-                                    @endif
-                                    <td class="text-left">
-                                        @if ($service->service_status == 1)
-                                        <a href="{{ route('teknisi_done_service', ['service_id' => $service->service_id]) }}"><button class="btn btn-success">DONE</button></a>
+                            @if (count($services) > 0)
+                                @foreach ($services as $service)
+                                    <tr>
+                                        <td>#{{ $service->service_id}}</td>
+                                        <td>{{ $service->service_description}}</td>
+                                        <td>{{ $service->Customers->customer_name}}</td>
+                                        <td class="text-center">{{ $service->Customers->customer_address}}</td>
+                                        <td>Rp {{ number_format($service->service_cost, 0, ',','.') }}</td>
+                                        @if ($service->service_payment_status == 0)
+                                            <td class="text-center text-bold text-danger">UNPAID</td>
                                         @else
-                                        <a href="{{ route('teknisi_done_service', ['service_id' => $service->service_id]) }}"><button class="btn btn-danger">UNDONE</button></a>
+                                            <td class="text-center text-bold text-success">PAID</td>
                                         @endif
-                                    </td>
+                                        <td class="text-left">
+                                            @if ($service->service_status == 1)
+                                                <a href="{{ route('teknisi_done_service', ['service_id' => $service->service_id]) }}" class="w-100"><button class="btn btn-success w-100">DONE</button></a>
+                                            @else
+                                                <a href="{{ route('teknisi_done_service', ['service_id' => $service->service_id]) }}" class="w-100"><button class="btn btn-danger w-100">UNDONE</button></a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="7" class="text-center text-danger py-4">NO SERVICE TODAY</td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

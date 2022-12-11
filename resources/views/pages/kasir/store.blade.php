@@ -44,7 +44,7 @@
     </div>
 
     <div class="super-container ml-3">
-        <div class="main-search-input-wrap bg-warning mx-3 mb-4">
+        <div class="main-search-input-wrap mx-3 mb-4">
             <div class="main-search-input fl-wrap">
                 <form action="{{ route('kasir_store')}}" method="GET">
                     <div class="main-search-input-item">
@@ -56,28 +56,34 @@
             </div>
         </div>
 
-        <div class="container-store mx-3">
-            @foreach ($items as $item)
-                <div class="wrapper-card mb-4" data-name={{$item->item_name}} data-id={{$item->item_id}} data-price={{$item->item_price}} data-toggle="modal" data-target="#modalAddToCart">
-                    <div class="card">
-                        <img src="{{ asset('src/kasir/store/img/'.$item->item_image_name) }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="brand-text color-white-medium-emphasis font-weight-bold">{{ $item->item_brand}}</p>
-                            <h5 class="card-title">{{ $item->item_name}}</h5>
-                            <div class="wrapper-bottom mt-2">
-                                <p class="card-price color-white-high-emphasis">Rp {{ number_format($item->item_price, 0, ',','.')}}</p>
+        @if (count($items) > 0)
+            <div class="container-store mx-3">
+                @foreach ($items as $item)
+                    <div class="wrapper-card mb-4" data-name={{$item->item_name}} data-id={{$item->item_id}} data-price={{$item->item_price}} data-toggle="modal" data-target="#modalAddToCart">
+                        <div class="card">
+                            <img src="{{ asset('src/kasir/store/img/'.$item->item_image_name) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="brand-text color-white-medium-emphasis font-weight-bold">{{ $item->item_brand}}</p>
+                                <h5 class="card-title">{{ $item->item_name}}</h5>
+                                <div class="wrapper-bottom mt-2">
+                                    <p class="card-price color-white-high-emphasis">Rp {{ number_format($item->item_price, 0, ',','.')}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @else
+            <div class="d-flex justify-content-center text-danger">
+                <h3 class="mt-5">NO ITEM</h3>
+            </div>
+        @endif
     </div>
 @endsection
 
 @push('page_custom_js')
     <script>
-        $(function() {
+        $(window).on('load', function() {
             $(document).on("click", ".wrapper-card", function () {
                 var itemPrice = $(this).data('price');
                 var id = $(this).data('id');

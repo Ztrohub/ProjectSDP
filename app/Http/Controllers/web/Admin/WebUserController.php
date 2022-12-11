@@ -16,7 +16,6 @@ class WebUserController extends Controller
         $req = Request::create('api/users/getall', 'GET');
 
         $response = ApiHelper::getResponse($req);
-
         $users = $response->data;
 
         return view('pages.master.users.master_user', compact('users'));
@@ -28,7 +27,6 @@ class WebUserController extends Controller
 
     public function doinsert(Request $request)
     {
-
         $request->validate([
             'name' => "required|max:50|bail",
             'username' => "required|unique:users,user_username|max:18|bail",
@@ -78,6 +76,7 @@ class WebUserController extends Controller
 
         $response = ApiHelper::getResponse($req);
 
+        alert()->success('Yayyy!!', 'User berhasil ditambahkan!');
         return redirect()->route('master_user')->with('success', $response->message);
     }
 
@@ -102,12 +101,13 @@ class WebUserController extends Controller
 
             ApiHelper::getResponse($req);
 
+            alert()->success('Yayyy!!', 'Status user berhasil diupdate!');
             return redirect()->route('master_user');
         }
 
         $request->validate([
             'name' => "required|max:50|bail",
-            'username' => "required|bail",
+            'username' => "required|unique:users,user_username,$request->old_username,user_username|max:18|bail",
             'dob' => "required",
             'address' => "required",
             'phone_number' => "required|digits_between:8,14|bail",
@@ -116,6 +116,9 @@ class WebUserController extends Controller
         ], [
             'name.required' => ':attribute tidak boleh kosong!',
             'name.max' => ":attribute maximal 50 karakter!",
+            'username.required' => ':attribute tidak boleh kosong!',
+            'username.unique' => ':attribute telah dipakai!',
+            'username.max' => ':attribute maximal 18 karakter!',
             'dob.required' => ':attribute tidak boleh kosong!',
             'address.required' => ':attribute tidak boleh kosong!',
             'phone_number.required' => ":attribute tidak boleh kosong!",
@@ -166,6 +169,7 @@ class WebUserController extends Controller
 
         $response = ApiHelper::getResponse($req);
 
+        alert()->success('Yayyy!!', 'User berhasil diupdate!');
         return redirect()->route('master_user')->with('success', $response->message);
     }
 }

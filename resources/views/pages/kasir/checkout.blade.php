@@ -20,23 +20,33 @@
                     <div class="products">
                         <h3 class="title">Checkout</h3>
                         <div class="wrap-item">
-                            @foreach ($items as $item)
-                                <div class="item">
-                                    <span class="price">Rp {{number_format($item->item_price * $item->pivot->item_qty, 0, ',','.')}}</span>
-                                    <p class="item-name">{{ $item->item_name }}</p>
-                                    <p class="item-description">{{$item->pivot->item_qty}} x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
+                            @if (count($items) > 0)
+                                @foreach ($items as $item)
+                                    <div class="item">
+                                        <span class="price">Rp {{number_format($item->item_price * $item->pivot->item_qty, 0, ',','.')}}</span>
+                                        <p class="item-name">{{ $item->item_name }}</p>
+                                        <p class="item-description">{{$item->pivot->item_qty}} x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
+                                    </div>
+                                @endforeach
+                                <div class="total">Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span></div>
+                            @else
+                                <div class="d-flex justify-content-center">
+                                    <span class="text-danger font-weight-bold py-4" colspan="6">NO ITEM</span>
                                 </div>
-                            @endforeach
+
+                                <div class="total"></div>
+                            @endif
                         </div>
-                        <div class="total">Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span></div>
                     </div>
                     <div class="card-details pt-0">
                         <div class="row pt-0 mt-0">
-                            <div class="col-sm-12">
-                                <a href="{{ route('kasir_pay')}}">
-                                    <button type="button" class="btn btn-block btnProceed">Proceed</button>
-                                </a>
-                            </div>
+                            @if (count($items) > 0)
+                                <div class="col-sm-12">
+                                    <a href="{{ route('kasir_pay')}}">
+                                        <button type="button" class="btn btn-block btnProceed">Proceed</button>
+                                    </a>
+                                </div>
+                            @endif
                             <div class="form-group col-sm-12">
                                 <a href="{{ route('kasir_cart') }}" style="text-decoration: none;">
                                     <button type="button" class="btn btn-secondary btn-block">Back to cart</button>
