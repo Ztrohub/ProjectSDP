@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->unsignedBigInteger("item_id");
                 $table->foreign("item_id")->references("item_id")->on("items")->onDelete("cascade");
                 $table->integer("dtrans_quantity");
-                $table->decimal("dtrans_subtotal", 10, 2);
+                $table->decimal("dtrans_subtotal", 65, 2);
             });
         }
     }

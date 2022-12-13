@@ -203,9 +203,8 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
                 ]);
             }
         }
-        usort($top3customer, fn($a, $b) => strcmp($b['total'], $a['total']));
+        usort($top3customer, fn($a, $b) => $b['total'] > $a['total']);
         $top3customer = array_slice($top3customer, 0, 3);
-        // dd($top3customer);
 
         $salesThisMonth = Htrans::whereMonth('htrans_date', Carbon::now()->month)->get();
         $earningSales = $salesThisMonth->sum('htrans_total');
@@ -232,9 +231,8 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
                 ]);
             }
         }
-        usort($top3item, fn($a, $b) => strcmp($b['total'], $a['total']));
+        usort($top3item, fn($a, $b) => $b['total'] > $a['total']);
         $top3item = array_slice($top3item, 0, 3);
-        // dd($top3item);
 
         return view('pages.owner.laporan', compact('earningService', 'numberOfServices', 'earningSales', 'numberOfSales', 'top3customer', 'top3item'));
     })->name('owner_report');

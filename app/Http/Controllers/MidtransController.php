@@ -72,7 +72,7 @@ class MidtransController extends Controller
         foreach ($items as $item){
             $htrans->Dtrans()->attach($item['id'], [
                 'dtrans_quantity' => $item['quantity'],
-                'dtrans_subtotal' => $item['price'] * 100 * $item['quantity']
+                'dtrans_subtotal' => $item['price'] * $item['quantity']
             ]);
         }
 

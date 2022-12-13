@@ -28,13 +28,15 @@
                                         <p class="item-description">{{$item->pivot->item_qty}} x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
                                     </div>
                                 @endforeach
-                                <div class="total">Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span></div>
                             @else
                                 <div class="d-flex justify-content-center">
                                     <span class="text-danger font-weight-bold py-4" colspan="6">NO ITEM</span>
                                 </div>
-
-                                <div class="total"></div>
+                            @endif
+                        </div>
+                        <div class="total">
+                            @if (count($items) > 0)
+                                Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span>
                             @endif
                         </div>
                     </div>

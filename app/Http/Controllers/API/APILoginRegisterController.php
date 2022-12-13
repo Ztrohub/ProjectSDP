@@ -42,6 +42,9 @@ class APILoginRegisterController extends Controller
             if(! Hash::check($password, $user->user_password)){ // PASSWORD SALAH
                 $success = false;
                 $message = "Password salah!";
+            } else if($user->user_status == 0){ // USER DIPECAT
+                $success = false;
+                $message = "Anda telah dipecat!";
             } else {
                 $message = "Hallo User!";
                 $data = $user;
