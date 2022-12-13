@@ -35,7 +35,7 @@ class WebLoginController extends Controller
         if ($response->success == true) {
             return redirect('/');
         } else {
-            alert()->error('Ooppss!!', 'Gagal login!');
+            alert()->error('Ooppss!!', $response->message);
             return redirect()->route('login')->with('error', $response->message);
         }
     }
