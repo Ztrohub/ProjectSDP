@@ -62,8 +62,11 @@
                                     <form class="change_amount" action="{{ route('kasir_change_cart') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="item_id" value="{{ $item->item_id}}">
-                                        <p> <input type="number" name="item_qty" class="qty" value="{{ $item->pivot->item_qty }}"/> x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
+                                        <p><input type="number" name="item_qty" class="qty" value="{{ $item->pivot->item_qty }}"/> x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
                                     </form>
+                                    @if ($item->stock_error)
+                                        <span class="text-danger font-weight-bold" style="font-size: 0.8rem;">{{ $item->stock_error_message }}</span>
+                                    @endif
                                 </div>
                                 <div class="hargaInvisible color-white-high-emphasis font-weight-bold">Rp {{number_format($item->item_price * $item->pivot->item_qty, 0, ',','.')}}</div>
                             </td>
@@ -96,7 +99,12 @@
             </tbody>
         </table>
 
-        <a href="{{ route('kasir_checkout') }}" class="btn btn-cart continue">Checkout</a>
+        @if ($checkoutError)
+            <a href="#" onclick="showErrorCheckout()" class="btn btn-cart continue">Checkout</a>
+        @else
+            <a href="{{ route('kasir_checkout') }}" class="btn btn-cart continue">Checkout</a>
+        @endif
+
     </div>
 @endsection
 
@@ -112,5 +120,9 @@
                 }
             }
         );
+
+        function showErrorCheckout(){
+            alert("There is an issue in the cart, please edit first before checkout!");
+        }
     </script>
 @endpush

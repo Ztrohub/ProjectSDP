@@ -43,11 +43,17 @@
                     <div class="card-details pt-0">
                         <div class="row pt-0 mt-0">
                             @if (count($items) > 0)
-                                <div class="col-sm-12">
-                                    <a href="{{ route('kasir_pay')}}">
-                                        <button type="button" class="btn btn-block btnProceed">Proceed</button>
-                                    </a>
-                                </div>
+                                @if ($checkoutError)
+                                    <div class="col-sm-12 text-danger text-center mb-2">
+                                        There's an error in your cart! Please check it first!
+                                    </div>
+                                @else
+                                    <div class="col-sm-12">
+                                        <a href="{{ route('kasir_pay')}}">
+                                            <button type="button" class="btn btn-block btnProceed">Proceed</button>
+                                        </a>
+                                    </div>
+                                @endif
                             @endif
                             <div class="form-group col-sm-12">
                                 <a href="{{ route('kasir_cart') }}" style="text-decoration: none;">

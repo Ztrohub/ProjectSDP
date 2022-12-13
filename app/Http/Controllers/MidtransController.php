@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Htrans;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,6 +75,10 @@ class MidtransController extends Controller
                 'dtrans_quantity' => $item['quantity'],
                 'dtrans_subtotal' => $item['price'] * $item['quantity']
             ]);
+
+            $selectedItem = Item::where('item_id', $item['id'])->first();
+            $selectedItem->item_stock -= $item['quantity'];
+            $selectedItem->save();
         }
 
         return redirect($paymentURL);
