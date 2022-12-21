@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="super-container ml-3">
+    <div class="super-container mx-2">
         <div class="main-search-input-wrap mx-3 mb-4">
             <div class="main-search-input fl-wrap">
                 <form action="{{ route('kasir_store')}}" method="GET">
@@ -56,12 +56,38 @@
             </div>
         </div>
 
-        @if (count($items) > 0)
+        @if (count($itemsInStock) > 0 || count($itemsOutOfStock) > 0)
             <div class="container-store mx-3">
-                @foreach ($items as $item)
+
+                @foreach ($itemsInStock as $item)
                     <div class="wrapper-card mb-4" data-name={{$item->item_name}} data-id={{$item->item_id}} data-price={{$item->item_price}} data-toggle="modal" data-target="#modalAddToCart">
                         <div class="card">
-                            <img src="{{ asset('src/kasir/store/img/'.$item->item_image_name) }}" class="card-img-top" alt="...">
+                            <div class="wrapper-head-card">
+                                <img src="{{ asset('src/kasir/store/img/'.$item->item_image_name) }}" class="card-img-top" alt="...">
+                                <span class="color-white-high-emphasis alert-outofstock font-weight-bold p-2">
+                                    STOCK : {{ $item->item_stock }}
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <p class="brand-text color-white-medium-emphasis font-weight-bold">{{ $item->item_brand}}</p>
+                                <h5 class="card-title">{{ $item->item_name}}</h5>
+                                <div class="wrapper-bottom mt-2">
+                                    <p class="card-price color-white-high-emphasis">Rp {{ number_format($item->item_price, 0, ',','.')}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                @foreach ($itemsOutOfStock as $item)
+                    <div class="wrapper-card mb-4">
+                        <div class="card">
+                            <div class="wrapper-head-card">
+                                <img src="{{ asset('src/kasir/store/img/'.$item->item_image_name) }}" class="card-img-top" alt="...">
+                                <span class="bg-danger color-white-high-emphasis alert-outofstock font-weight-bold p-2">
+                                    OUT OF STOCK!
+                                </span>
+                            </div>
                             <div class="card-body">
                                 <p class="brand-text color-white-medium-emphasis font-weight-bold">{{ $item->item_brand}}</p>
                                 <h5 class="card-title">{{ $item->item_name}}</h5>
@@ -78,6 +104,7 @@
                 <h3 class="mt-5">NO ITEM</h3>
             </div>
         @endif
+
     </div>
 @endsection
 
@@ -96,7 +123,7 @@
                 $("#item_id").val( id );
             });
 
-            $("#qty_input").keyup(function(){
+            $("#qty_input").bind('keyup mouseup', function () {
                 if($(this).val() != ""){
                     $("#showSubotal").html( $(this).val() * $("#showPriceEach").html() );
                 } else {

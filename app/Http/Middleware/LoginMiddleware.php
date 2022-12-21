@@ -23,7 +23,7 @@ class LoginMiddleware
                 return redirect('/owner');
             } else if (Auth::user()->user_role == "1") {
                 return redirect('/manajer');
-            } else if (Auth::user()->user_role == "2") {
+        } else if (Auth::user()->user_role == "2") {
                 return redirect('/teknisi');
             } else {
                 return redirect('/kasir');

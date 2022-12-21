@@ -28,24 +28,32 @@
                                         <p class="item-description">{{$item->pivot->item_qty}} x Rp {{number_format($item->item_price, 0, ',','.')}}</p>
                                     </div>
                                 @endforeach
-                                <div class="total">Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span></div>
                             @else
                                 <div class="d-flex justify-content-center">
                                     <span class="text-danger font-weight-bold py-4" colspan="6">NO ITEM</span>
                                 </div>
-
-                                <div class="total"></div>
+                            @endif
+                        </div>
+                        <div class="total">
+                            @if (count($items) > 0)
+                                Total<span class="price">Rp {{ number_format($total, 0, ',','.')}}</span>
                             @endif
                         </div>
                     </div>
                     <div class="card-details pt-0">
                         <div class="row pt-0 mt-0">
                             @if (count($items) > 0)
-                                <div class="col-sm-12">
-                                    <a href="{{ route('kasir_pay')}}"style="text-decoration: none;">
-                                        <button type="button" class="btn btn-block btnProceed">Proceed</button>
-                                    </a>
-                                </div>
+                                @if ($checkoutError)
+                                    <div class="col-sm-12 text-danger text-center mb-2">
+                                        There's an error in your cart! Please check it first!
+                                    </div>
+                                @else
+                                    <div class="col-sm-12">
+                                        <a href="{{ route('kasir_pay')}}" style="text-decoration: none;">
+                                            <button type="button" class="btn btn-block btnProceed">Proceed</button>
+                                        </a>
+                                    </div>
+                                @endif
                             @endif
                             <div class="form-group col-sm-12">
                                 <a href="{{ route('kasir_cart') }}" style="text-decoration: none;">

@@ -59,13 +59,24 @@ Route::prefix('kasir')->group( function() {
         Route::get('/', function(Request $request) {
             $search = "";
             if($request->has('search')) {
-                $items = Item::where('item_name', 'like', '%'.$request->search.'%')->get();
+                $itemsInStock = Item::where([
+                    ['item_name', 'like', '%'.$request->search.'%'],
+                    ['item_stock', '>', 0]
+                ])->get();
+
+                $itemsOutOfStock = Item::where([
+                    ['item_name', 'like', '%'.$request->search.'%'],
+                    ['item_stock', 0]
+                ])->get();
+
                 $search = $request->search;
             } else {
-                $items = Item::all();
+                $itemsInStock = Item::where('item_stock', '>', 0)->get();
+
+                $itemsOutOfStock = Item::where('item_stock', 0)->get();
             }
 
-            return view('pages.kasir.store', compact('items', 'search'));
+            return view('pages.kasir.store', compact('itemsInStock', 'itemsOutOfStock', 'search'));
         })->name('kasir_store');
 
         Route::prefix('history')->group( function() {
@@ -83,36 +94,66 @@ Route::prefix('kasir')->group( function() {
 
     Route::get('/cart', function() {
         $items = User::find(Auth::user()->user_id)->Carts()->get();
-
+        $checkoutError = false;
         $total = 0;
+
         foreach($items as $item) {
             $total += $item->pivot->item_qty * $item->item_price;
+            $selectedItemStock = Item::where('item_id', $item->pivot->item_id)->first()->item_stock;
+
+            if($selectedItemStock < $item->pivot->item_qty){
+                $checkoutError = true;
+                $item->stock_error = true;
+
+                if($selectedItemStock == 0){
+                    $item->stock_error_message = "OUT OF STOCK!";
+                } else {
+                    $item->stock_error_message = "ONLY $selectedItemStock STOCKS REMAIN!";
+                }
+            } else {
+                $item->stock_error = false;
+            }
         }
 
-        return view('pages.kasir.cart', compact('items', 'total'));
+        return view('pages.kasir.cart', compact('items', 'total', 'checkoutError'));
     })->name('kasir_cart');
 
     Route::get('/checkout', function() {
         $items = User::find(Auth::user()->user_id)->Carts()->get();
-
+        $checkoutError = false;
         $total = 0;
+
         foreach($items as $item) {
             $total += $item->pivot->item_qty * $item->item_price;
+            $selectedItemStock = Item::where('item_id', $item->pivot->item_id)->first()->item_stock;
+
+            if($selectedItemStock < $item->pivot->item_qty){
+                $checkoutError = true;
+            }
         }
 
-        return view('pages.kasir.checkout', compact('items', 'total'));
+        return view('pages.kasir.checkout', compact('items', 'total', 'checkoutError'));
     })->name('kasir_checkout');
 
     Route::post('/cart', function(Request $request) {
-        $user = User::find(Auth::user()->user_id);
+        $buy_qty = $request->item_qty;
+        $id_item = $request->item_id;
+        $getItem = Item::where('item_id', $id_item)->first();
 
-        if($user->Carts()->wherePivot('item_id', $request->item_id)->exists()){
-            $user->Carts()->updateExistingPivot($request->item_id, ['item_qty' => DB::raw('item_qty + '. $request->item_qty)]);
+        if($getItem->item_stock < $buy_qty){
+            alert()->error('Oooppss!!', 'Stock yang dibeli melebihi batas!');
         } else {
-            $user->Carts()->attach($request->item_id, ['item_qty' => $request->item_qty]);
-        };
+            $user = User::find(Auth::user()->user_id);
 
-        alert()->success('Yayyy!!', 'Barang berhasil ditambahkan ke keranjang!');
+            if($user->Carts()->wherePivot('item_id', )->exists()){
+                $user->Carts()->updateExistingPivot($id_item, ['item_qty' => DB::raw('item_qty + '. $buy_qty)]);
+            } else {
+                $user->Carts()->attach($id_item, ['item_qty' => $buy_qty]);
+            };
+
+            alert()->success('Yayyy!!', 'Barang berhasil ditambahkan ke keranjang!');
+        }
+
         return redirect()->route("kasir_store");
     })->name('kasir_insert_cart');
 
@@ -232,9 +273,8 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
                 ]);
             }
         }
-        usort($top3customer, fn($a, $b) => strcmp($b['total'], $a['total']));
+        usort($top3customer, fn($a, $b) => $b['total'] > $a['total']);
         $top3customer = array_slice($top3customer, 0, 3);
-        // dd($top3customer);
 
         $salesThisMonth = Htrans::whereDate('htrans_date','<=',$end_date)->whereDate('htrans_date','>=',$start_date)->get();
         $earningSales = $salesThisMonth->sum('htrans_total');
@@ -261,9 +301,8 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
                 ]);
             }
         }
-        usort($top3item, fn($a, $b) => strcmp($b['total'], $a['total']));
+        usort($top3item, fn($a, $b) => $b['total'] > $a['total']);
         $top3item = array_slice($top3item, 0, 3);
-        // dd($top3item);
 
         return view('pages.owner.laporan', compact('earningService', 'numberOfServices', 'earningSales', 'numberOfSales', 'top3customer', 'top3item','start_date','end_date'));
     })->name('owner_report');

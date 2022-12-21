@@ -116,10 +116,10 @@
                                 var dtrans_subtotal = new Intl.NumberFormat('en-ID', {style: 'currency', currency: 'IDR', minimumFractionDigits: 0}).format(response[i].pivot.dtrans_subtotal);
 
                                 var tr_str = "<tr>" +
-                                                "<td class='col-1 text-left'>" + (i+1) + "</td>" +
+                                                "<td class='col-1 text-left text-weight-bold'>" + (i+1) + "</td>" +
                                                 "<td class='col-5 text-left'>" + item_id + "</td>" +
                                                 "<td class='col-2 text-center'>" + dtrans_quantity + "</td>" +
-                                                "<td class='col-4 text-left'>Rp " + dtrans_subtotal.substring(4).replace(",", ".") + "</td>" +
+                                                "<td class='col-4 text-right'>Rp " + dtrans_subtotal.substring(4).replace(",", ".") + "</td>" +
                                             "</tr>";
 
                                 $("#detailTable tbody").append(tr_str);
