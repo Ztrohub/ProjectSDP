@@ -42,7 +42,7 @@
                         <div class="row pt-0 mt-0">
                             @if (count($items) > 0)
                                 <div class="col-sm-12">
-                                    <a href="{{ route('kasir_pay')}}">
+                                    <a href="{{ route('kasir_pay')}}"style="text-decoration: none;">
                                         <button type="button" class="btn btn-block btnProceed">Proceed</button>
                                     </a>
                                 </div>
@@ -60,5 +60,16 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        window.addEventListener("pageshow", function ( event ) {
+            var historyTraversal = event.persisted ||
+                                    ( typeof window.performance != "undefined" &&
+                                        window.performance.navigation.type === 2 );
+            if ( historyTraversal ) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+    </script>
 </body>
 </html>

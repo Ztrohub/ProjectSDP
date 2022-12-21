@@ -6,6 +6,7 @@ use App\Http\Controllers\web\Admin\WebUserController;
 use App\Http\Controllers\web\Customer\CustomerController;
 use App\Http\Controllers\web\Service\WebServiceController;
 use App\Http\Controllers\web\WebLoginController;
+use App\Mail\MailNotify;
 use App\Models\Customer;
 use App\Models\Htrans;
 use App\Models\Item;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -28,6 +30,11 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/sendmail', function(){
+//     $name = 'agus';
+//     $id = '123';
+//     return new MailNotify($name,$id);
+// });
 
 Route::middleware('login')->group( function(){
     Route::get('/', function () {
@@ -171,6 +178,14 @@ Route::prefix('teknisi')->group( function() {
     Route::get('/done', function(Request $request){
         $service = Service::find($request->service_id);
 
+        if($service->service_status == 0)
+        {
+            $customer=$service->Customers()->first();
+            $name=$customer->customer_name;
+            $id=$service->service_id;
+
+            Mail::to($customer->customer_email)->send(new MailNotify($name,$id));
+        }
         $service->service_status = 1 - $service->service_status;
         $service->save();
 
@@ -186,8 +201,22 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
         return redirect()->route("owner_report");
     });
 
-    Route::get('/report', function() {
-        $serviceThisMonth = Service::whereMonth('service_date', Carbon::now()->month)->orderBy('service_cost', 'DESC')->get();
+    Route::get('/report', function(Request $request) {
+
+        if (!isset ($request->start_date)&& !isset($request->end_date))
+        {
+             $start_date = Carbon::now()->startOfMonth()->toDateString();
+             $end_date = Carbon::now()->endOfMonth()->toDateString();
+        }else{
+            $request->validate([
+                'start_date'=>'required',
+                'end_date'=>'required|after_or_equal:'.$request->start_date
+
+            ]);
+            $start_date = Carbon::parse($request->start_date);
+            $end_date = Carbon::parse($request->end_date);
+        }
+        $serviceThisMonth = Service::whereDate('service_date','<=',$end_date)->whereDate('service_date','>=',$start_date)  ->orderBy('service_cost', 'DESC')->get();
         $earningService = $serviceThisMonth->sum('service_cost');
         $numberOfServices = $serviceThisMonth->count();
 
@@ -207,7 +236,7 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
         $top3customer = array_slice($top3customer, 0, 3);
         // dd($top3customer);
 
-        $salesThisMonth = Htrans::whereMonth('htrans_date', Carbon::now()->month)->get();
+        $salesThisMonth = Htrans::whereDate('htrans_date','<=',$end_date)->whereDate('htrans_date','>=',$start_date)->get();
         $earningSales = $salesThisMonth->sum('htrans_total');
         $numberOfSales = $salesThisMonth->count();
 
@@ -236,7 +265,7 @@ Route::middleware(['auth:sanctum', 'ability:owner'])->prefix('owner')->group( fu
         $top3item = array_slice($top3item, 0, 3);
         // dd($top3item);
 
-        return view('pages.owner.laporan', compact('earningService', 'numberOfServices', 'earningSales', 'numberOfSales', 'top3customer', 'top3item'));
+        return view('pages.owner.laporan', compact('earningService', 'numberOfServices', 'earningSales', 'numberOfSales', 'top3customer', 'top3item','start_date','end_date'));
     })->name('owner_report');
 
     // == USER ==

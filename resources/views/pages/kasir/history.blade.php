@@ -51,7 +51,7 @@
                                 <th class="col-2 text-center">Date</th>
                                 <th class="col-3 text-center">Total</th>
                                 <th class="col-3 text-center">Cashier</th>
-                                <th class="col-2 text-center">Status</th>
+                                <th class="col-2 text-center">Order ID</th>
                                 <th class="col-1 text-center">Action</th>
                             </tr>
                         </thead>

@@ -57,6 +57,37 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
+        <!-- Filter -->
+    <form action="{{ route('owner_report') }}" method="get" >
+        <div class="row">
+            <div class="col-xl-4 col-md-6 mb-4" >
+                <div class="form-group">
+                    <label for="inputDateService">Start Date</label>
+                        <input type="date" class="form-control @error('start_date') is-invalid @enderror" id="inputDateService" name="start_date" placeholder="Enter the service date" value="{{ old('start_date', $start_date) }}">
+                            @error('start_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 mb-4" >
+                <div class="form-group">
+                    <label for="inputDateService">End Date</label>
+                    <input type="date" class="form-control @error('end_date') is-invalid @enderror" id="inputDateService" name="end_date" placeholder="Enter the service date" value="{{ old('end_date', $end_date) }}">
+                    @error('end_date')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-2 mb-2 d-flex align-items-center" >
+                <button type="submit" class="btn btn-template">Submit</button>
+            </div>
+        </div>
+    </form>
         <!-- Content Row -->
         <div class="row">
 

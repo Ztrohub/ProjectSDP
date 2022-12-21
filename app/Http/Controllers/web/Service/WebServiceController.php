@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Mail;
 
 class WebServiceController extends Controller
 {
@@ -104,6 +105,25 @@ class WebServiceController extends Controller
 
         alert()->success('Yayyy!!', 'Servis berhasil diupdate!');
         return redirect()->route('master_service')->with('success');
+    }
+    public function sendmail(Request $request) {
+        // kirim email ke customer
+        $data['username']  = "bonboncantik";
+        $data['nama']  = "bonbon";
+        $data['alamat']  = "ngagel jaya selatan 12";
+        $data['status']  = "selesai";
+        $data['notaorder']  = "1234";
+
+        $request->email    = "jonathan.aureliusg@gmail.com";
+        Mail::send('mail.MailNotify',['data'=>$data],
+            function ($message) use ($request)
+            {
+                $message->subject("your order");
+                $message->from("jonathan_a20@mhs.istts.ac.id", "jonathan_a20@mhs.istts.ac.id");
+                $message->to($request->email);
+            }
+        );
+        echo "<h1>sukses Kirim</h1>";
     }
 
     public function done(Request $request){
