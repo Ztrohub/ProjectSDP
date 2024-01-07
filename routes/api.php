@@ -32,8 +32,7 @@ Route::prefix('item')->group(function(){
     Route::get('/insert', [APIItem::class, 'insert']);
 
     // == QUERY TO UPDATE ITEM ==
-    Route::get
-    ('/update', [APIItem::class, 'update']);
+    Route::get('/update', [APIItem::class, 'update']);
 
     // == QUERY TO DELETE ITEM ==
     Route::get('/delete', [APIItem::class, 'delete']);
